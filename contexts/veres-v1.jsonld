@@ -1,0 +1,9 @@
+{
+  "@context": {
+    "id": "@id",
+    "type": "@type",
+    "schema": "http://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "vr": "https://w3id.org/veres#"
+  }
+}
