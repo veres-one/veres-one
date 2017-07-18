@@ -1,0 +1,12 @@
+*.log
+*.py[co]
+*.sw[nop]
+*~
+.cache
+.project
+.settings
+TAGS
+configs/demo-secrets.js
+coverage
+node_modules
+reports
