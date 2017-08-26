@@ -10,7 +10,7 @@ const brDidClient = require('bedrock-did-client');
 // it can register a bedrock.cli event listener
 require('bedrock-protractor');
 //require('bedrock-permission'); // FIXME
-require('bedrock-ledger');
+require('bedrock-ledger-node');
 require('bedrock-ledger-agent');
 require('bedrock-ledger-consensus-uni');
 require('bedrock-ledger-context');
