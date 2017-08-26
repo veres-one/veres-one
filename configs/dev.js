@@ -7,7 +7,7 @@ var path = require('path');
 
 // common paths
 config.paths.cache = path.join(__dirname, '..', '.cache');
-config.paths.log = path.join(os.tmpdir(), 'one.veres.dev');
+config.paths.log = path.join(os.tmpdir(), 'veres.one.local');
 
 // core
 // 0 means use # of cpus
@@ -18,13 +18,13 @@ config.core.worker.restart = false;
 
 // logging
 config.loggers.email.silent = true;
-config.loggers.email.to = ['cluster@one.veres.dev'];
-config.loggers.email.from = 'cluster@one.veres.dev';
+config.loggers.email.to = ['cluster@veres.one.local'];
+config.loggers.email.from = 'cluster@veres.one.local';
 
 // server info
 config.server.port = 42443;
 config.server.httpPort = 42080;
-config.server.domain = 'one.veres.dev';
+config.server.domain = 'veres.one.local';
 // config.server.key = path.join(_cfgdir, 'pki', 'veres.dev.key');
 // config.server.cert = path.join(_cfgdir, 'pki', 'veres.dev.crt');
 
@@ -34,10 +34,10 @@ config.express.session.key = 'veres-one.sid';
 config.express.session.prefix = 'veres-one.';
 
 // mongodb config
-config.mongodb.name = 'one_veres_dev';
+config.mongodb.name = 'veres_one_local';
 config.mongodb.host = 'localhost';
 config.mongodb.port = 27017;
-config.mongodb.local.collection = 'one_veres_dev';
+config.mongodb.local.collection = 'veres_one_local';
 config.mongodb.username = 'veres';
 config.mongodb.password = 'password';
 config.mongodb.adminPrompt = true;

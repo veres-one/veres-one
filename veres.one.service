@@ -1,12 +1,12 @@
 [Service]
-ExecStart=/usr/bin/node /home/bedrock/veres-one/demo.one.veres.io.js
-WorkingDirectory=/home/bedrock/veres-one
+ExecStart=/usr/bin/node /home/veres-one/veres-one/veres.one.js
+WorkingDirectory=/home/veres-one
 Restart=always
 StandardOutput=syslog
 StandardError=syslog
 SyslogIdentifier=veres-one
-User=root
-Group=root
+User=veres-one
+Group=veres-one
 Environment=NODE_ENV=production
 
 [Install]
