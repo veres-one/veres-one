@@ -4,6 +4,6 @@
 var bedrock = require('bedrock');
 
 require('./lib/index');
-require('./configs/demo');
+require('./configs/production');
 
 bedrock.start();

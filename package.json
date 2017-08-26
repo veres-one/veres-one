@@ -8,7 +8,7 @@
   "less": "main.less",
   "scripts": {
     "start": "node one.veres.dev.js",
-    "postinstall": "node one.veres.dev.js compile-less"
+    "postinstall": "node veres.one.local.js compile-less"
   },
   "dependencies": {
     "angular": "~1.6.4",
@@ -40,13 +40,13 @@
     "bedrock-jobs": "^2.0.3",
     "bedrock-key": "^3.0.0",
     "bedrock-key-http": "^2.1.2",
-    "bedrock-ledger": "digitalbazaar/bedrock-ledger#cm3",
-    "bedrock-ledger-agent": "digitalbazaar/bedrock-ledger-agent",
+    "bedrock-ledger": "digitalbazaar/bedrock-ledger#cm4",
+    "bedrock-ledger-agent": "digitalbazaar/bedrock-ledger-agent#cm4",
     "bedrock-ledger-consensus-uni": "digitalbazaar/bedrock-ledger-consensus-uni#implementation",
     "bedrock-ledger-guard-equihash": "digitalbazaar/bedrock-ledger-guard-equihash#implementation",
     "bedrock-ledger-guard-signature": "digitalbazaar/bedrock-ledger-guard-signature#implementation",
     "bedrock-ledger-http": "^0.3.4",
-    "bedrock-ledger-storage-mongodb": "digitalbazaar/bedrock-ledger-storage-mongodb",
+    "bedrock-ledger-storage-mongodb": "digitalbazaar/bedrock-ledger-storage-mongodb#cm4",
     "bedrock-mail": "^2.0.3",
     "bedrock-mongodb": "^3.2.0",
     "bedrock-passport": "^3.2.0",

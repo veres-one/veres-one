@@ -6,28 +6,28 @@ var config = bedrock.config;
 var path = require('path');
 
 // common paths
-config.paths.cache = path.join('/var', 'cache', 'demo.one.veres.io');
-config.paths.log = path.join('/var', 'log', 'demo.one.veres.io');
+config.paths.cache = path.join('/var', 'cache', 'veres.one');
+config.paths.log = path.join('/var', 'log', 'veres.one');
 
 // core configuration
 config.core.workers = 1;
 config.core.worker.restart = true;
 
 // master process while starting
-config.core.starting.groupId = 'adm';
-config.core.starting.userId = 'root';
+config.core.starting.groupId = 'veres-one';
+config.core.starting.userId = 'veres-one';
 
 // master and workers after starting
-config.core.running.groupId = 'bedrock';
-config.core.running.userId = 'bedrock';
+config.core.running.groupId = 'veres-one';
+config.core.running.userId = 'veres-one';
 
 // logging
 config.loggers.app.bedrock.enableChownDir = true;
 config.loggers.access.bedrock.enableChownDir = true;
 config.loggers.error.bedrock.enableChownDir = true;
 config.loggers.email.silent = true;
-config.loggers.email.to = ['cluster@demo.one.veres.io'];
-config.loggers.email.from = 'cluster@demo.one.veres.io';
+config.loggers.email.to = ['cluster@veres.one'];
+config.loggers.email.from = 'cluster@veres.one';
 
 // only run application on HTTP port
 bedrock.events.on('bedrock-express.ready', function(app) {
@@ -38,16 +38,16 @@ bedrock.events.on('bedrock-express.ready', function(app) {
 });
 
 // server info
-config.server.port = 8081;
-config.server.httpPort = 8080;
-config.server.domain = 'demo.one.veres.io';
+config.server.port = 10443;
+config.server.httpPort = 10080;
+config.server.domain = 'veres.one';
 config.server.host = config.server.domain;
 
 // mongodb config
-config.mongodb.name = 'demo_one_veres_io';
+config.mongodb.name = 'veres_one';
 config.mongodb.host = 'localhost';
 config.mongodb.port = 27017;
-config.mongodb.local.collection = 'demo_one_veres_io';
+config.mongodb.local.collection = 'veres_one';
 config.mongodb.username = 'veres';
 config.mongodb.password = null;
 // FIXME: this should be false
@@ -65,7 +65,7 @@ config['authn-did-jwt'].crossDomainAuthn.trustedRepositories.push(
   'did:b85d12e5-77cb-4e97-8cb3-a88478b428bc');
 
 // views branding
-config.views.brand.name = 'Demo Veres One';
+config.views.brand.name = 'Veres One';
 
 // update view vars
 config.views.vars.productionMode = true;
