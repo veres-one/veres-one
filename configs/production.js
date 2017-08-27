@@ -84,4 +84,4 @@ config.docs.vars.brand = config.brand.name;
 config.docs.vars.baseUri = config.server.baseUri;
 
 // load deployed secrets file
-// require('./demo-secrets.js');
+require('./production-secrets.js');
