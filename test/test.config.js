@@ -23,16 +23,16 @@ protractor.params.config.maxTimeout = 30000;
 
 // common paths
 config.paths.cache = path.join(__dirname, '..', '.cache');
-config.paths.log = path.join(os.tmpdir(), 'test.one.veres.dev');
+config.paths.log = path.join(os.tmpdir(), 'test.veres.one.local');
 
 // server info
 config.server.port = 23443;
 config.server.httpPort = 22080;
-config.server.domain = 'one.veres.dev';
+config.server.domain = 'veres.one.local';
 
 // mongodb config
-config.mongodb.name = 'one_veres_test';
-config.mongodb.local.collection = 'one_veres_test';
+config.mongodb.name = 'veres_one_test';
+config.mongodb.local.collection = 'veres_one_test';
 config.mongodb.dropCollections = {};
 config.mongodb.dropCollections.onInit = true;
 config.mongodb.dropCollections.collections = [];

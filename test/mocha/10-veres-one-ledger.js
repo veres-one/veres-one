@@ -14,12 +14,11 @@ const mockData = require('./mock.data');
 const vrLedger = require('../../lib');
 const uuid = require('uuid/v4');
 
-describe('ledger API', () => {
-  it('does something', done => {
-    const x = 4;
-    x.should.equal(4);
+describe('Veres One Ledger', () => {
+  it('ledger node should exist', done => {
     done();
   });
-// TODO:
-
+  it('ledger agent should exist', done => {
+    done();
+  });
 });
