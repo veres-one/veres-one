@@ -1,13 +1,15 @@
 /*!
  * Copyright (c) 2017 Digital Bazaar, Inc. All rights reserved.
  */
-var config = require('bedrock').config;
-var os = require('os');
-var path = require('path');
+const config = require('bedrock').config;
+const fs = require('fs');
+const os = require('os');
+const path = require('path');
 
 // common paths
 config.paths.cache = path.join(__dirname, '..', '.cache');
 config.paths.log = path.join(os.tmpdir(), 'veres.one.local');
+config.paths.keys = path.join(__dirname, 'keys');
 
 // core
 // 0 means use # of cpus
@@ -85,7 +87,7 @@ config.mail.vars = {
 };
 // email templates
 // TODO: determine if Ledger will do credential notifications at all
-var ids = [
+const ids = [
   'veres.Credential.created-identity',
   'veres.Credential.created'
 ];
@@ -141,26 +143,14 @@ config.views.vars.contact.email = {
   url: 'mailto:support@' + config.server.domain,
   email: 'support@' + config.server.domain
 };
-// config.views.vars.contact.facebook = {
-//   label: 'XXX',
-//   url: 'https://www.facebook.com/pages/XXX/1234'
-// };
-// config.views.vars.contact.github = {label: '...', url: ''};
-// config.views.vars.contact.googlePlus = {
-//   label: '+Veres',
-//   url: 'https://plus.google.com/1234'
-// };
-// config.views.vars.contact.irc = {
-//   label: '#XXX',
-//   url: 'irc://irc.freenode.net/XXX'
-// };
-// config.views.vars.contact.twitter = {
-//   label: '@veres',
-//   url: 'https://twitter.com/veres'
-// };
-// config.views.vars.contact.youtube = {label: '...', url: ''};
-// context URLs exposed to client
 
 // REST API documentation
 config.docs.vars.brand = config.brand.name;
 config.docs.vars.baseUri = config.server.baseUri;
+
+// Veres One development config
+config['veres-one'].did = 'did:v1:dev-ledger';
+config['veres-one'].privateKey =
+  path.join(config.paths.keys, 'dev-private-key.pem');
+config['veres-one'].publicKeyPem =
+  fs.readFileSync(path.join(config.paths.keys, 'dev-public-key.pem'), 'utf-8');
