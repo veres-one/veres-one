@@ -40,6 +40,7 @@
     "bedrock-jobs": "^2.0.3",
     "bedrock-key": "^3.1.0",
     "bedrock-key-http": "^2.1.2",
+    "bedrock-ledger-context": "digitalbazaar/bedrock-ledger-context",
     "bedrock-ledger-node": "digitalbazaar/bedrock-ledger-node#cm4",
     "bedrock-ledger-agent": "digitalbazaar/bedrock-ledger-agent#cm4",
     "bedrock-ledger-consensus-uni": "digitalbazaar/bedrock-ledger-consensus-uni#implementation",
