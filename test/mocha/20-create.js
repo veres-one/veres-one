@@ -26,7 +26,7 @@ const urlObj = {
 // use local JSON-LD processor for signatures
 jsigs.use('jsonld', bedrock.jsonld);
 
-describe('Create DID', () => {
+describe.skip('Create DID', () => {
   const regularActor = mockData.identities.regularUser;
   let ledgerAgent;
 
