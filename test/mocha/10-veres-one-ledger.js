@@ -27,4 +27,22 @@ describe('Veres One Ledger', () => {
     done();
   });
 
+  it('ledger agent should be for did:v1:ledger', done => {
+    const options = {};
+    vrOneLedger.agent.node.blocks.getGenesis(options, (err, result) => {
+      should.exist(result.genesisBlock);
+      should.exist(result.genesisBlock.block);
+      should.exist(result.genesisBlock.block.event);
+      should.exist(result.genesisBlock.block.event[0]);
+      should.exist(result.genesisBlock.block.event[0].input);
+      should.exist(result.genesisBlock.block.event[0].input[0]);
+      should.exist(result.genesisBlock.block.event[0].input[0].ledger);
+
+      const ledgerId = result.genesisBlock.block.event[0].input[0].ledger;
+      ledgerId.should.equal(config['veres-one'].did);
+
+      done(err);
+    });
+  });
+
 });
