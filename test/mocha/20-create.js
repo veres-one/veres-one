@@ -17,6 +17,7 @@ request = request.defaults({json: true, strictSSL: false});
 const url = require('url');
 const uuid = require('uuid/v4');
 const querystring = require('querystring');
+const vrLedger = require('../../lib/ledger');
 
 const urlObj = {
   protocol: 'https',
@@ -27,10 +28,10 @@ const urlObj = {
 // use local JSON-LD processor for signatures
 jsigs.use('jsonld', bedrock.jsonld);
 
-describe.skip('Create DID', () => {
+describe('Create DID', () => {
   let ledgerAgent;
 
-  it('should allow valid DID to be created', done => {
+  it.only('should allow valid DID to be created', done => {
     const validDdo = bedrock.util.clone(mockData.ddos.valid);
     const registerEvent = bedrock.util.clone(mockData.events.create);
     registerEvent.input = [validDdo];
@@ -44,13 +45,24 @@ describe.skip('Create DID', () => {
         creator: config['veres-one'].ddoPublicKey.id
       }, callback)],
       register: ['sign', (results, callback) => {
+        const registerUrl = bedrock.util.clone(urlObj);
+        registerUrl.pathname =
+          config['veres-one'].routes.dids + '/' + validDdo.id;
         request.post({
-          url: config['veres-one'].routes.dids + '/' + validDdo.id,
-          body: results.signEvent
+          url: url.format(registerUrl),
+          body: results.sign
         }, (err, res) => {
           should.not.exist(err);
-          res.statusCode.should.equal(201);
-          callback(null, res.headers.location);
+          res.statusCode.should.equal(202);
+          callback();
+        });
+      }],
+      getDo: ['register', (results, callback) => {
+        vrLedger.agent.node.stateMachine.get(validDdo.id, (err, result) => {
+          should.not.exist(err);
+          should.exist(result.object);
+          result.object.id.should.equal(validDdo.id);
+          callback();
         });
       }]
     }, err => done(err));
