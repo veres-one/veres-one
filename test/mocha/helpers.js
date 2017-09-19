@@ -168,19 +168,39 @@ api.generateDid = function(params) {
       // this entity may update any field in this DDO using any authentication
       //mechanism understood by the ledger
       capability: 'UpdateDidDescription',
-      entity: did
+      entity: did,
+      permittedProofType: [{
+        proofType: 'RsaSignature2015',
+        authenticationCredential: [{
+          // this key can be used to authenticate as DID
+          id: did + '/keys/1',
+          type: 'RsaCryptographicKey',
+          owner: did,
+          publicKeyPem: options.publicKeyPem
+        }]
+      }]
     }, {
       // this entity may issue credentials where the 'issuer' field is this
       // DDO's DID as long as this specific RSA key is used
       capability: 'IssueCredential',
       entity: did,
+      permittedProofType: [{
+        proofType: 'RsaSignature2015',
+        authenticationCredential: [{
+          // this key can be used to authenticate as DID
+          id: did + '/keys/1',
+          type: 'RsaCryptographicKey',
+          owner: did,
+          publicKeyPem: options.publicKeyPem
+        }]
+      }]
     }],
     authenticationCredential: [{
       // this key can be used to authenticate as DID
       id: did + '/keys/1',
       type: 'RsaCryptographicKey',
       owner: did,
-      publicKeyPem: "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
+      publicKeyPem: options.publicKeyPem
     }]
   };
 
