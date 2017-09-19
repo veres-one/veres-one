@@ -31,7 +31,42 @@ jsigs.use('jsonld', bedrock.jsonld);
 describe('Create DID', () => {
   let ledgerAgent;
 
-  it.only('should allow valid DID to be created', done => {
+  before(done => {
+    // create all supporting DIDs
+    const didDescriptions = [
+      mockData.didDescriptions.beta, mockData.didDescriptions.gamma,
+      mockData.didDescriptions.delta
+    ];
+    async.each(didDescriptions, (didDescription, callback) => {
+      const registerEvent = bedrock.util.clone(mockData.events.create);
+      registerEvent.input = [didDescription];
+
+      async.auto({
+        getPrivateKey: callback =>
+          fs.readFile(config['veres-one'].privateKey, 'utf8', callback),
+        sign: ['getPrivateKey', (results, callback) =>
+          jsigs.sign(registerEvent, {
+            algorithm: 'LinkedDataSignature2015',
+            privateKeyPem: results.getPrivateKey,
+            creator: config['veres-one'].ddoPublicKey.id
+        }, callback)],
+        register: ['sign', (results, callback) => {
+          const registerUrl = bedrock.util.clone(urlObj);
+          registerUrl.pathname =
+            config['veres-one'].routes.dids + '/' + didDescription.id;
+          request.post({
+            url: url.format(registerUrl),
+            body: results.sign
+          }, (err, res) => {
+            should.not.exist(err);
+            res.statusCode.should.equal(202);
+            callback();
+          });
+      }]}, err => callback(err));
+    }, err => done(err));
+  });
+
+  it.only('should allow valid DID to be created by regulator', done => {
     const validDidDescription =
       bedrock.util.clone(mockData.didDescriptions.alpha);
     const registerEvent = bedrock.util.clone(mockData.events.create);
