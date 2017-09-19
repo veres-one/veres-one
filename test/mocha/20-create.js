@@ -32,9 +32,10 @@ describe('Create DID', () => {
   let ledgerAgent;
 
   it.only('should allow valid DID to be created', done => {
-    const validDdo = bedrock.util.clone(mockData.ddos.valid);
+    const validDidDescription =
+      bedrock.util.clone(mockData.didDescriptions.alpha);
     const registerEvent = bedrock.util.clone(mockData.events.create);
-    registerEvent.input = [validDdo];
+    registerEvent.input = [validDidDescription];
 
     async.auto({
       getPrivateKey: callback =>
@@ -47,7 +48,7 @@ describe('Create DID', () => {
       register: ['sign', (results, callback) => {
         const registerUrl = bedrock.util.clone(urlObj);
         registerUrl.pathname =
-          config['veres-one'].routes.dids + '/' + validDdo.id;
+          config['veres-one'].routes.dids + '/' + validDidDescription.id;
         request.post({
           url: url.format(registerUrl),
           body: results.sign
@@ -57,11 +58,12 @@ describe('Create DID', () => {
           callback();
         });
       }],
-      getDo: ['register', (results, callback) => {
-        vrLedger.agent.node.stateMachine.get(validDdo.id, (err, result) => {
+      getDidDescription: ['register', (results, callback) => {
+        vrLedger.agent.node.stateMachine.get(
+          validDidDescription.id, (err, result) => {
           should.not.exist(err);
           should.exist(result.object);
-          result.object.id.should.equal(validDdo.id);
+          result.object.id.should.equal(validDidDescription.id);
           callback();
         });
       }]

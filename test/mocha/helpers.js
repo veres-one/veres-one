@@ -158,6 +158,45 @@ api.createKeyPair = function(options) {
   return newKeyPair;
 };
 
+api.generateDid = function(params) {
+  const options = params || {};
+  const did = 'did:v1:' + uuid();
+  const didDescription = {
+    '@context': 'https://w3id.org/veres-one/v1',
+    id: did,
+    authorization: [{
+      // this entity may update any field in this DDO using any authentication
+      //mechanism understood by the ledger
+      capability: 'UpdateDidDescription',
+      entity: did
+    }, {
+      // this entity may issue credentials where the 'issuer' field is this
+      // DDO's DID as long as this specific RSA key is used
+      capability: 'IssueCredential',
+      entity: did,
+    }],
+    authenticationCredential: [{
+      // this key can be used to authenticate as DID
+      id: did + '/keys/1',
+      type: 'RsaCryptographicKey',
+      owner: did,
+      publicKeyPem: "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
+    }]
+  };
+
+  if(options.authorization) {
+    Array.prototype.push.apply(
+      didDescription.authorization, options.authorization);
+  }
+
+  if(options.authenticationCredential) {
+    Array.prototype.push.apply(didDescription.authenticationCredential,
+      options.authenticationCredential);
+  }
+
+  return didDescription;
+};
+
 api.removeCollection = function(collection, callback) {
   const collectionNames = [collection];
   database.openCollections(collectionNames, () => {
