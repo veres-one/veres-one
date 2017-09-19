@@ -34,11 +34,12 @@ describe.only('Veres One Ledger', () => {
       should.exist(result.genesisBlock.block);
       should.exist(result.genesisBlock.block.event);
       should.exist(result.genesisBlock.block.event[0]);
-      should.exist(result.genesisBlock.block.event[0].input);
-      should.exist(result.genesisBlock.block.event[0].input[0]);
-      should.exist(result.genesisBlock.block.event[0].input[0].ledger);
+      should.exist(result.genesisBlock.block.event[0].ledgerConfiguration);
+      should.exist(
+        result.genesisBlock.block.event[0].ledgerConfiguration.ledger);
 
-      const ledgerId = result.genesisBlock.block.event[0].input[0].ledger;
+      const ledgerId =
+        result.genesisBlock.block.event[0].ledgerConfiguration.ledger;
       ledgerId.should.equal(config['veres-one'].did);
 
       done(err);
