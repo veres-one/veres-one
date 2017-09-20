@@ -166,6 +166,44 @@ elJwHAbGdGLRQts4YPo/siXcGUbwrEfEl9jwNr9MOxoIZNClNwSPVMjgxUcTNZ8Z
 qIKQx44BsvbLIsH629MdTcnSrb0LFqUaBOsSu5A8gDIgdi8GE2qj
 -----END RSA PRIVATE KEY-----`
 };
+mock.keys.epsilon = {
+  publicKeyPem: `-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqEi961jaGEKTBMhogM1G
+Hfa0Oj1awkB5f6xDewyT65ur7V8U3hq+HY90XWVJb8Zg2s7TaECbLebwNylY7+zz
+n0P1HfQSSPeeypPw3kETB/+mReOu9Pp8hKmGzV1g2ILBYp3Oihw1P3leO84V2XD6
+XvJx6HEeoCZ1ux6gbQ/rFw6MsyWzVZyC2BLqSXO9HipoqBqQQLToDW1fSWloeAhH
+9pmE+aSC1cTeDJteio0Pp0LAn0+vOJWUDQjNK162ad801/dLSwaGiXqN6z//R967
+TNw+5nqhc2zC9WXWlkiKMNWBqtC8uxSV5PLO/e0saHP9L8LdZnGxxtsPwC7TIDBo
+TQIDAQAB
+-----END PUBLIC KEY-----`,
+  privateKeyPem: `-----BEGIN RSA PRIVATE KEY-----
+MIIEowIBAAKCAQEAqEi961jaGEKTBMhogM1GHfa0Oj1awkB5f6xDewyT65ur7V8U
+3hq+HY90XWVJb8Zg2s7TaECbLebwNylY7+zzn0P1HfQSSPeeypPw3kETB/+mReOu
+9Pp8hKmGzV1g2ILBYp3Oihw1P3leO84V2XD6XvJx6HEeoCZ1ux6gbQ/rFw6MsyWz
+VZyC2BLqSXO9HipoqBqQQLToDW1fSWloeAhH9pmE+aSC1cTeDJteio0Pp0LAn0+v
+OJWUDQjNK162ad801/dLSwaGiXqN6z//R967TNw+5nqhc2zC9WXWlkiKMNWBqtC8
+uxSV5PLO/e0saHP9L8LdZnGxxtsPwC7TIDBoTQIDAQABAoIBAA8wOYvzQgPshk5p
+NB1j6Y8sxAl5niZoIU8nohOKCBO8wiCzczO0oDIUz4Dacm1XL0iwYB5JrnfPHyEr
+Zy6IaViXjpj8fWX+i2NnRNcacnhHV595NEJCFVj34AXLBsGj04ZuDcUjVJ78+kdV
+i11LuB03rpY3F3eG4RtZYUtWo3Y6IXtDejkmZedE1IxxmWb6AIQoYO2jqepvHKxb
+eFMmOWSWB9iiWNbHaD/4b3Xymc6KDuu0B/V1W9nWqStJyjVX1us/NAVbfN7jHZ1E
+pELvaGWF5jIDcibirB5svpZMFgoqRD4f7qTkc9AJ7mskefr4sZagt8/5QfhelsBj
+MSAAYSECgYEA0DA9FkPagzJP3GV81tThgLGp05y05JJQ8l4vAtJDf/fdFrnKDb2c
+xfvcukxQbN/nhBtm4Tl1cWiRSLkCp9/NIJGyIZ0aS6XF9DZp1zPBKKgqcV4BLYGG
+CmbaG+VD69/4cnatCkg8skBV9qa5FY1LXaILrvbxR9DFUIUEFfazILkCgYEAzu51
+8b2jZcJLeuaC9atAtHPpvlPoJHS0VTl4xunpHN/9M6nAKoSP1Z1UwrINCeiOzlXR
+iOadi/oYbmtksPZw7+ps1rsk9cFim1WcI4JdDMgr0h/h92oj4AYXLR8Xu8dOm6Ey
+bBVPvmawu+cR76sh2O29ey8ZJpc8FnDhLzIqsjUCgYEAytbFHeVciElD0Bu9h18A
+my/+pCPhh3Ybkhk7uob8pzjrW1IHUF322ltrksP59CovWuKL2VLvX2CfdPh1YvTF
+2j66DNARp7TLawZ9FuThBOjb+Xq6sQiqfYX6agV1qOKeIYAJVqRNJutSFjAY0qvI
+y2Cv+3e0W+FH7gy7j16+5lkCgYBYm7W3eSvhpAwsKU7EobtISiY6ELXj/nFF2SFF
+k931Nli26aZWzoLExuUHpbR9nK6h3g+mXpHx4XratXPdbvm3Uhue624NKezudP8y
+GV183q4dAPgCuNl50UHVWW4RQ2v+qkzsCUgnUNO28mA0z4Pj3xF3ERjk9HePaHCU
+hBfSTQKBgGG51eyiQLZvaIcuo7ad9nE/soHxfFvvrPXtqiD0YGsxu0Ur/bnU3IJV
+/3l1DI9L5vC3RMSKJoBZ8k7b23uvLDoFxeSLL1Bjo3Fwn2jlyBPdbjxqgPj1l8rX
+Xl6keXhu4LsakYCCLQqLykebgHd7oUzNcwF+qxkowSXbTlFiCM1O
+-----END RSA PRIVATE KEY-----`
+};
 
 mock.didDescriptions.beta = helpers.generateDid({
   publicKeyPem: mock.keys.beta.publicKeyPem
@@ -175,6 +213,9 @@ mock.didDescriptions.gamma = helpers.generateDid({
 });
 mock.didDescriptions.delta = helpers.generateDid({
   publicKeyPem: mock.keys.delta.publicKeyPem
+});
+mock.didDescriptions.epsilon = helpers.generateDid({
+  publicKeyPem: mock.keys.epsilon.publicKeyPem
 });
 mock.didDescriptions.alpha = helpers.generateDid({
   publicKeyPem: mock.keys.alpha.publicKeyPem,
