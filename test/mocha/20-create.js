@@ -104,6 +104,42 @@ describe('Create DID', () => {
       }]
     }, err => done(err));
   });
+  it('should allow valid DID to be created by proof of work', done => {
+    const validDidDescription =
+      bedrock.util.clone(mockData.didDescriptions.epsilon);
+    const registerEvent = bedrock.util.clone(mockData.events.create);
+    registerEvent.input = [validDidDescription];
+
+    async.auto({
+      sign: callback => equihashSigs.sign({
+          n: mockData.equihashParameterN,
+          k: mockData.equihashParameterK,
+          doc: registerEvent
+        }, callback),
+      register: ['sign', (results, callback) => {
+        const registerUrl = bedrock.util.clone(urlObj);
+        registerUrl.pathname =
+          config['veres-one'].routes.dids + '/' + validDidDescription.id;
+        request.post({
+          url: url.format(registerUrl),
+          body: results.sign
+        }, (err, res) => {
+          should.not.exist(err);
+          res.statusCode.should.equal(202);
+          callback();
+        });
+      }],
+      getDidDescription: ['register', (results, callback) => {
+        vrLedger.agent.node.stateMachine.get(
+          validDidDescription.id, (err, result) => {
+          should.not.exist(err);
+          should.exist(result.object);
+          result.object.id.should.equal(validDidDescription.id);
+          callback();
+        });
+      }]
+    }, err => done(err));
+  });
   it('should prevent DID creation without proof', done => {
     done();
   });
