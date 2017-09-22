@@ -2,8 +2,12 @@
   "@context": {
     "id": "@id",
     "type": "@type",
+    "sec": "https://w3id.org/security#",
     "schema": "http://schema.org/",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "vr": "https://w3id.org/veres#"
+    "vr": "https://w3id.org/veres#",
+
+    "authenticationCredential": "sec:authenticationCredential",
+    "authorization": "sec:authorization"
   }
 }
