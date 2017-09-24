@@ -6,7 +6,6 @@ var config = bedrock.config;
 var path = require('path');
 
 // common paths
-config.paths.cache = path.join('/var', 'cache', 'testnet.veres.one');
 config.paths.log = path.join('/var', 'log', 'testnet.veres.one');
 
 // core configuration
