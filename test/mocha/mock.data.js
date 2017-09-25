@@ -10,6 +10,10 @@ const helpers = require('./helpers');
 const mock = {};
 module.exports = mock;
 
+mock.equihashParameterN = 64,
+mock.equihashParameterK = 3,
+
+
 mock.didDescriptions = {}
 mock.events = {};
 mock.keys = {};
@@ -226,7 +230,7 @@ mock.didDescriptions.alpha = helpers.generateDid({
     field: ['authenticationCredential', 'authorization'],
     permittedProofType: [{
       proofType: 'RsaSignature2015',
-      minimumSignatures: 3,
+      minimumSignaturesRequired: 3,
       authenticationCredential: [
         mock.didDescriptions.beta.authenticationCredential[0],
         mock.didDescriptions.gamma.authenticationCredential[0],

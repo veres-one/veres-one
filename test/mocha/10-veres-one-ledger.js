@@ -15,7 +15,7 @@ const mockData = require('./mock.data');
 const vrOneLedger = require('../../lib/ledger');
 const uuid = require('uuid/v4');
 
-describe.only('Veres One Ledger', () => {
+describe('Veres One Ledger', () => {
   before(done => {
     // wait for the ledger to initialize
     setTimeout(done, 1000);

@@ -28,7 +28,7 @@ const urlObj = {
 // use local JSON-LD processor for signatures
 jsigs.use('jsonld', bedrock.jsonld);
 
-describe('Create DID', () => {
+describe('DID creation', () => {
   let ledgerAgent;
 
   before(done => {
@@ -66,7 +66,7 @@ describe('Create DID', () => {
     }, err => done(err));
   });
 
-  it.only('should allow valid DID to be created by regulator', done => {
+  it('should be allowed by Regulator', done => {
     const validDidDescription =
       bedrock.util.clone(mockData.didDescriptions.alpha);
     const registerEvent = bedrock.util.clone(mockData.events.create);
@@ -104,19 +104,24 @@ describe('Create DID', () => {
       }]
     }, err => done(err));
   });
-  it('should allow valid DID to be created by proof of work', done => {
+  it('should be allowed with signature and Proof of Work', done => {
     const validDidDescription =
       bedrock.util.clone(mockData.didDescriptions.epsilon);
     const registerEvent = bedrock.util.clone(mockData.events.create);
     registerEvent.input = [validDidDescription];
 
     async.auto({
-      sign: callback => equihashSigs.sign({
-          n: mockData.equihashParameterN,
-          k: mockData.equihashParameterK,
-          doc: registerEvent
-        }, callback),
-      register: ['sign', (results, callback) => {
+      sign: callback => jsigs.sign(registerEvent, {
+        algorithm: 'LinkedDataSignature2015',
+        privateKeyPem: mockData.keys.epsilon.privateKeyPem,
+        creator: validDidDescription.authenticationCredential[0].id
+      }, callback),
+      pow: callback => equihashSigs.sign({
+        n: mockData.equihashParameterN,
+        k: mockData.equihashParameterK,
+        doc: registerEvent
+      }, callback),
+      register: ['pow', (results, callback) => {
         const registerUrl = bedrock.util.clone(urlObj);
         registerUrl.pathname =
           config['veres-one'].routes.dids + '/' + validDidDescription.id;
@@ -140,13 +145,25 @@ describe('Create DID', () => {
       }]
     }, err => done(err));
   });
-  it('should prevent DID creation without proof', done => {
+  it.skip('should be prevented for existing DID', done => {
     done();
   });
-  it('should prevent DID creation with insufficient work proof', done => {
+  it.skip('should be prevented without sig and PoW', done => {
     done();
   });
-  it('should prevent DID creation with invalid proof', done => {
+  it.skip('should be prevented with sig, without PoW', done => {
+    done();
+  });
+  it.skip('should be prevented with sig, invalid PoW', done => {
+    done();
+  });
+  it.skip('should be prevented with sig, insufficient PoW', done => {
+    done();
+  });
+  it.skip('should be prevented with PoW, without sig', done => {
+    done();
+  });
+  it.skip('should be prevented with PoW, invalid sig', done => {
     done();
   });
 });
