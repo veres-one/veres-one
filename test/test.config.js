@@ -12,10 +12,10 @@ const roles = config.permission.roles;
 config.mocha.tests.push(path.join(__dirname, 'mocha'));
 
 // add protractor tests
-var protractor = config.protractor.config;
+const protractor = config.protractor.config;
 protractor.suites['veres-one'] = path.join(
   __dirname, 'protractor', 'tests', '**', '*.js');
-var prepare = path.join(__dirname, 'protractor', 'prepare.js');
+const prepare = path.join(__dirname, 'protractor', 'prepare.js');
 protractor.params.config.onPrepare.push(prepare);
 
 // set maxTimeout to 3 seconds
@@ -62,14 +62,18 @@ roles['veres-one.test'] = {
   ]
 };
 
-// var dir = path.join(__dirname);
+// const dir = path.join(__dirname);
 // config.requirejs.bower.packages.push({
 //   path: path.join(dir, 'components'),
 //   manifest: path.join(dir, 'bower.json')
 // });
 
-//var parentDir = path.join(__dirname, '..');
+//const parentDir = path.join(__dirname, '..');
 //config.requirejs.bower.packages.push({
 //  path: path.join(parentDir, 'components'),
 //  manifest: path.join(parentDir, 'bower.json')
 //});
+
+// use quick equihash setting for tests
+config['veres-one-validator'].equihash.equihashParameterN = 64;
+config['veres-one-validator'].equihash.equihashParameterK = 3;

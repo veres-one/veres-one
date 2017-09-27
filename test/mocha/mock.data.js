@@ -13,8 +13,7 @@ module.exports = mock;
 mock.equihashParameterN = 64,
 mock.equihashParameterK = 3,
 
-
-mock.didDescriptions = {}
+mock.didDescriptions = {};
 mock.events = {};
 mock.keys = {};
 
@@ -222,26 +221,11 @@ mock.didDescriptions.epsilon = helpers.generateDid({
   publicKeyPem: mock.keys.epsilon.publicKeyPem
 });
 mock.didDescriptions.alpha = helpers.generateDid({
-  publicKeyPem: mock.keys.alpha.publicKeyPem,
-  authorization: [{
-    // anyone may update the authenticationCredential and authorization
-    // fields as long as they provide a specific multi-signature proof
-    capability: 'UpdateDidDescription',
-    field: ['authenticationCredential', 'authorization'],
-    permittedProofType: [{
-      proofType: 'RsaSignature2015',
-      minimumSignaturesRequired: 3,
-      authenticationCredential: [
-        mock.didDescriptions.beta.authenticationCredential[0],
-        mock.didDescriptions.gamma.authenticationCredential[0],
-        mock.didDescriptions.delta.authenticationCredential[0]
-      ]
-    }]
-  }]
+  publicKeyPem: mock.keys.alpha.publicKeyPem
 });
 
 mock.events.create = {
-  '@context': 'https://w3id.org/webledger/v1',
+  '@context': constants.WEB_LEDGER_CONTEXT_V1_URL,
   type: 'WebLedgerEvent',
   operation: 'Create',
   input: []
