@@ -1,7 +1,6 @@
 /*
  * Copyright (c) 2017 Digital Bazaar, Inc. All rights reserved.
  */
-/* globals should */
 'use strict';
 
 const async = require('async');
@@ -16,7 +15,6 @@ let request = require('request');
 request = request.defaults({json: true, strictSSL: false});
 const url = require('url');
 const uuid = require('uuid/v4');
-const querystring = require('querystring');
 const vrLedger = require('../../lib/ledger');
 
 const urlObj = {
@@ -29,44 +27,47 @@ const urlObj = {
 jsigs.use('jsonld', bedrock.jsonld);
 
 describe('DID creation', () => {
-  let ledgerAgent;
-
-  before(done => {
+  it('a DID owner should be able to create its own DID document', done => {
     // create all supporting DIDs
-    const didDescriptions = [
-      mockData.didDescriptions.beta, mockData.didDescriptions.gamma,
-      mockData.didDescriptions.delta
-    ];
-    async.each(didDescriptions, (didDescription, callback) => {
-      const registerEvent = bedrock.util.clone(mockData.events.create);
-      registerEvent.input = [didDescription];
-
-      async.auto({
-        getPrivateKey: callback =>
-          fs.readFile(config['veres-one'].privateKey, 'utf8', callback),
-        sign: ['getPrivateKey', (results, callback) =>
-          jsigs.sign(registerEvent, {
-            algorithm: 'LinkedDataSignature2015',
-            privateKeyPem: results.getPrivateKey,
-            creator: config['veres-one'].ddoPublicKey.id
-        }, callback)],
-        register: ['sign', (results, callback) => {
-          const registerUrl = bedrock.util.clone(urlObj);
-          registerUrl.pathname =
-            config['veres-one'].routes.dids + '/' + didDescription.id;
-          request.post({
-            url: url.format(registerUrl),
-            body: results.sign
-          }, (err, res) => {
-            should.not.exist(err);
-            res.statusCode.should.equal(202);
-            callback();
-          });
-      }]}, err => callback(err));
-    }, err => done(err));
+    const didDescription = mockData.didDescriptions.alpha;
+    const registerEvent = bedrock.util.clone(mockData.events.create);
+    registerEvent.input = [didDescription];
+    async.auto({
+      sign: callback => jsigs.sign(registerEvent, {
+        algorithm: 'LinkedDataSignature2015',
+        privateKeyPem: mockData.keys.alpha.privateKeyPem,
+        creator: didDescription.authenticationCredential[0].id
+      }, callback),
+      proof: callback => equihashSigs.sign({
+        doc: registerEvent,
+        n: config['veres-one-validator'].equihash.equihashParameterN,
+        k: config['veres-one-validator'].equihash.equihashParameterK
+      }, callback),
+      register: ['sign', 'proof', (results, callback) => {
+        const registerUrl = bedrock.util.clone(urlObj);
+        const signedDoc = bedrock.util.clone(registerEvent);
+        signedDoc.signature = [
+          results.sign.signature,
+          results.proof.signature
+        ];
+        registerUrl.pathname =
+          config['veres-one'].routes.dids + '/' + didDescription.id;
+        request.post({
+          url: url.format(registerUrl),
+          body: signedDoc
+        }, (err, res) => {
+          assertNoError(err);
+          res.statusCode.should.equal(202);
+          callback();
+        });
+      }]
+    }, err => {
+      assertNoError(err);
+      done(err);
+    });
   });
 
-  it('should be allowed by Regulator', done => {
+  it.skip('should be allowed by Regulator', done => {
     const validDidDescription =
       bedrock.util.clone(mockData.didDescriptions.alpha);
     const registerEvent = bedrock.util.clone(mockData.events.create);
@@ -88,7 +89,7 @@ describe('DID creation', () => {
           url: url.format(registerUrl),
           body: results.sign
         }, (err, res) => {
-          should.not.exist(err);
+          assertNoError(err);
           res.statusCode.should.equal(202);
           callback();
         });
@@ -96,15 +97,15 @@ describe('DID creation', () => {
       getDidDescription: ['register', (results, callback) => {
         vrLedger.agent.node.stateMachine.get(
           validDidDescription.id, (err, result) => {
-          should.not.exist(err);
-          should.exist(result.object);
-          result.object.id.should.equal(validDidDescription.id);
-          callback();
-        });
+            should.not.exist(err);
+            should.exist(result.object);
+            result.object.id.should.equal(validDidDescription.id);
+            callback();
+          });
       }]
     }, err => done(err));
   });
-  it('should be allowed with signature and Proof of Work', done => {
+  it.skip('should be allowed with signature and Proof of Work', done => {
     const validDidDescription =
       bedrock.util.clone(mockData.didDescriptions.epsilon);
     const registerEvent = bedrock.util.clone(mockData.events.create);
@@ -137,11 +138,11 @@ describe('DID creation', () => {
       getDidDescription: ['register', (results, callback) => {
         vrLedger.agent.node.stateMachine.get(
           validDidDescription.id, (err, result) => {
-          should.not.exist(err);
-          should.exist(result.object);
-          result.object.id.should.equal(validDidDescription.id);
-          callback();
-        });
+            should.not.exist(err);
+            should.exist(result.object);
+            result.object.id.should.equal(validDidDescription.id);
+            callback();
+          });
       }]
     }, err => done(err));
   });

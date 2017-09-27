@@ -8,13 +8,13 @@ const async = require('async');
 const bedrock = require('bedrock');
 const brIdentity = require('bedrock-identity');
 const brKey = require('bedrock-key');
-const config = require('bedrock').config;
+const config = bedrock.config;
+const constants = config.constants;
 const database = require('bedrock-mongodb');
 const jsigs = require('jsonld-signatures');
-var scheduler = require('bedrock-jobs');
+const scheduler = require('bedrock-jobs');
 const uuid = require('uuid/v4');
 const url = require('url');
-const vrLedger = require('../../lib');
 
 const api = {};
 module.exports = api;
@@ -23,14 +23,14 @@ api.IDENTITY_BASE_PATH = config.server.baseUri +
   config['identity-http'].basePath + '/';
 
 api.createCrytographicIdentity = function(sourceIdentity, callback) {
-  var publicKey = {
+  const publicKey = {
     '@context': 'https://w3id.org/identity/v1',
     id: sourceIdentity.keys.publicKey.id,
     type: 'CryptographicKey',
     owner: sourceIdentity.identity.id,
     publicKeyPem: sourceIdentity.keys.publicKey.publicKeyPem
   };
-  var credential = {
+  const credential = {
     '@context': 'https://w3id.org/identity/v1',
     id: 'urn:ephemeral:' + uuid(),
     type: ['Credential', 'CryptographicKeyCredential'],
@@ -50,7 +50,7 @@ api.createCrytographicIdentity = function(sourceIdentity, callback) {
       if(err) {
         callback(err);
       }
-      var targetIdentity = {
+      const targetIdentity = {
         '@context': 'https://w3id.org/identity/v1',
         id: sourceIdentity.identity.id,
         type: 'Identity',
@@ -73,7 +73,7 @@ api.createCrytographicIdentity = function(sourceIdentity, callback) {
 };
 
 api.createHttpSignatureRequest = function(options) {
-  var newRequest = {
+  const newRequest = {
     url: options.url,
     httpSignature: {
       key: options.identity.keys.privateKey.privateKeyPem,
@@ -88,8 +88,8 @@ api.createHttpSignatureRequest = function(options) {
 };
 
 api.createIdentity = function(options) {
-  var userName = options.userName || uuid();
-  var newIdentity = {
+  const userName = options.userName || uuid();
+  const newIdentity = {
     id: config.server.baseUri + config['identity-http'].basePath +
       '/' + userName,
     type: 'Identity',
@@ -115,7 +115,7 @@ api.createIdentity = function(options) {
 };
 
 api.createJob = function() {
-  var newJob = {};
+  const newJob = {};
   newJob.worker = {};
   newJob.worker.id = scheduler.createWorkerId();
   return newJob;
@@ -162,43 +162,24 @@ api.generateDid = function(params) {
   const options = params || {};
   const did = 'did:v1:' + uuid();
   const didDescription = {
-    '@context': 'https://w3id.org/veres-one/v1',
+    '@context': constants.VERES_ONE_CONTEXT_URL,
     id: did,
-    authorization: [{
+    authorizationCapability: [{
       // this entity may update any field in this DDO using any authentication
-      //mechanism understood by the ledger
-      capability: 'UpdateDidDescription',
+      // mechanism understood by the ledger
+      permission: 'UpdateDidDocument',
       entity: did,
       permittedProofType: [{
-        proofType: 'RsaSignature2015',
-        authenticationCredential: [{
-          // this key can be used to authenticate as DID
-          id: did + '/keys/1',
-          type: 'RsaCryptographicKey',
-          owner: did,
-          publicKeyPem: options.publicKeyPem
-        }]
-      }]
-    }, {
-      // this entity may issue credentials where the 'issuer' field is this
-      // DDO's DID as long as this specific RSA key is used
-      capability: 'IssueCredential',
-      entity: did,
-      permittedProofType: [{
-        proofType: 'RsaSignature2015',
-        authenticationCredential: [{
-          // this key can be used to authenticate as DID
-          id: did + '/keys/1',
-          type: 'RsaCryptographicKey',
-          owner: did,
-          publicKeyPem: options.publicKeyPem
-        }]
+        proofType: 'LinkedDataSignature2015'
+      }, {
+        proofType: 'EquihashProof2017',
+        equihashParameterAlgorithm: 'VeresOne2017'
       }]
     }],
     authenticationCredential: [{
       // this key can be used to authenticate as DID
       id: did + '/keys/1',
-      type: 'RsaCryptographicKey',
+      type: 'CryptographicKey',
       owner: did,
       publicKeyPem: options.publicKeyPem
     }]
@@ -271,13 +252,14 @@ function insertTestData(mockData, callback) {
         }
         callback();
       }
-    ], callback), err => {
-      if(err) {
-        if(!database.isDuplicateError(err)) {
-          // duplicate error means test data is already loaded
-          return callback(err);
-        }
+    ], callback),
+  err => {
+    if(err) {
+      if(!database.isDuplicateError(err)) {
+        // duplicate error means test data is already loaded
+        return callback(err);
       }
-      callback();
-    }, callback);
+    }
+    callback();
+  }, callback);
 }
