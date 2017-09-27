@@ -154,3 +154,7 @@ config['veres-one'].privateKey =
   path.join(config.paths.keys, 'dev-private-key.pem');
 config['veres-one'].publicKeyPem =
   fs.readFileSync(path.join(config.paths.keys, 'dev-public-key.pem'), 'utf-8');
+
+// use quick equihash setting for development
+config['veres-one-validator'].equihash.equihashParameterN = 64;
+config['veres-one-validator'].equihash.equihashParameterK = 3;
