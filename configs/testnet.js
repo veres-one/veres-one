@@ -82,5 +82,13 @@ config.views.vars.style.brand.alt = config.views.brand.name;
 config.docs.vars.brand = config.brand.name;
 config.docs.vars.baseUri = config.server.baseUri;
 
+// Veres One development config
+config['veres-one'].did = 'did:v1:testnet:ledger';
+config['veres-one'].privateKey =
+  path.join(config.paths.keys, 'testnet-private-key.pem');
+config['veres-one'].publicKeyPem =
+  fs.readFileSync(
+    path.join(config.paths.keys, 'testnet-public-key.pem'), 'utf-8');
+
 // load deployed secrets file
 require('./testnet-secrets.js');
