@@ -7,6 +7,7 @@ var path = require('path');
 
 // common paths
 config.paths.log = path.join('/var', 'log', 'testnet.veres.one');
+config.paths.keys = path.join(__dirname, 'keys');
 
 // core configuration
 config.core.workers = 1;
