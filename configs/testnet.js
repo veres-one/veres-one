@@ -3,6 +3,7 @@
  */
 var bedrock = require('bedrock');
 var config = bedrock.config;
+const fs = require('fs');
 var path = require('path');
 
 // common paths
