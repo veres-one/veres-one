@@ -92,5 +92,9 @@ config['veres-one'].publicKeyPem =
   fs.readFileSync(
     path.join(config.paths.keys, 'testnet-public-key.pem'), 'utf-8');
 
+// use quick equihash setting
+config['veres-one-validator'].equihash.equihashParameterN = 64;
+config['veres-one-validator'].equihash.equihashParameterK = 3;
+
 // load deployed secrets file
 require('./testnet-secrets.js');
