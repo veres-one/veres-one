@@ -6,8 +6,8 @@
   "browser": "index.js",
   "less": "main.less",
   "scripts": {
-    "start": "node veres.one.local.js",
-    "postinstall": "node veres.one.local.js compile-less"
+    "start": "node veres.one.localhost.js",
+    "postinstall": "node veres.one.localhost.js compile-less"
   },
   "dependencies": {
     "async": "^2.1.4",
