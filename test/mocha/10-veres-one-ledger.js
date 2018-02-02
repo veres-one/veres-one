@@ -20,10 +20,8 @@ const vrOneLedgerReady = new Promise(resolve => {
 });
 
 describe('Veres One Ledger', () => {
-  before(done => {
-    // wait for the ledger to initialize
-    vrOneLedgerReady.then(() => done());
-  });
+  // wait for the ledger to initialize
+  before(() => vrOneLedgerReady);
 
   it('ledger agent should exist', done => {
     should.exist(vrOneLedger.agent);
