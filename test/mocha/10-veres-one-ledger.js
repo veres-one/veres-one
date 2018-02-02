@@ -15,10 +15,14 @@ const mockData = require('./mock.data');
 const vrOneLedger = require('../../lib/ledger');
 const uuid = require('uuid/v4');
 
+const vrOneLedgerReady = new Promise(resolve => {
+  bedrock.events.on('veres-one.ready', resolve);
+});
+
 describe('Veres One Ledger', () => {
   before(done => {
     // wait for the ledger to initialize
-    setTimeout(done, 1000);
+    vrOneLedgerReady.then(() => done());
   });
 
   it('ledger agent should exist', done => {
