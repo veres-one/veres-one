@@ -15,6 +15,7 @@ const jsigs = require('jsonld-signatures');
 const scheduler = require('bedrock-jobs');
 const uuid = require('uuid/v4');
 const url = require('url');
+const ursa = require('ursa');
 
 const api = {};
 module.exports = api;
@@ -158,30 +159,56 @@ api.createKeyPair = function(options) {
   return newKeyPair;
 };
 
+api.generateDidKeys = function() {
+  const authenticationKeys = ursa.generatePrivateKey();
+  const grantCapabilityKeys = ursa.generatePrivateKey();
+  const invokeCapabilityKeys = ursa.generatePrivateKey();
+
+  return {
+    authenticationPrivateKeyPem: authenticationKeys.toPrivatePem('base64'),
+    authenticationPublicKeyPem: authenticationKeys.toPublicPem('base64'),
+    grantCapabilityPrivateKeyPem: grantCapabilityKeys.toPrivatePem('base64'),
+    grantCapabilityPublicKeyPem: grantCapabilityKeys.toPublicPem('base64'),
+    invokeCapabilityPrivateKeyPem: invokeCapabilityKeys.toPrivatePem('base64'),
+    invokeCapabilityPublicKeyPem: invokeCapabilityKeys.toPublicPem('base64')
+  };
+};
+
 api.generateDid = function(params) {
   const options = params || {};
   const did = 'did:v1:' + uuid();
   const didDescription = {
     '@context': constants.VERES_ONE_CONTEXT_URL,
     id: did,
-    authorizationCapability: [{
-      // this entity may update any field in this DDO using any authentication
-      // mechanism understood by the ledger
-      permission: 'UpdateDidDocument',
-      entity: did,
-      permittedProofType: [{
-        proofType: 'LinkedDataSignature2015'
-      }, {
-        proofType: 'EquihashProof2017',
-        equihashParameterAlgorithm: 'VeresOne2017'
-      }]
+    authentication: [{
+      type: 'RsaSignatureAuthentication2018',
+      publicKey: {
+        // this key can be used to authenticate as DID entity
+        id: did + '#authn-key-1',
+        type: 'RsaSigningKey2018',
+        owner: did,
+        publicKeyPem: options.authenticationPublicKeyPem
+      }
     }],
-    authenticationCredential: [{
-      // this key can be used to authenticate as DID
-      id: did + '/keys/1',
-      type: 'CryptographicKey',
-      owner: did,
-      publicKeyPem: options.publicKeyPem
+    grantCapability: [{
+      type: 'RsaSignatureCapabilityAuthorization2018',
+      publicKey: {
+        // this key can be used to grant capabilities as DID entity
+        id: did + '#ocap-grant-key-1',
+        type: 'RsaSigningKey2018',
+        owner: did,
+        publicKeyPem: options.grantCapabilityPublicKeyPem
+      }
+    }],
+    invokeCapability: [{
+      type: 'RsaSignatureCapabilityAuthorization2018',
+      publicKey: {
+        // this key can be used to invoke capabilities as DID entity
+        id: did + '#ocap-invoke-key-1',
+        type: 'RsaSigningKey2018',
+        owner: did,
+        publicKeyPem: options.invokeCapabilityPublicKeyPem
+      }
     }]
   };
 
