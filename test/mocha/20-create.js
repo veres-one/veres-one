@@ -28,39 +28,40 @@ const urlObj = {
 jsigs.use('jsonld', bedrock.jsonld);
 
 describe('DID creation', () => {
-  it.skip('a DID owner should be able to create its own DID document', done => {
+  it('a DID owner should be able to create its own DID document', done => {
     // create all supporting DIDs
     const didDescription = mockData.didDescriptions.alpha;
-    const createRecord = mockData.operations.create;
+    const unsignedOp = mockData.operations.create;
+    unsignedOp.record = mockData.didDescriptions.alpha;
+
     async.auto({
-      sign: callback => jsigs.sign(createRecord, {
+      sign: callback => jsigs.sign(unsignedOp, {
         algorithm: 'LinkedDataSignature2015',
         privateKeyPem: mockData.keys.alpha.invokeCapabilityPrivateKeyPem,
         creator: didDescription.invokeCapability[0].publicKey.id
       }, callback),
       proof: callback => equihashSigs.sign({
-        doc: createRecord,
+        doc: unsignedOp,
         n: config['veres-one-validator'].equihash.equihashParameterN,
         k: config['veres-one-validator'].equihash.equihashParameterK
       }, callback),
       register: ['sign', 'proof', (results, callback) => {
         const registerUrl = bedrock.util.clone(urlObj);
-        const record = bedrock.util.clone(createRecord);
-        record.proof = [
+        const signedOp = bedrock.util.clone(unsignedOp);
+        signedOp.proof = [
           results.sign.signature,
           results.proof.signature
         ];
         registerUrl.pathname =
           config['veres-one'].routes.dids + '/' + didDescription.id;
-        callback();
-        /*request.post({
+        request.post({
           url: url.format(registerUrl),
-          body: record
+          body: signedOp
         }, (err, res) => {
           assertNoError(err);
           res.statusCode.should.equal(202);
           callback();
-        });*/
+        });
       }]
     }, err => {
       assertNoError(err);
