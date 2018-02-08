@@ -165,12 +165,12 @@ api.generateDidKeys = function() {
   const invokeCapabilityKeys = ursa.generatePrivateKey();
 
   return {
-    authenticationPrivateKeyPem: authenticationKeys.toPrivatePem('base64'),
-    authenticationPublicKeyPem: authenticationKeys.toPublicPem('base64'),
-    grantCapabilityPrivateKeyPem: grantCapabilityKeys.toPrivatePem('base64'),
-    grantCapabilityPublicKeyPem: grantCapabilityKeys.toPublicPem('base64'),
-    invokeCapabilityPrivateKeyPem: invokeCapabilityKeys.toPrivatePem('base64'),
-    invokeCapabilityPublicKeyPem: invokeCapabilityKeys.toPublicPem('base64')
+    authenticationPrivateKeyPem: authenticationKeys.toPrivatePem('utf8'),
+    authenticationPublicKeyPem: authenticationKeys.toPublicPem('utf8'),
+    grantCapabilityPrivateKeyPem: grantCapabilityKeys.toPrivatePem('utf8'),
+    grantCapabilityPublicKeyPem: grantCapabilityKeys.toPublicPem('utf8'),
+    invokeCapabilityPrivateKeyPem: invokeCapabilityKeys.toPrivatePem('utf8'),
+    invokeCapabilityPublicKeyPem: invokeCapabilityKeys.toPublicPem('utf8')
   };
 };
 
