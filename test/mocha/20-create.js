@@ -30,15 +30,16 @@ jsigs.use('jsonld', bedrock.jsonld);
 describe('DID creation', () => {
   it('a DID owner should be able to create its own DID document', done => {
     // create all supporting DIDs
-    const didDescription = mockData.didDescriptions.alpha;
+    const didDocument = mockData.didDocuments.alpha.publicDidDocument;
     const unsignedOp = mockData.operations.create;
-    unsignedOp.record = mockData.didDescriptions.alpha;
+    unsignedOp.record = didDocument;
 
     async.auto({
       sign: callback => jsigs.sign(unsignedOp, {
         algorithm: 'LinkedDataSignature2015',
-        privateKeyPem: mockData.keys.alpha.invokeCapabilityPrivateKeyPem,
-        creator: didDescription.invokeCapability[0].publicKey.id
+        privateKeyPem: mockData.didDocuments.alpha.privateDidDocument
+          .invokeCapability[0].publicKey.privateKeyPem,
+        creator: didDocument.invokeCapability[0].publicKey.id
       }, callback),
       proof: callback => equihashSigs.sign({
         doc: unsignedOp,
@@ -53,7 +54,7 @@ describe('DID creation', () => {
           results.proof.signature
         ];
         registerUrl.pathname =
-          config['veres-one'].routes.dids + '/' + didDescription.id;
+          config['veres-one'].routes.dids + '/' + didDocument.id;
         request.post({
           url: url.format(registerUrl),
           body: signedOp
@@ -71,17 +72,17 @@ describe('DID creation', () => {
 
   it.skip('a DID owner should be able to update its own DID document', done => {
     // create all supporting DIDs
-    const didDescription = _.cloneDeep(mockData.didDescriptions.alpha);
+    const didDocument = _.cloneDeep(mockData.didDocuments.alpha);
     const registerEvent = bedrock.util.clone(mockData.events.create);
-    registerEvent.input = [didDescription];
+    registerEvent.input = [didDocument];
 
-    // add a key to the didDescription
+    // add a key to the didDocument
 
     async.auto({
       sign: callback => jsigs.sign(registerEvent, {
         algorithm: 'LinkedDataSignature2015',
         privateKeyPem: mockData.keys.alpha.privateKeyPem,
-        creator: didDescription.authenticationCredential[0].id
+        creator: didDocument.authenticationCredential[0].id
       }, callback),
       proof: callback => equihashSigs.sign({
         doc: registerEvent,
@@ -96,7 +97,7 @@ describe('DID creation', () => {
           results.proof.signature
         ];
         registerUrl.pathname =
-          config['veres-one'].routes.dids + '/' + didDescription.id;
+          config['veres-one'].routes.dids + '/' + didDocument.id;
         request.post({
           url: url.format(registerUrl),
           body: signedDoc
@@ -114,7 +115,7 @@ describe('DID creation', () => {
 
   it.skip('should be allowed by Accelerator', done => {
     const validDidDescription =
-      bedrock.util.clone(mockData.didDescriptions.alpha);
+      bedrock.util.clone(mockData.didDocuments.alpha);
     const registerEvent = bedrock.util.clone(mockData.events.create);
     registerEvent.input = [validDidDescription];
 
@@ -152,7 +153,7 @@ describe('DID creation', () => {
   });
   it.skip('should be allowed with signature and Proof of Work', done => {
     const validDidDescription =
-      bedrock.util.clone(mockData.didDescriptions.epsilon);
+      bedrock.util.clone(mockData.didDocuments.epsilon);
     const registerEvent = bedrock.util.clone(mockData.events.create);
     registerEvent.input = [validDidDescription];
 
