@@ -13,4 +13,8 @@ require('../lib');
 require('../configs/dev');
 
 require('bedrock-test');
+
+// ensure `helpers` attaches bedrock event listeners
+require('./mocha/helpers');
+
 bedrock.start();

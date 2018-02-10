@@ -1,27 +1,17 @@
 /*!
- * Copyright (c) 2017 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2017-2018 Digital Bazaar, Inc. All rights reserved.
  */
 /* global should */
 'use strict';
 
-const async = require('async');
 const bedrock = require('bedrock');
 const config = bedrock.config;
-const brIdentity = require('bedrock-identity');
-const database = require('bedrock-mongodb');
-const expect = global.chai.expect;
 const helpers = require('./helpers');
-const mockData = require('./mock.data');
 const vrOneLedger = require('../../lib/ledger');
-const uuid = require('uuid/v4');
-
-const vrOneLedgerReady = new Promise(resolve => {
-  bedrock.events.on('veres-one.ready', resolve);
-});
 
 describe('Veres One Ledger', () => {
   // wait for the ledger to initialize
-  before(() => vrOneLedgerReady);
+  before(() => helpers.vrOneLedgerReady);
 
   it('ledger agent should exist', done => {
     should.exist(vrOneLedger.agent);

@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2017 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2017-2018 Digital Bazaar, Inc. All rights reserved.
  */
 'use strict';
 
@@ -9,16 +9,18 @@ const bedrock = require('bedrock');
 const brIdentity = require('bedrock-identity');
 const brKey = require('bedrock-key');
 const config = bedrock.config;
-const constants = config.constants;
 const database = require('bedrock-mongodb');
 const jsigs = require('jsonld-signatures');
 const scheduler = require('bedrock-jobs');
 const uuid = require('uuid/v4');
 const url = require('url');
-const ursa = require('ursa');
 
 const api = {};
 module.exports = api;
+
+api.vrOneLedgerReady = new Promise(resolve => {
+  bedrock.events.on('veres-one.ready', () => resolve());
+});
 
 api.IDENTITY_BASE_PATH = config.server.baseUri +
   config['identity-http'].basePath + '/';
