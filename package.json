@@ -62,6 +62,7 @@
     "cors": "^2.8.1",
     "credentials-polyfill": "^1.1.5",
     "did-io": "digitalbazaar/did-io#jsonld-1.1",
+    "did-veres-one": "veres-one/did-veres-one#implementation",
     "equihash-signature": "digitalbazaar/equihash-signature#wip",
     "font-awesome": "^4.7.0",
     "jquery": "^3.2.1",
