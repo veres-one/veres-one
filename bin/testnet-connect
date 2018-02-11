@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+#
+# Uses tmux to connect to all testnet machines under the control of the
+# Veres One Maintainer
+SESSION=veres-one-testnet
+NODES="ashburn alturas frankfurt singapore"
+
+printf '\033]2;Veres One Testnet\033\\'
+
+if ! tmux has-session -t $SESSION
+then
+  # Create session
+  tmux new -s $SESSION -d
+
+  for NODE in $NODES; do
+    tmux split-window -t $SESSION
+    tmux send-keys -t $SESSION "printf '\033]2;$NODE\033\\'" C-m
+    tmux send-keys -t $SESSION "reset" C-m
+    tmux send-keys -t $SESSION "ssh ubuntu@$NODE.testnet.veres.one" C-m
+    tmux send-keys -t $SESSION "sudo su - veres-one" C-m
+  done
+
+  tmux kill-pane -t $SESSION.0
+  tmux select-layout -t $SESSION tiled
+fi
+
+tmux attach -t $SESSION
