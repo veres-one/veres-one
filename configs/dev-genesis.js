@@ -149,7 +149,7 @@ config.docs.vars.brand = config.brand.name;
 config.docs.vars.baseUri = config.server.baseUri;
 
 // Veres One development config
-config['veres-one'].did = 'did:v1:uuid:11111111-2222-3333-4444-555555555555';
+config['veres-one'].did = 'did:v1:uuid:00000000-0000-0000-0000-000000000000';
 config['veres-one'].privateKey =
   path.join(config.paths.keys, 'dev-private-key.pem');
 config['veres-one'].publicKeyPem =
