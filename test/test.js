@@ -10,7 +10,7 @@ const bedrock = require('bedrock');
 require('bedrock-protractor');
 require('../lib');
 
-require('../configs/dev');
+require('../configs/dev-genesis');
 
 require('bedrock-test');
 

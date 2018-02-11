@@ -28,7 +28,7 @@ config.paths.log = path.join(os.tmpdir(), 'test.veres.one.localhost');
 // server info
 config.server.port = 23443;
 config.server.httpPort = 22080;
-config.server.domain = 'veres.one.localhost';
+config.server.domain = 'genesis.veres.one.localhost';
 
 // mongodb config
 config.mongodb.name = 'veres_one_test';
