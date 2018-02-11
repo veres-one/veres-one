@@ -4,6 +4,6 @@
 const bedrock = require('bedrock');
 
 require('./lib/index');
-require('./configs/dev');
+require('./configs/dev-genesis');
 
 bedrock.start();

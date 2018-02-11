@@ -6,9 +6,15 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 
+// generate random peer 'name' used for databases and ports
+const peerNumber = Math.floor(Math.random() * Math.floor(9));
+const peerPort = 43500 + peerNumber;
+const peerName = 'peer-' + peerNumber;
+
 // common paths
 config.paths.cache = path.join(__dirname, '..', '.cache');
-config.paths.log = path.join(os.tmpdir(), 'veres.one.localhost');
+config.paths.log =
+  path.join(os.tmpdir(), peerName + '.veres.one.localhost');
 config.paths.keys = path.join(__dirname, 'keys');
 
 // core
@@ -24,9 +30,9 @@ config.loggers.email.to = ['cluster@veres.one.localhost'];
 config.loggers.email.from = 'cluster@veres.one.localhost';
 
 // server info
-config.server.port = 42443;
-config.server.httpPort = 42080;
-config.server.domain = 'veres.one.localhost';
+config.server.port = peerPort + 1;
+config.server.httpPort = peerPort;
+config.server.domain = peerName + '.veres.one.localhost';
 // config.server.key = path.join(_cfgdir, 'pki', 'veres.dev.key');
 // config.server.cert = path.join(_cfgdir, 'pki', 'veres.dev.crt');
 
@@ -36,10 +42,10 @@ config.express.session.key = 'veres-one.sid';
 config.express.session.prefix = 'veres-one.';
 
 // mongodb config
-config.mongodb.name = 'veres_one_localhost';
+config.mongodb.name = 'veres_one_localhost_peer_' + peerNumber;
 config.mongodb.host = 'localhost';
 config.mongodb.port = 27017;
-config.mongodb.local.collection = 'veres_one_localhost';
+config.mongodb.local.collection = 'veres_one_localhost_peer_' + peerNumber;
 config.mongodb.username = 'veres';
 config.mongodb.password = 'password';
 config.mongodb.adminPrompt = true;
@@ -149,7 +155,7 @@ config.docs.vars.brand = config.brand.name;
 config.docs.vars.baseUri = config.server.baseUri;
 
 // Veres One development config
-config['veres-one'].did = 'did:v1:dev-ledger';
+config['veres-one'].did = 'did:v1:uuid:11111111-2222-3333-4444-555555555555';
 config['veres-one'].privateKey =
   path.join(config.paths.keys, 'dev-private-key.pem');
 config['veres-one'].publicKeyPem =
