@@ -158,3 +158,5 @@ config['veres-one'].publicKeyPem =
 // use quick equihash setting for development
 config['veres-one-validator'].equihash.equihashParameterN = 64;
 config['veres-one-validator'].equihash.equihashParameterK = 3;
+
+require('./dev-genesis-secrets');
