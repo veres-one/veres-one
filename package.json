@@ -7,7 +7,7 @@
   "less": "main.less",
   "scripts": {
     "start": "node veres.one.localhost.js",
-    "postinstall": "node veres.one.localhost.js compile-less"
+    "postinstall": "node genesis.veres.one.localhost.js compile-less"
   },
   "dependencies": {
     "async": "^2.1.4",
@@ -67,7 +67,7 @@
     "font-awesome": "^4.7.0",
     "jquery": "^3.2.1",
     "jsonld": "^0.5.18",
-    "jsonld-signatures": "digitalbazaar/jsonld-signatures#multiSignature",
+    "jsonld-signatures": "digitalbazaar/jsonld-signatures#master",
     "jsonwebtoken": "^7.2.0",
     "lodash": "^4.6.1",
     "ng-error": "^1.0.2",

@@ -48,7 +48,7 @@ api.createCrytographicIdentity = function(sourceIdentity, callback) {
         sourceIdentity.keys.privateKey.privateKeyPem,
       creator: sourceIdentity.keys.publicKey.id,
       // domain: url.parse(config.server.baseUri).host,
-      algorithm: 'LinkedDataSignature2015'
+      algorithm: 'RsaSignature2018'
     }, (err, signedCredential) => {
       if(err) {
         callback(err);
@@ -65,7 +65,7 @@ api.createCrytographicIdentity = function(sourceIdentity, callback) {
             sourceIdentity.keys.privateKey.privateKeyPem,
           creator: sourceIdentity.keys.publicKey.id,
           domain: url.parse(config.server.baseUri).host,
-          algorithm: 'LinkedDataSignature2015'
+          algorithm: 'RsaSignature2018'
         }, (err, signedIdentity) => {
           if(err) {
             callback(err);

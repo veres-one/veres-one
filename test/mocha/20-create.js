@@ -36,7 +36,7 @@ describe('DID creation', () => {
 
     async.auto({
       sign: callback => jsigs.sign(unsignedOp, {
-        algorithm: 'LinkedDataSignature2015',
+        algorithm: 'RsaSignature2018',
         privateKeyPem: mockData.didDocuments.alpha.privateDidDocument
           .invokeCapability[0].publicKey.privateKeyPem,
         creator: didDocument.invokeCapability[0].publicKey.id
@@ -80,7 +80,7 @@ describe('DID creation', () => {
 
     async.auto({
       sign: callback => jsigs.sign(registerEvent, {
-        algorithm: 'LinkedDataSignature2015',
+        algorithm: 'RsaSignature2018',
         privateKeyPem: mockData.keys.alpha.privateKeyPem,
         creator: didDocument.authenticationCredential[0].id
       }, callback),
@@ -123,7 +123,7 @@ describe('DID creation', () => {
       getPrivateKey: callback =>
         fs.readFile(config['veres-one'].privateKey, 'utf8', callback),
       sign: ['getPrivateKey', (results, callback) => jsigs.sign(registerEvent, {
-        algorithm: 'LinkedDataSignature2015',
+        algorithm: 'RsaSignature2018',
         privateKeyPem: results.getPrivateKey,
         creator: config['veres-one'].ddoPublicKey.id
       }, callback)],
@@ -159,7 +159,7 @@ describe('DID creation', () => {
 
     async.auto({
       sign: callback => jsigs.sign(registerEvent, {
-        algorithm: 'LinkedDataSignature2015',
+        algorithm: 'RsaSignature2018',
         privateKeyPem: mockData.keys.epsilon.privateKeyPem,
         creator: validDidDescription.authenticationCredential[0].id
       }, callback),
