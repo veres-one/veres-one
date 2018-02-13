@@ -9,7 +9,7 @@ const path = require('path');
 // common paths
 config.paths.cache = path.join(__dirname, '..', '.cache');
 config.paths.log = path.join(os.tmpdir(), 'veres.one.localhost');
-config.paths.keys = path.join(__dirname, 'keys');
+config.paths.secrets = path.join(__dirname, 'secrets');
 
 // core
 // 0 means use # of cpus
@@ -150,13 +150,9 @@ config.docs.vars.baseUri = config.server.baseUri;
 
 // Veres One development config
 config['veres-one'].did = 'did:v1:uuid:00000000-0000-0000-0000-000000000000';
-config['veres-one'].privateKey =
-  path.join(config.paths.keys, 'dev-private-key.pem');
-config['veres-one'].publicKeyPem =
-  fs.readFileSync(path.join(config.paths.keys, 'dev-public-key.pem'), 'utf-8');
 
 // use quick equihash setting for development
 config['veres-one-validator'].equihash.equihashParameterN = 64;
 config['veres-one-validator'].equihash.equihashParameterK = 3;
 
-require('./dev-genesis-secrets');
+require('./secrets/dev-genesis-secrets');
