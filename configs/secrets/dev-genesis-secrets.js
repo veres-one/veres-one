@@ -8,9 +8,9 @@ const path = require('path');
 config['veres-one'].adminPassphrase =
   'password';
 config['veres-one'].maintainerConfigFile =
-  path.join(config.paths.keys, 'maintainer.ddo');
+  path.join(config.paths.secrets, 'maintainer.ddo');
 config['veres-one'].governorsConfigFile =
-  path.join(config.paths.keys, 'governors.ddo');
+  path.join(config.paths.secrets, 'governors.ddo');
 config['veres-one'].maintainerPassphrase =
   'insecure_eyium0phookoh9geeshewomaekuoTeib';
 config['veres-one'].governorsPassphrase =
