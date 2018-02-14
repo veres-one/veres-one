@@ -15,7 +15,7 @@ const peerName = 'peer-' + peerNumber;
 config.paths.cache = path.join(__dirname, '..', '.cache');
 config.paths.log =
   path.join(os.tmpdir(), peerName + '.veres.one.localhost');
-config.paths.keys = path.join(__dirname, 'keys');
+config.paths.keys = path.join(__dirname, 'secrets');
 
 // core
 // 0 means use # of cpus
@@ -156,10 +156,6 @@ config.docs.vars.baseUri = config.server.baseUri;
 
 // Veres One development config
 config['veres-one'].did = 'did:v1:uuid:00000000-0000-0000-0000-000000000000';
-config['veres-one'].privateKey =
-  path.join(config.paths.keys, 'dev-private-key.pem');
-config['veres-one'].publicKeyPem =
-  fs.readFileSync(path.join(config.paths.keys, 'dev-public-key.pem'), 'utf-8');
 config['veres-one'].peers = [
   'https://genesis.veres.one.localhost:42443/'
 ];
