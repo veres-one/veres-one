@@ -50,19 +50,19 @@ roles['admin'] = {
   sysPermission: [].concat(roles['identity.admin'].sysPermission)
 };
 
-// ledger_veres_dev admin role
+// veres admin role
 roles['veres.admin'] = {
   id: 'veres.admin',
   label: 'Veres Administrator',
   comment: 'Role for Veres administrators.',
   sysPermission: [
     permissions.LEDGER_ACCESS.id,
-      permissions.LEDGER_CREATE.id,
-      permissions.LEDGER_REMOVE.id,
-      permissions.LEDGER_AGENT_ACCESS.id,
-      permissions.LEDGER_AGENT_CREATE.id,
-      permissions.LEDGER_AGENT_REMOVE.id
-    ].concat(roles['identity.admin'].sysPermission)
+    permissions.LEDGER_CREATE.id,
+    permissions.LEDGER_REMOVE.id,
+    permissions.LEDGER_AGENT_ACCESS.id,
+    permissions.LEDGER_AGENT_CREATE.id,
+    permissions.LEDGER_AGENT_REMOVE.id
+  ].concat(roles['identity.admin'].sysPermission)
 };
 
 // default registered identity role (contains all permissions for a regular
