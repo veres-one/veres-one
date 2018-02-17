@@ -311,6 +311,7 @@ config.loggers.email.from = 'veres-one-node@$hostname';
 config.server.port = 10443;
 config.server.httpPort = 10080;
 config.server.domain = '$hostname';
+config.server.host = config.server.domain;
 
 // express info
 config.express.session.secret = '$express_secret';
