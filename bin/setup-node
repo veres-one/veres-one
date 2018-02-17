@@ -134,7 +134,7 @@ mongo --eval "db = db.getSiblingDB('admin'); db.createUser({user: \"$mongodb_use
 
 service mongod restart
 
-cat >/etc/mongodb.conf <<EOF
+cat >/etc/mongod.conf <<EOF
 storage:
   dbPath: /var/lib/mongodb
   journal:
