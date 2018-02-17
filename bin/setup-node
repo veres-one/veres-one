@@ -2,8 +2,10 @@
 #
 # Setup the network configuration for a Veres One Node
 
-if [`whoami` -ne 'root']; then
+user=`whoami`
+if [ "$user" != "root" ]; then
   echo "ERROR: This script must be run as the 'root' user."
+  exit 0
 fi
 
 echo "This script will setup your Veres One Node to operate on the Internet."
@@ -32,7 +34,7 @@ echo ""
 echo -n "Do you want to continue with these settings? "
 read do_setup
 
-if [ "$do_setup" != "y" -o "$do_setup" != "Y" ]; then
+if [ "$do_setup" != "y" -a "$do_setup" != "Y" ]; then
   echo "Aborting setup."
   exit 0
 fi
