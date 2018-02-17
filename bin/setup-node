@@ -43,8 +43,9 @@ fi
 hostname $hostname
 echo $hostname > /etc/hostname
 
-######################### Prepare APT ###########################
+######################### Prepare Utils ###########################
 apt-get update
+apt-get -y install pwgen
 
 ######################### Setup Node.js ###########################
 curl -sL https://deb.nodesource.com/setup_8.x | bash

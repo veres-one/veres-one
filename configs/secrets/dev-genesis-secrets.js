@@ -7,6 +7,7 @@ const path = require('path');
 // temporary development passwords, replace in testnet / production
 config['veres-one'].adminPassphrase =
   'password';
+config['veres-one'].peers = [];
 config['veres-one'].maintainerConfigFile =
   path.join(config.paths.secrets, 'maintainer.ddo');
 config['veres-one'].governorsConfigFile =
