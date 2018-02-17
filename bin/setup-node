@@ -119,6 +119,12 @@ echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongod
 apt-get update
 apt-get install -y mongodb-org
 
+# FIXME: Remove wipe mongo DB commands
+service mongod stop
+sed -i -e "s/authorization: enabled//" /etc/mongod.conf
+rm -rf /var/lib/mongodb/*
+service mongod start
+
 mongo --eval "db = db.getSiblingDB('admin'); db.createUser({user: \"admin\",
     pwd: \"$mongodb_admin_secret\",
     roles: [ { role: \"userAdminAnyDatabase\", db: \"admin\" } ]
@@ -129,8 +135,6 @@ mongo --eval "db = db.getSiblingDB('admin'); db.createUser({user: \"admin\",
     { role: \"dbAdmin\", db: \"$mongodb_database\" }]
   }
 )"
-
-service mongod restart
 
 cat >/etc/mongod.conf <<EOF
 storage:
@@ -150,6 +154,8 @@ net:
   port: 27017
   bindIp: 127.0.0.1
 EOF
+
+service mongod restart
 
 ######################### Setup Nginx ###########################
 apt-get -y install nginx
@@ -286,7 +292,7 @@ const path = require('path');
 // common paths
 config.paths.cache = path.join(__dirname, '.cache');
 config.paths.log = path.join('/var', 'log', 'veres-one');
-config.paths.keys = path.join(__dirname, 'config', 'secrets');
+config.paths.secrets = path.join(__dirname, 'configs', 'secrets');
 
 // core
 // 0 means use # of cpus
