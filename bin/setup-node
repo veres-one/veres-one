@@ -123,9 +123,7 @@ mongo --eval "db = db.getSiblingDB('admin'); db.createUser({user: \"admin\",
     pwd: \"$mongodb_secret\",
     roles: [ { role: \"userAdminAnyDatabase\", db: \"admin\" } ]
   }
-)"
-
-mongo --eval "db = db.getSiblingDB('admin'); db.createUser({user: \"$mongodb_user\",
+); db.createUser({user: \"$mongodb_user\",
     pwd: \"$mongodb_user_secret\",
     roles: [ { role: \"readWrite\", db: \"$mongodb_database\" },
     { role: \"dbAdmin\", db: \"$mongodb_database\" }]
