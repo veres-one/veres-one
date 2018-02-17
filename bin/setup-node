@@ -120,7 +120,7 @@ apt-get update
 apt-get install -y mongodb-org
 
 mongo --eval "db = db.getSiblingDB('admin'); db.createUser({user: \"admin\",
-    pwd: \"$mongodb_secret\",
+    pwd: \"$mongodb_admin_secret\",
     roles: [ { role: \"userAdminAnyDatabase\", db: \"admin\" } ]
   }
 ); db.createUser({user: \"$mongodb_user\",
