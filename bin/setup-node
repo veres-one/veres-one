@@ -268,9 +268,9 @@ mkdir -p /var/log/veres-one
 chown veres-one:veres-one /var/log/veres-one
 
 # setup node configuration
-express_secret = `pwgen -s 32`
-ledger_id = 'did:v1:uuid:00000000-0000-0000-0000-000000000000';
-peers = $(cat <<EOF
+express_secret=`pwgen -s 32`
+ledger_id='did:v1:uuid:00000000-0000-0000-0000-000000000000';
+peers=$(cat <<EOF
 [
   'https://genesis.testnet.veres.one/'
 ]
