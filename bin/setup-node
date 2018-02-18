@@ -122,6 +122,7 @@ apt-get install -y mongodb-org
 
 # FIXME: Remove wipe mongo DB commands
 service mongod stop
+sed -i -e "s/security://" /etc/mongod.conf
 sed -i -e "s/authorization: enabled//" /etc/mongod.conf
 rm -rf /var/lib/mongodb/*
 service mongod start
