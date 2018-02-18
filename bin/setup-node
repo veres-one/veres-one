@@ -128,6 +128,7 @@ sed -i -e "s/security://" /etc/mongod.conf
 sed -i -e "s/authorization: enabled//" /etc/mongod.conf
 rm -rf /var/lib/mongodb/*
 service mongod start
+sleep 3
 
 mongo --eval "db = db.getSiblingDB('admin'); db.createUser({user: \"admin\",
     pwd: \"$mongodb_admin_secret\",
