@@ -18,10 +18,10 @@ then
     tmux send-keys -t $SESSION "reset" C-m
     tmux send-keys -t $SESSION "ssh ubuntu@$NODE.testnet.veres.one" C-m
     tmux send-keys -t $SESSION "sudo su - veres-one" C-m
+    tmux select-layout -t $SESSION tiled
   done
 
   tmux kill-pane -t $SESSION.0
-  tmux select-layout -t $SESSION tiled
 fi
 
 tmux attach -t $SESSION
