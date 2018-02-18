@@ -290,6 +290,10 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 
+// FIXME: Fix for nginx-proxied nodes for node.js 8.x.x
+const tls = require('tls');
+tls.DEFAULT_ECDH_CURVE = 'auto';
+
 // common paths
 config.paths.cache = path.join(__dirname, '.cache');
 config.paths.log = path.join('/var', 'log', 'veres-one');
