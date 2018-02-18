@@ -3,7 +3,7 @@
 # Uses tmux to connect to all testnet machines under the control of the
 # Veres One Maintainer
 SESSION=veres-one-testnet
-NODES="ashburn alturas frankfurt singapore"
+NODES="ashburn alturas frankfurt singapore mumbai tokyo saopaulo"
 
 printf '\033]2;Veres One Testnet\033\\'
 
