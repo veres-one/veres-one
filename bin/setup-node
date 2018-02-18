@@ -134,12 +134,7 @@ mongo --eval "db = db.getSiblingDB('admin'); db.createUser({user: \"admin\",
     pwd: \"$mongodb_admin_secret\",
     roles: [ { role: \"userAdminAnyDatabase\", db: \"admin\" } ]
   }
-); db.createUser({user: \"$mongodb_user\",
-    pwd: \"$mongodb_user_secret\",
-    roles: [ { role: \"readWrite\", db: \"$mongodb_database\" },
-    { role: \"dbAdmin\", db: \"$mongodb_database\" }]
-  }
-)"
+);"
 
 cat >/etc/mongod.conf <<EOF
 storage:
@@ -333,7 +328,7 @@ config.mongodb.port = 27017;
 config.mongodb.local.collection = '$mongodb_database';
 config.mongodb.username = '$mongodb_user';
 config.mongodb.password = '$mongodb_user_secret';
-config.mongodb.adminPrompt = false;
+config.mongodb.adminPrompt = true;
 
 // this impacts did-io's acquisition of documements from authio
 config.jsonld.strictSSL = false;
@@ -446,3 +441,36 @@ config['veres-one'].adminPassphrase = '$veres_one_secret';
 
 bedrock.start();
 EOF
+
+####################### Setup systemd #########################
+
+cat >/lib/systemd/system/$hostname.service <<EOF
+[Service]
+ExecStart=/usr/bin/node /home/veres-one/veres-one/$hostname
+WorkingDirectory=/home/veres-one
+Restart=always
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=veres-one
+User=veres-one
+Group=veres-one
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+systemctl enable $hostname.service
+
+####################### Complete install #########################
+
+echo "Veres One Node setup successful!"
+echo ""
+echo "To run the node: nodejs $hostname.js"
+echo ""
+echo "When prompted for the mongodb admin, type   : admin"
+echo "When prompted for the mongodb password, type: $mongodb_admin_secret"
+echo ""
+echo "After consensus process shows blocks, CTRL-C and then do the following:"
+echo ""
+echo "systemctl start $hostname"
