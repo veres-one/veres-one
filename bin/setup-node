@@ -42,6 +42,7 @@ fi
 ######################### Setup Host ###########################
 hostname $hostname
 echo $hostname > /etc/hostname
+echo "Veres One Node Configuration" > /root/veres-one.config
 
 ######################### Prepare Utils ###########################
 apt-get update
@@ -114,6 +115,7 @@ mongodb_database='veres_one_testnet';
 mongodb_admin_secret=`pwgen -s 32`
 mongodb_user='veresone';
 mongodb_user_secret=`pwgen -s 32`
+echo "mongodb_admin_password: $mongodb_admin_secret" > /root/veres-one.config
 
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5
 echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.6 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.6.list
