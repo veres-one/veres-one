@@ -1,5 +1,5 @@
-/*
- * Copyright (c) 2017 Digital Bazaar, Inc. All rights reserved.
+/*!
+ * Copyright (c) 2017-2018 Digital Bazaar, Inc. All rights reserved.
  */
 'use strict';
 
@@ -26,6 +26,7 @@ const urlObj = {
 
 // use local JSON-LD processor for signatures
 jsigs.use('jsonld', bedrock.jsonld);
+equihashSigs.install(jsigs);
 
 describe('DID creation', () => {
   it('a DID owner should be able to create its own DID document', done => {
@@ -39,28 +40,32 @@ describe('DID creation', () => {
         algorithm: 'RsaSignature2018',
         privateKeyPem: mockData.didDocuments.alpha.privateDidDocument
           .invokeCapability[0].publicKey.privateKeyPem,
-        creator: didDocument.invokeCapability[0].publicKey.id
+        creator: didDocument.invokeCapability[0].publicKey.id,
+        proof: {
+          '@context': config.constants.WEB_LEDGER_CONTEXT_V1_URL,
+          // FIXME: ensure `invokeCapability` is in web ledger context
+          //   or switch to veres-one context here
+          proofPurpose: 'invokeCapability'
+        }
       }, callback),
-      proof: callback => equihashSigs.sign({
-        doc: unsignedOp,
-        n: config['veres-one-validator'].equihash.equihashParameterN,
-        k: config['veres-one-validator'].equihash.equihashParameterK
-      }, callback),
-      register: ['sign', 'proof', (results, callback) => {
+      proof: ['sign', (results, callback) => jsigs.sign(
+        results.sign, {
+          algorithm: 'EquihashProof2018',
+          parameters: {
+            n: config['veres-one-validator'].equihash.equihashParameterN,
+            k: config['veres-one-validator'].equihash.equihashParameterK
+          }
+        }, callback)],
+      register: ['proof', (results, callback) => {
         const registerUrl = bedrock.util.clone(urlObj);
-        const signedOp = bedrock.util.clone(unsignedOp);
-        signedOp.proof = [
-          results.sign.signature,
-          results.proof.signature
-        ];
         registerUrl.pathname =
           config['veres-one'].routes.dids + '/' + didDocument.id;
         request.post({
           url: url.format(registerUrl),
-          body: signedOp
+          body: results.proof
         }, (err, res) => {
           assertNoError(err);
-          res.statusCode.should.equal(202);
+          res.statusCode.should.equal(204);
           callback();
         });
       }]
@@ -72,38 +77,38 @@ describe('DID creation', () => {
 
   it.skip('a DID owner should be able to update its own DID document', done => {
     // create all supporting DIDs
-    const didDocument = _.cloneDeep(mockData.didDocuments.alpha);
-    const registerEvent = bedrock.util.clone(mockData.events.create);
-    registerEvent.input = [didDocument];
+    const didDocument = mockData.didDocuments.alpha.publicDidDocument;
+    const unsignedOp = mockData.operations.update;
+    // FIXME: use patch not DidDocument
+    unsignedOp.record = didDocument;
 
-    // add a key to the didDocument
+    // TODO: add a key to the didDocument
 
     async.auto({
-      sign: callback => jsigs.sign(registerEvent, {
+      sign: callback => jsigs.sign(unsignedOp, {
         algorithm: 'RsaSignature2018',
-        privateKeyPem: mockData.keys.alpha.privateKeyPem,
-        creator: didDocument.authenticationCredential[0].id
+        privateKeyPem: mockData.didDocuments.alpha.privateDidDocument
+          .invokeCapability[0].publicKey.privateKeyPem,
+        creator: didDocument.invokeCapability[0].publicKey.id
       }, callback),
-      proof: callback => equihashSigs.sign({
-        doc: registerEvent,
-        n: config['veres-one-validator'].equihash.equihashParameterN,
-        k: config['veres-one-validator'].equihash.equihashParameterK
-      }, callback),
-      register: ['sign', 'proof', (results, callback) => {
+      proof: ['sign', (results, callback) => jsigs.sign(
+        results.sign, {
+          algorithm: 'EquihashProof2018',
+          parameters: {
+            n: config['veres-one-validator'].equihash.equihashParameterN,
+            k: config['veres-one-validator'].equihash.equihashParameterK
+          }
+        }, callback)],
+      register: ['proof', (results, callback) => {
         const registerUrl = bedrock.util.clone(urlObj);
-        const signedDoc = bedrock.util.clone(registerEvent);
-        signedDoc.proof = [
-          results.sign.signature,
-          results.proof.signature
-        ];
         registerUrl.pathname =
           config['veres-one'].routes.dids + '/' + didDocument.id;
         request.post({
           url: url.format(registerUrl),
-          body: signedDoc
+          body: results.proof
         }, (err, res) => {
           assertNoError(err);
-          res.statusCode.should.equal(202);
+          res.statusCode.should.equal(204);
           callback();
         });
       }]

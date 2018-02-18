@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2017 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2017-2018 Digital Bazaar, Inc. All rights reserved.
  */
 'use strict';
 
@@ -35,19 +35,10 @@ mock.operations.create = {
   record: {}
 };
 
-mock.events.create = {
+mock.operations.update = {
   '@context': constants.WEB_LEDGER_CONTEXT_V1_URL,
-  type: 'WebLedgerEvent',
-  operation: []
-};
-
-mock.events.update = {
-  '@context': constants.WEB_LEDGER_CONTEXT_V1_URL,
-  type: 'WebLedgerEvent',
-  operation: [{
-    type: 'UpdateWebLedgerRecord',
-    ledgerRecord: 'did:...',
-    patch: '',
-    proof: {}
-  }]
+  type: 'UpdateWebLedgerRecord',
+  ledgerRecord: 'did:...',
+  patch: '',
+  proof: {}
 };
