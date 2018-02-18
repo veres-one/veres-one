@@ -301,7 +301,7 @@ config.paths.secrets = path.join(__dirname, 'configs', 'secrets');
 
 // core
 // 0 means use # of cpus
-config.core.workers = 2;
+config.core.workers = 0;
 config.core.master.title = 'veres-one-1d';
 config.core.worker.title = 'veres-one-1d-worker';
 config.core.worker.restart = true;
