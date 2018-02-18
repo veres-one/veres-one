@@ -261,7 +261,8 @@ service nginx restart
 ######################### Setup Veres One Node ###########################
 
 mkdir -p /var/log/veres-one
-chown veres-one:veres-one /var/log/veres-one
+chown -R veres-one:veres-one /var/log/veres-one
+chown -R veres-one:veres-one /home/veres-one
 
 # setup node configuration
 express_secret=`pwgen -s 32`
@@ -444,6 +445,8 @@ EOF
 
 ####################### Setup systemd #########################
 
+echo "Setting up systemd scripts to run Veres One Node"
+
 cat >/lib/systemd/system/$hostname.service <<EOF
 [Service]
 ExecStart=/usr/bin/node /home/veres-one/veres-one/$hostname
@@ -462,11 +465,16 @@ EOF
 
 systemctl enable $hostname.service
 
+echo "systemd for Veres One complete."
+
 ####################### Complete install #########################
 
 echo "Veres One Node setup successful!"
 echo ""
-echo "To run the node: nodejs $hostname.js"
+echo "DO NOT RUN THE NODE AS ROOT!"
+echo ""
+echo "Log in as veres-one: su - veres-one; cd /home/veres-one/veres-one/"
+echo "To run the node: nodejs /home/veres-one/veres-one/$hostname.js"
 echo ""
 echo "When prompted for the mongodb admin, type   : admin"
 echo "When prompted for the mongodb password, type: $mongodb_admin_secret"
