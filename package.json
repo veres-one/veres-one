@@ -74,8 +74,8 @@
     "node-forge": "^0.7.1",
     "request": "^2.79.0",
     "uuid": "^3.0.1",
-    "veres-one-context": "digitalbazaar/veres-one-context",
-    "veres-one-validator": "digitalbazaar/veres-one-validator#implementation"
+    "veres-one-context": "digitalbazaar/veres-one-context#master",
+    "veres-one-validator": "digitalbazaar/veres-one-validator#master"
   },
   "bedrock": {
     "browserDependencies": [
