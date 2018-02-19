@@ -42,6 +42,7 @@ fi
 ######################### Setup Host ###########################
 hostname $hostname
 echo $hostname > /etc/hostname
+sed -i -e "1 s/^.*$/127.0.0.1 localhost $hostname/" /etc/hosts
 echo "Veres One Node Configuration" > /root/veres-one.config
 
 ######################### Prepare Utils ###########################
@@ -128,7 +129,7 @@ sed -i -e "s/security://" /etc/mongod.conf
 sed -i -e "s/authorization: enabled//" /etc/mongod.conf
 rm -rf /var/lib/mongodb/*
 service mongod start
-sleep 3
+sleep 5
 
 mongo --eval "db = db.getSiblingDB('admin'); db.createUser({user: \"admin\",
     pwd: \"$mongodb_admin_secret\",
