@@ -47,6 +47,7 @@ echo "Veres One Node Configuration" > /root/veres-one.config
 
 ######################### Prepare Utils ###########################
 apt-get update
+apt-get -y autoremove
 apt-get -y install pwgen
 
 ######################### Setup Node.js ###########################
