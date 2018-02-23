@@ -46,25 +46,29 @@ sed -i -e "1 s/^.*$/127.0.0.1 localhost $hostname/" /etc/hosts
 echo "Veres One Node Configuration" > /root/veres-one.config
 
 ######################### Prepare Utils ###########################
-apt-get update
+apt-get -y update
 apt-get -y autoremove
 apt-get -y install pwgen
 
 ######################### Setup Node.js ###########################
 curl -sL https://deb.nodesource.com/setup_8.x | bash
-apt-get install nodejs build-essential
+apt-get -y install nodejs build-essential
 
 ######################### Setup Redis ###########################
+add-apt-repository -y ppa:chris-lea/redis-server
+apt-get -y update
 apt-get -y install redis-server
 
 cat >/etc/redis/redis.conf <<EOF
-daemonize yes
-pidfile /var/run/redis/redis-server.pid
+bind 127.0.0.1
+protected-mode yes
 port 6379
 tcp-backlog 511
-bind 127.0.0.1
 timeout 0
-tcp-keepalive 60
+tcp-keepalive 300
+daemonize yes
+pidfile /var/run/redis/redis-server.pid
+supervised systemd
 loglevel notice
 logfile /var/log/redis/redis-server.log
 databases 16
@@ -96,8 +100,8 @@ latency-monitor-threshold 0
 notify-keyspace-events ""
 hash-max-ziplist-entries 512
 hash-max-ziplist-value 64
-list-max-ziplist-entries 512
-list-max-ziplist-value 64
+list-max-ziplist-size -2
+list-compress-depth 0
 set-max-intset-entries 512
 zset-max-ziplist-entries 128
 zset-max-ziplist-value 64
