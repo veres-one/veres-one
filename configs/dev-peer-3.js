@@ -7,8 +7,8 @@ const os = require('os');
 const path = require('path');
 
 // generate random peer 'name' used for databases and ports
-const peerNumber = Math.floor(Math.random() * Math.floor(9));
-const peerPort = 43500 + peerNumber;
+const peerNumber = 3;
+const peerPort = 43500 + peerNumber * 2;
 const peerName = 'peer-' + peerNumber;
 
 // common paths

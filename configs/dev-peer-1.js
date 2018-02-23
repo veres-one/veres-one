@@ -6,10 +6,16 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 
+// generate random peer 'name' used for databases and ports
+const peerNumber = 1;
+const peerPort = 43500 + peerNumber;
+const peerName = 'peer-' + peerNumber;
+
 // common paths
 config.paths.cache = path.join(__dirname, '..', '.cache');
-config.paths.log = path.join(os.tmpdir(), 'veres.one.localhost');
-config.paths.secrets = path.join(__dirname, 'secrets');
+config.paths.log =
+  path.join(os.tmpdir(), peerName + '.veres.one.localhost');
+config.paths.keys = path.join(__dirname, 'secrets');
 
 // core
 // 0 means use # of cpus
@@ -24,9 +30,9 @@ config.loggers.email.to = ['cluster@veres.one.localhost'];
 config.loggers.email.from = 'cluster@veres.one.localhost';
 
 // server info
-config.server.port = 42443;
-config.server.httpPort = 42080;
-config.server.domain = 'genesis.veres.one.localhost';
+config.server.port = peerPort + 1;
+config.server.httpPort = peerPort;
+config.server.domain = peerName + '.veres.one.localhost';
 // config.server.key = path.join(_cfgdir, 'pki', 'veres.dev.key');
 // config.server.cert = path.join(_cfgdir, 'pki', 'veres.dev.crt');
 
@@ -36,16 +42,13 @@ config.express.session.key = 'veres-one.sid';
 config.express.session.prefix = 'veres-one.';
 
 // mongodb config
-config.mongodb.name = 'veres_one_localhost_genesis';
+config.mongodb.name = 'veres_one_localhost_peer_' + peerNumber;
 config.mongodb.host = 'localhost';
 config.mongodb.port = 27017;
-config.mongodb.local.collection = 'veres_one_localhost_genesis';
+config.mongodb.local.collection = 'veres_one_localhost_peer_' + peerNumber;
 config.mongodb.username = 'veres';
 config.mongodb.password = 'password';
 config.mongodb.adminPrompt = true;
-
-// reset peer ID file
-
 
 // this impacts did-io's acquisition of documements from authio
 config.jsonld.strictSSL = false;
@@ -153,9 +156,12 @@ config.docs.vars.baseUri = config.server.baseUri;
 
 // Veres One development config
 config['veres-one'].did = 'did:v1:uuid:00000000-0000-0000-0000-000000000000';
+config['veres-one'].peers = [
+  'https://genesis.veres.one.localhost:42443/'
+];
 
 // use quick equihash setting for development
 config['veres-one-validator'].equihash.equihashParameterN = 64;
 config['veres-one-validator'].equihash.equihashParameterK = 3;
 
-require('./secrets/dev-genesis-secrets');
+require('./secrets/dev-peer-secrets');
