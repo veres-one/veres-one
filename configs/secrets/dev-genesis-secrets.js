@@ -23,7 +23,7 @@ config['veres-one'].governorsPassphrase =
 
 // accelerator
 config['veres-one'].acceleratorEnabled = true;
-config['veres-one'].acceleratorConfigFile = 
+config['veres-one'].acceleratorConfigFile =
   path.join(config.paths.secrets, 'accelerator.ddo');
 config['veres-one'].acceleratorPassphrase =
   'insecure_Gx77CpVMq6Lmyq8452Z3o0TmtrcDnUWH';
