@@ -440,6 +440,9 @@ config.docs.vars.baseUri = config.server.baseUri;
 config['veres-one'].did = '$ledger_id';
 config['veres-one'].peers = $peers;
 
+// enable consensus workers
+config.ledger.jobs.scheduleConsensusWork.enabled = true;
+
 // use quick equihash setting for development
 config['veres-one-validator'].equihash.equihashParameterN = 64;
 config['veres-one-validator'].equihash.equihashParameterK = 3;
@@ -462,8 +465,6 @@ cat >/etc/rc.local <<EOF
 #
 # In order to enable or disable this script just change the execution
 # bits.
-#
-# By default this script does nothing.
 
 sysctl -w net.core.somaxconn=65535
 
@@ -477,6 +478,7 @@ fi
 exit 0
 EOF
 
+chmod 755 /etc/rc.local
 sh /etc/rc.local
 
 ####################### Setup systemd #########################
