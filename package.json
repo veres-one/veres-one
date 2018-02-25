@@ -43,7 +43,7 @@
     "bedrock-ledger-validator-equihash": "digitalbazaar/bedrock-ledger-validator-equihash#master",
     "bedrock-ledger-validator-signature": "digitalbazaar/bedrock-ledger-validator-signature#master",
     "bedrock-mail": "^2.0.3",
-    "bedrock-mongodb": "^5.0.0",
+    "bedrock-mongodb": "^5.1.0",
     "bedrock-passport": "^3.4.2",
     "bedrock-permission": "^2.3.2",
     "bedrock-protractor": "digitalbazaar/bedrock-protractor#systemjs",
