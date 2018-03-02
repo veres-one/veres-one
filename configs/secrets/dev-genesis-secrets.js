@@ -27,3 +27,5 @@ config['veres-one'].acceleratorConfigFile =
   path.join(config.paths.secrets, 'accelerator.jsonld');
 config['veres-one'].acceleratorPassphrase =
   'insecure_Gx77CpVMq6Lmyq8452Z3o0TmtrcDnUWH';
+config['veres-one'].acceleratorCapability =
+  'did:v1:test:uuid:aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee';
