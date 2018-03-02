@@ -11,19 +11,19 @@ config['veres-one'].peers = [];
 
 // maintainer
 config['veres-one'].maintainerConfigFile =
-  path.join(config.paths.secrets, 'maintainer.ddo');
+  path.join(config.paths.secrets, 'maintainer.jsonld');
 config['veres-one'].maintainerPassphrase =
   'insecure_eyium0phookoh9geeshewomaekuoTeib';
 
 // governors
 config['veres-one'].governorsConfigFile =
-  path.join(config.paths.secrets, 'governors.ddo');
+  path.join(config.paths.secrets, 'governors.jsonld');
 config['veres-one'].governorsPassphrase =
   'insecure_shee0iyeifah0Zeew1bufeech4vo8wah';
 
 // accelerator
 config['veres-one'].acceleratorEnabled = true;
 config['veres-one'].acceleratorConfigFile =
-  path.join(config.paths.secrets, 'accelerator.ddo');
+  path.join(config.paths.secrets, 'accelerator.jsonld');
 config['veres-one'].acceleratorPassphrase =
   'insecure_Gx77CpVMq6Lmyq8452Z3o0TmtrcDnUWH';
