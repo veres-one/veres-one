@@ -36,40 +36,37 @@ Technical details about the blockchain can be found in the
 Make sure to add the following hostnames to your `/etc/hosts` file:
 
 ```
-127.0.0.1  localhost
-             genesis.veres.one.localhost
-             peer-1.veres.one.localhost
-             peer-2.veres.one.localhost
-             peer-3.veres.one.localhost
+127.0.0.1  localhost genesis.veres.one.localhost peer-1.veres.one.localhost \
+             peer-2.veres.one.localhost peer-3.veres.one.localhost
 ```
 
-The line breaks above are for readability purposes. Every
+The `\` and line break above is for readability purposes. Every
 `*.veres.one.localhost` should be on the same line as 127.0.0.1.
 
 ```
-> git clone https://github.com/veres-one/veres-one.git
-> cd veres-one
-> npm install
-> node genesis.veres.one.localhost.js
+git clone https://github.com/veres-one/veres-one.git
+cd veres-one
+npm install
+node genesis.veres.one.localhost.js
 ```
 
 You can write DIDs to the development blockchain by using the did-client:
 
 ```
-> git clone https://github.com/digitalbazaar/did-client.git
-> cd did-client
-> npm install
-> ./did -m dev create
+git clone https://github.com/digitalbazaar/did-client.git
+cd did-client
+npm install
+./did -m dev create
 ```
 
 If you want to run a minimum network with electors, you will have to run
 the genesis node and 3 peers:
 
 ```
-> cd veres-one
-> node peer-1.veres.one.localhost.js
-> node peer-2.veres.one.localhost.js
-> node peer-3.veres.one.localhost.js
+cd veres-one
+node peer-1.veres.one.localhost.js
+node peer-2.veres.one.localhost.js
+node peer-3.veres.one.localhost.js
 ```
 
 When you create a DID, you should see all peers vote and synchronize to the
