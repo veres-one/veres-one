@@ -7,9 +7,9 @@
 .settings
 TAGS
 configs/demo-secrets.js
-configs/secrets/accelerator.ddo
-configs/secrets/governors.ddo
-configs/secrets/maintainer.ddo
+configs/secrets/accelerator.jsonld
+configs/secrets/governors.jsonld
+configs/secrets/maintainer.jsonld
 coverage
 node_modules
 reports
