@@ -75,7 +75,7 @@ the genesis node and 3 peers:
 When you create a DID, you should see all peers vote and synchronize to the
 same block.
 
-## Roadmap and Support
+## Roadmap and Issue Tracker
 
 The Veres One Project publishes the
 [Veres One Technical Roadmap](https://github.com/veres-one/veres-one/projects/1)
