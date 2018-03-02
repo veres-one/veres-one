@@ -33,6 +33,15 @@ Technical details about the blockchain can be found in the
 
 # Developer Quickstart
 
+Setting up a Veres One development environment is fairly easy and consists of
+the following steps:
+
+1. Modify your `/etc/hosts` file.
+2. Install Git, Node 0.8.9+, MongoDB 3.6+, and Redis 4.0+.
+3. Setup the Veres One development environment.
+
+Detailed instructions can be found below:
+
 Make sure to add the following hostnames to your `/etc/hosts` file:
 
 ```
