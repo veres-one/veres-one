@@ -115,6 +115,7 @@ aof-rewrite-incremental-fsync yes
 EOF
 
 service restart redis
+redis-cli flushall
 
 ######################### Setup MongoDB ###########################
 mongodb_database='veres_one_testnet';
