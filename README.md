@@ -57,13 +57,13 @@ npm install
 node genesis.veres.one.localhost.js
 ```
 
-You can write DIDs to the development blockchain by using the did-client:
+You can write DIDs to the development blockchain by using the [did-client][]:
 
 ```
 git clone https://github.com/digitalbazaar/did-client.git
 cd did-client
 npm install
-./did -m dev create
+./did -m dev generate --register
 ```
 
 If you want to run a minimum network with electors, you will have to run
@@ -85,3 +85,5 @@ The Veres One Project publishes the
 [Veres One Technical Roadmap](https://github.com/veres-one/veres-one/projects/1)
 online. All bugs, suggestions, requests, and code issues are tracked on the
 [Veres One Issue Tracker](https://github.com/veres-one/veres-one/issues).
+
+[did-client]: https://github.com/digitalbazaar/did-client
