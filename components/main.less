@@ -11,6 +11,10 @@
 @navbar-default-link-active-color: @white;
 @navbar-default-toggle-icon-bar-bg: @white;
 
+// FIXME
+@screen-md: 922px;
+@screen-lg: 1200px;
+
 html {
   // background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
   //   url('/modules/veres-one/images/abc.jpg')
@@ -109,7 +113,7 @@ pre.json-ld {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  margin-top: -20px;
+  margin-top: -25px;
   min-height: 400px;
   max-height: 400px;
   width: 100%;
@@ -130,20 +134,20 @@ pre.json-ld {
   text-align: center;
   color: white;
   text-shadow: 1px 1px 5px black;
-  margin-top: 230px;
-  font-size: 1.8em;
+  margin-top: 170px;
+  font-size: 2em;
 
   @media (min-width: 700px) {
-    margin-top: 250px;
+    margin-top: 180px;
   }
 
   @media (min-width: @screen-md) {
-    margin-top: 350px;
+    margin-top: 250px;
     font-size: 2.5em;
   }
 
   @media (min-width: @screen-lg) {
-    margin-top: 400px;
+    margin-top: 300px;
     font-size: 3em;
   }
 }
@@ -154,7 +158,18 @@ pre.json-ld {
 
 /* Landing page */
 
-.section-header { margin-bottom: 0em; }
+.vr-container {
+  padding: 0px 12%;
+}
+
+.vr-row-item {
+  padding: 0px 2%;
+}
+
+.section-header {
+  margin-bottom: 0em;
+  text-align: center;
+}
 
 .section-header h2 {
   font-size: 24px;
@@ -209,6 +224,10 @@ pre.json-ld {
 .footer-links a:hover { color: #fa5454; }
 
 .footer-links a:first-child { padding-right: .4em; }
+
+.text-center {
+  text-align: center;
+}
 
 /* Flexbox convenience classes */
 

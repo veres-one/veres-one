@@ -1,0 +1,37 @@
+<div>
+  <br-sidenav-plugin br-operation="replace">
+    <md-list br-slot="br-sidenav-list" layout-margin>
+      <md-list-item ng-if="!$ctrl.loggedIn" ng-click="$ctrl.collapseNavbar(); $ctrl.join()">
+        JOIN
+      </md-list-item>
+    </md-list>
+  </br-sidenav-plugin>
+  <br-navbar-plugin br-operation="append">
+    <div br-slot="br-navbar-tool" flex layout="row">
+      <md-button
+        ng-click="$ctrl.collapseNavbar(); $ctrl.broadcast('vrLdnNotification.viewMessages')"
+        ng-if="$ctrl.loggedIn">
+        <vr-ldn-notification vr-inbox-owner="$ctrl.identity.id">
+        </vr-ldn-notification>
+      </md-button>
+      <md-button ng-click="$ctrl.collapseNavbar(); $ctrl.logout()"
+        ng-if="$ctrl.loggedIn">
+        <i class="fa fa-sign-out"></i> Sign Out
+      </md-button>
+      <md-button ng-click="$ctrl.collapseNavbar(); $ctrl.join()" ng-if="!$ctrl.loggedIn">
+        Join
+      </md-button>
+      <md-button ng-click="$ctrl.collapseNavbar(); $ctrl.showLogin=true"
+        ng-if="!$ctrl.loggedIn">
+        <i class="fa fa-sign-in"></i> Sign In
+      </md-button>
+    </div>
+    <stackable-modal stackable="$ctrl.showLogin">
+      <br-authn-login-modal br-display-order="$ctrl.authentication.displayOrder"
+        br-methods="{'authn-password': $ctrl.authentication.methods['authn-password']}"
+        br-on-login="$ctrl.onLogin(identity)"
+        br-options="{display: {cancel: true}}">
+      </br-authn-login-modal>
+    </stackable-modal>
+  </br-navbar-plugin>
+</div>

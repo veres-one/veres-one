@@ -1,0 +1,29 @@
+<div class="br-flex-vertical-children br-flex-stretch-children-width">
+  <legend ng-if="$ctrl.showHeader && $ctrl.displayOrder.length > 0">{{$ctrl.agreementHeader}}</legend>
+  <div ng-if="$ctrl.displayOrder.length > 0">
+    <div class="{{$ctrl.showHeader && 'col-md-offset-3 col-md-7'}}">
+      <md-input-container style="width: 100%" ng-repeat="agreement in $ctrl.displayOrder">
+        <md-checkbox class="md-primary"
+          ng-model="$ctrl.agreements[agreement].agreed"
+          ng-change="$ctrl.onAgree()">
+          I agree to the
+          <a href="#" ng-click="$ctrl.selectedAgreement = $ctrl.agreements[agreement]; $ctrl.showSelectedAgreement=true">
+            {{$ctrl.agreements[agreement].title}}
+          </a>
+        </md-checkbox>
+      </md-input-container>
+    </div>
+  </div>
+</div>
+
+<stackable-modal stackable="$ctrl.showSelectedAgreement">
+  <br-modal br-title="{{$ctrl.selectedAgreement.title}}">
+    <br-modal-body>
+      <div ng-include="$ctrl.selectedAgreement.templateUrl"></div>
+    </br-modal-body>
+    <br-modal-footer>
+      <button type="button"
+        class="btn btn-default stackable-cancel">Close</button>
+    </br-modal-footer>
+  </br-modal>
+</stackable-modal>

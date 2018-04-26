@@ -1,0 +1,90 @@
+<div class="ng-cloak">
+  <div>
+      <br-demo-warning></br-demo-warning>
+  </div>
+
+  <div ng-if="!$ctrl.identity.id" layout="row" layout-align="center center" layout-align="center center">
+    <div class="vr-container">
+      <div class="br-flex-vertical-children br-flex-stretch-width">
+        <h4>Welcome to Veres One. Please enter the information below to create your account.</h4>
+        <form name="$ctrl.regForm" class="br-flex-vertical-children br-flex-stretch-width">
+          <br-input br-model="$ctrl.identity.email"
+            br-options="{
+              name: 'email', label: 'Email',
+              showValidation: true,
+              type: 'email',
+              theme: 'material'
+            }" br-input-ng-disabled="$ctrl.loading" br-input-autocomplete="off"
+            ng-minlength="6" ng-maxlength="100" required>
+            <br-input-help>
+              A valid email address is required so that we can communicate with
+              you about your account.
+            </br-input-help>
+            <br-input-validation-errors>
+              <div ng-messages="$ctrl.regForm.email.$error">
+                <div ng-message="required">Email is required.</div>
+                <div ng-message="email">Email is not a valid email address.</div>
+                <div ng-message="minlength">Email is required to be at least 6 characters.</div>
+                <div ng-message="maxlength">Email must not be longer than 100 characters.</div>
+              </div>
+            </br-input-validation-errors>
+          </br-input>
+          <br-input ng-if="$ctrl.showEmailConfirmation || ($ctrl.regForm.email.$dirty && $ctrl.emailAvailable == 'available')"
+            br-model="$ctrl.emailConfirmation"
+            br-options="{
+              name: 'emailConfirmation', label: 'Confirm Email',
+              showValidation: true,
+              type: 'email',
+              theme: 'material'
+            }" br-input-ng-disabled="$ctrl.loading" br-input-autocomplete="off"
+            br-input-br-validator-same-as="$ctrl.identity.email" required>
+            <br-input-help>
+              Please confirm your email address.
+            </br-input-help>
+            <br-input-validation-errors>
+              <div ng-messages="$ctrl.regForm.emailConfirmation.$error">
+                <div ng-message="brValidatorSameAs">Email and Confirm Email must match.</div>
+              </div>
+            </br-input-validation-errors>
+          </br-input>
+          <div ng-show="$ctrl.regForm.email.$valid" class="form-group">
+            <div class="col-md-offset-3 col-md-7"
+              br-duplicate-checker="$ctrl.identity.email"
+              br-duplicate-checker-type="email"
+              br-duplicate-checker-available="This email address is available!"
+              br-duplicate-checker-invalid="Email address is invalid."
+              br-duplicate-checker-taken="This email address is already in use. While you can create a new identity if you want to, you may want to log in as your existing identity instead."
+              br-duplicate-checker-checking="Checking Availability..."
+              br-duplicate-checker-result="$ctrl.emailAvailable">
+            </div>
+          </div>
+          <br-agreement
+            ng-model="$ctrl.agreementAccepted" br-show-header="false"
+            br-agreement-group="veres-one.join">
+          </br-agreement>
+        </form>
+        <md-button class="md-raised md-primary"
+          style="margin: 10px 0 0 0"
+          ng-disabled="$ctrl.loading || ($ctrl.emailAvailable != 'available' && $ctrl.emailAvailable != 'unavailable') || !$ctrl.agreementAccepted || $ctrl.regForm.$invalid"
+          ng-click="$ctrl.registerDevice()">
+          Continue <i ng-show="$ctrl.loading" class="fa fa-refresh fa-spin"></i>
+        </md-button>
+        <!-- FIXME
+        <div class="br-flex-vertical-children br-flex-center-children-x"
+          style="margin-top: 10px; padding: 0">
+          <small><a href="/send-token">Already have a wallet and need to register a device?</a></small>
+        </div>
+        -->
+      </div>
+    </div>
+  </div>
+  <div ng-if="$ctrl.display.confirmation" layout="row" layout-align="center center">
+    <div class="text-center">
+      <h3>Congratulations!</h3>
+      <h4>You have successfully setup your Veres One instance.</h4>
+      <md-button class="md-raised md-primary" ng-click="$ctrl.onContinue()">
+        Continue
+      </md-button>
+    </div>
+  </div>
+</div>

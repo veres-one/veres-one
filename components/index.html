@@ -1,7 +1,11 @@
 <section class="section-spacing header-image">
   <div>
     <div>Identity for Humanity and Beyond</div>
-    <div style="margin-top: 10px"><a href="/" class="btn btn-lg btn-ghost">Claim Your Identity</a></div>
+    <div style="margin-top: 10px">
+      <md-button href="/join" class="md-primary md-raised" style="text-shadow: none;">
+        Claim Your Identity
+      </md-button>
+    </div>
   </div>
 </section>
 
@@ -10,8 +14,12 @@
     <header class="section-header">
       <h3>What is Veres One?</h3>
     </header>
-    <div class="row">
-      <div class="col-sm-4">
+    <div layout="row"
+      layout-xs="column"
+      layout-align="center center"
+      layout-wrap
+      class="vr-container text-center">
+      <div class="vr-row-item" flex-gt-xs="50" flex-gt-sm="33">
         <img src="images/benefits-fit-for-purpose.svg" alt="fit for purpose"
           fallback-src="images/benefits-fit-for-purpose.png">
         <h4>Fit for Purpose</h4>
@@ -20,7 +28,7 @@ Veres One is a fit for purpose ledger designed to help people, organizations,
 and devices claim and secure their identity.
         </p>
       </div>
-      <div class="col-sm-4">
+      <div class="vr-row-item" flex-gt-xs="50" flex-gt-sm="33">
         <img src="images/benefits-self-sovereign.svg" alt="self sovereign"
           fallback-src="images/benefits-self-sovereign.png">
         <h4>Self Sovereign</h4>
@@ -29,7 +37,7 @@ Identifiers claimed on the Veres One Ledger are yours forever. No person or
 organization can take them away from you without your permission.
         </p>
       </div>
-      <div class="col-sm-4">
+      <div class="vr-row-item" flex-gt-xs="50" flex-gt-sm="33">
         <img src="images/benefits-permissionless.svg" alt="public and permissionless"
           fallback-src="images/benefits-permissionless.png">
         <h4>Public and Permissionless</h4>
@@ -38,7 +46,7 @@ This is public and permissionless ledger, which means that anyone
 in the world can participate without asking for permission.
         </p>
       </div>
-      <div class="col-sm-4">
+      <div class="vr-row-item" flex-gt-xs="50" flex-gt-sm="33">
         <img src="images/benefits-dev-friendly.svg" alt="developer friendly"
           fallback-src="images/benefits-dev-friendly.png">
         <h4>Developer Friendly</h4>
@@ -47,7 +55,7 @@ Integrating the ledger into your app is simple and easy for anyone familiar
 with typical Web Development.
         </p>
       </div>
-      <div class="col-sm-4">
+      <div class="vr-row-item" flex-gt-xs="50" flex-gt-sm="33">
         <img src="images/benefits-forever.svg" alt="forever"
           fallback-src="images/benefits-forever.png">
         <h4>Here Forever</h4>
@@ -56,7 +64,7 @@ The source code for the ledger is available to all and is licensed in a way
 that ensures that it remains a public good. Forever.
         </p>
       </div>
-      <div class="col-sm-4">
+      <div class="vr-row-item" flex-gt-xs="50" flex-gt-sm="33">
         <img src="images/benefits-free.svg" alt="free"
           fallback-src="images/benefits-free.png">
         <h4>Always Free</h4>
@@ -70,9 +78,11 @@ every single person on the planet and beyond.
 </section>
 
 <div class="container">
-
-<section class="section-spacing text-center">
-  <a href="/" class="btn btn-lg btn-success">Claim Your Identity Today!</a>
-</section>
-
+  <section class="section-spacing">
+    <div style="text-align: center">
+      <md-button href="/join" class="md-primary md-raised">
+        Claim Your Identity Today!
+      </md-button>
+    </div>
+  </section>
 </div>
