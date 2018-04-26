@@ -53,7 +53,6 @@
     "bedrock-server": "^2.2.1",
     "bedrock-session-http": "^3.0.1",
     "bedrock-session-mongodb": "^2.0.2",
-    "bedrock-test": "^2.0.0",
     "bedrock-validation": "^2.2.0",
     "bedrock-views": "^5.3.0",
     "bedrock-webpack": "^1.1.0",

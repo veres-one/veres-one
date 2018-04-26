@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "async": "^2.1.5",
+    "bedrock-test": "^2.0.0",
     "grunt": "^1.0.1",
     "grunt-cli": "^1.2.0",
     "grunt-contrib-watch": "^1.0.0",
