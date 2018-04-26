@@ -6,6 +6,7 @@
 .project
 .settings
 TAGS
+build
 configs/demo-secrets.js
 configs/secrets/accelerator.jsonld
 configs/secrets/governors.jsonld
