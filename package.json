@@ -31,6 +31,7 @@
     "bedrock-i18n": "^2.0.1",
     "bedrock-identity": "^4.6.0",
     "bedrock-identity-http": "^1.1.0",
+    "bedrock-injector": "^1.0.0",
     "bedrock-issuer": "^1.0.8",
     "bedrock-jobs": "^2.0.3",
     "bedrock-key": "^4.1.0",
