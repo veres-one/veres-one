@@ -36,7 +36,7 @@
     "bedrock-jobs": "^2.0.3",
     "bedrock-key": "^4.1.0",
     "bedrock-key-http": "^2.1.2",
-    "bedrock-ledger-agent": "digitalbazaar/bedrock-ledger-agent#master",
+    "bedrock-ledger-agent": "^1.0.0",
     "bedrock-ledger-consensus-continuity": "digitalbazaar/bedrock-ledger-consensus-continuity#master",
     "bedrock-ledger-context": "^1.0.0",
     "bedrock-ledger-node": "digitalbazaar/bedrock-ledger-node#master",
