@@ -39,7 +39,7 @@
     "bedrock-ledger-agent": "^1.0.0",
     "bedrock-ledger-consensus-continuity": "^1.0.0",
     "bedrock-ledger-context": "^1.0.0",
-    "bedrock-ledger-node": "digitalbazaar/bedrock-ledger-node#master",
+    "bedrock-ledger-node": "^1.0.0",
     "bedrock-ledger-storage-mongodb": "digitalbazaar/bedrock-ledger-storage-mongodb#master",
     "bedrock-ledger-validator-equihash": "digitalbazaar/bedrock-ledger-validator-equihash#master",
     "bedrock-ledger-validator-signature": "digitalbazaar/bedrock-ledger-validator-signature#master",
