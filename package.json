@@ -24,7 +24,7 @@
     "bedrock-consumer": "^2.0.1",
     "bedrock-credentials-mongodb": "^3.2.0",
     "bedrock-credentials-rest": "^1.1.1",
-    "bedrock-did-client": "digitalbazaar/bedrock-did-client#jsonld-1.1",
+    "bedrock-did-client": "^2.0.0",
     "bedrock-docs": "^2.1.0",
     "bedrock-event-log": "^2.0.0",
     "bedrock-express": "^2.0.6",
@@ -61,8 +61,8 @@
     "bootstrap": "^3.3.7",
     "cors": "^2.8.1",
     "credentials-polyfill": "^1.1.5",
-    "did-io": "digitalbazaar/did-io#jsonld-1.1",
-    "did-veres-one": "veres-one/did-veres-one#master",
+    "did-io": "^0.7.0",
+    "did-veres-one": "^1.0.0",
     "equihash-signature": "digitalbazaar/equihash-signature#master",
     "font-awesome": "^4.7.0",
     "jquery": "^3.2.1",
@@ -74,8 +74,8 @@
     "node-forge": "^0.7.2",
     "request": "^2.79.0",
     "uuid": "^3.0.1",
-    "veres-one-context": "digitalbazaar/veres-one-context#master",
-    "veres-one-validator": "digitalbazaar/veres-one-validator#master"
+    "veres-one-context": "^1.0.0",
+    "veres-one-validator": "^1.0.0"
   },
   "bedrock": {
     "browserDependencies": [
