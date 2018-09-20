@@ -14,7 +14,6 @@
     "grunt": "^1.0.1",
     "grunt-cli": "^1.2.0",
     "grunt-contrib-watch": "^1.0.0",
-    "grunt-shell": "^2.1.0",
-    "ursa": "^0.9.4"
+    "grunt-shell": "^2.1.0"
   }
 }
