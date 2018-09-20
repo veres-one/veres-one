@@ -60,10 +60,6 @@ config.jsonld.strictSSL = true;
 config['did-client']['authorization-io'].baseUrl =
   'https://demo.authorization.io';
 
-// this is DID for demo wallet
-config['authn-did-jwt'].crossDomainAuthn.trustedRepositories.push(
-  'did:b85d12e5-77cb-4e97-8cb3-a88478b428bc');
-
 // views branding
 config.views.brand.name = 'Veres One';
 

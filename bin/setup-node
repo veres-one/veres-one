@@ -340,8 +340,6 @@ config.mongodb.adminPrompt = true;
 
 // this impacts did-io's acquisition of documements from authio
 config.jsonld.strictSSL = false;
-config['authn-did-jwt'].crossDomainAuthn.trustedRepositories.push(
-  'did:e618740c-38f4-42ba-82fc-c90a51faba95');
 
 // mail config
 config.mail.connection = {
