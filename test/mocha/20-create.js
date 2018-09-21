@@ -3,19 +3,17 @@
  */
 'use strict';
 
-const _ = require('lodash');
 const async = require('async');
 const bedrock = require('bedrock');
 const config = bedrock.config;
+const dids = require('did-io');
 const equihashSigs = require('equihash-signature');
 const fs = require('fs');
-const helpers = require('./helpers');
 const jsigs = require('jsonld-signatures');
 const mockData = require('./mock.data');
 let request = require('request');
 request = request.defaults({json: true, strictSSL: false});
 const url = require('url');
-const uuid = require('uuid/v4');
 const vrLedger = require('../../lib/ledger');
 
 const urlObj = {
@@ -28,8 +26,29 @@ const urlObj = {
 jsigs.use('jsonld', bedrock.jsonld);
 equihashSigs.install(jsigs);
 
+// FIXME: make this work when did-io is ready
 describe('DID creation', () => {
-  it('a DID owner should be able to create its own DID document', done => {
+  it('a DID owner should be able to create its own DID document', async () => {
+    const v1 = dids.methods.veres({
+      hostname: 'genesis.veres.one.localhost:18443',
+      mode: 'dev'
+    });
+    try {
+      // Generate a new DID Document, store the private keys locally
+      const didDocument = await v1.generate({});
+      console.log('Generated:', JSON.stringify(didDocument, null, 2));
+      // Now register the newly generated DID Document
+      // Use Equihash Proof of Work by default (see below)
+      const result = await v1.register({didDocument});
+      // Log the results
+      // Log the result of registering the didDoc to the VeresOne Test ledger
+      console.log('Registered!', JSON.stringify(result, null, 2));
+    } catch(e) {
+      console.log('ERROR', e);
+    }
+  });
+  // REMOVE THIS IMPLEMENTATION
+  it.skip('a DID owner should be able to create its own DID document', done => {
     // create all supporting DIDs
     const didDocument = mockData.didDocuments.alpha.publicDidDocument;
     const unsignedOp = mockData.operations.create;
