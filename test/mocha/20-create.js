@@ -46,6 +46,9 @@ describe('DID creation', () => {
     } catch(e) {
       console.log('ERROR', e);
     }
+    console.log('Waiting for consensus...');
+    await new Promise(resolve => setTimeout(resolve, 10000));
+    // TODO: use did-io (or should it be `did-veres-one`) to retrieve DID
   });
   // REMOVE THIS IMPLEMENTATION
   it.skip('a DID owner should be able to create its own DID document', done => {
