@@ -6,35 +6,20 @@
   "browser": "index.js",
   "less": "main.less",
   "scripts": {
-    "start": "node veres.one.localhost.js",
-    "postinstall": "node genesis.veres.one.localhost.js compile-less"
+    "start": "node veres.one.localhost.js"
   },
   "dependencies": {
     "async": "^2.1.4",
     "bedrock": "^1.13.0",
-    "bedrock-agreement": "^1.0.2",
-    "bedrock-angular": "^4.0.0",
-    "bedrock-angular-footer": "^4.0.1",
-    "bedrock-angular-header": "^1.0.0",
-    "bedrock-angular-material": "^1.0.0",
-    "bedrock-angular-ui": "^3.0.0",
-    "bedrock-authn-did": "^3.1.1",
-    "bedrock-authn-password": "^5.0.0",
-    "bedrock-consumer": "^2.0.1",
-    "bedrock-credentials-mongodb": "^3.2.0",
-    "bedrock-credentials-rest": "^1.1.1",
     "bedrock-did-client": "^2.0.0",
     "bedrock-docs": "^2.1.0",
-    "bedrock-event-log": "^2.0.0",
     "bedrock-express": "^2.0.6",
     "bedrock-i18n": "^2.0.1",
     "bedrock-identity": "^4.6.0",
-    "bedrock-identity-http": "^1.1.0",
+    "bedrock-identity-http": "^2.0.0",
     "bedrock-injector": "^1.0.0",
-    "bedrock-issuer": "^1.0.8",
     "bedrock-jobs": "^2.0.3",
     "bedrock-key": "^4.1.0",
-    "bedrock-key-http": "^2.1.2",
     "bedrock-ledger-agent": "^2.0.0",
     "bedrock-ledger-consensus-continuity": "^2.0.0",
     "bedrock-ledger-consensus-continuity-storage": "^1.0.2",
@@ -47,61 +32,23 @@
     "bedrock-mongodb": "^5.1.0",
     "bedrock-passport": "^3.4.2",
     "bedrock-permission": "^2.3.2",
-    "bedrock-protractor": "digitalbazaar/bedrock-protractor#systemjs",
     "bedrock-redis": "^3.2.0",
     "bedrock-request-limiter": "^2.0.1",
     "bedrock-rest": "^2.0.1",
     "bedrock-server": "^2.2.1",
-    "bedrock-session-http": "^3.0.1",
-    "bedrock-session-mongodb": "^2.0.2",
     "bedrock-validation": "^3.0.0",
     "bedrock-views": "^5.3.0",
-    "bedrock-webpack": "^1.1.0",
-    "bedrock-website-user-http": "^1.0.0",
     "bootstrap": "^3.3.7",
     "cors": "^2.8.1",
-    "credentials-polyfill": "^1.1.5",
     "did-io": "digitalbazaar/did-io#development",
     "did-veres-one": "^2.0.0",
     "equihash-signature": "digitalbazaar/equihash-signature#master",
-    "font-awesome": "^4.7.0",
-    "jquery": "^3.2.1",
-    "jsonld": "^1.0.1",
     "jsonld-signatures": "^2.2.1",
-    "jsonwebtoken": "^7.2.0",
     "lodash": "^4.6.1",
-    "ng-error": "^1.0.2",
-    "node-forge": "^0.7.2",
     "request": "^2.79.0",
     "uuid": "^3.0.1",
     "veres-one-context": "^2.0.0",
     "veres-one-validator": "^3.0.0"
-  },
-  "bedrock": {
-    "browserDependencies": [
-      "bedrock-angular",
-      "bedrock-angular-footer",
-      "bedrock-angular-header",
-      "bedrock-angular-material",
-      "jquery",
-      "lodash",
-      "ng-error",
-      "uuid"
-    ],
-    "systemjs": {
-      "packages": {
-        "node-forge": {
-          "map": {
-            "crypto": "@empty"
-          }
-        },
-        "uuid": {
-          "map": {
-            "./lib/rng.js": "./lib/rng-browser.js"
-          }
-        }
-      }
-    }
   },
   "engines": {
     "node": ">=6.0.0"

@@ -11,16 +11,6 @@ const roles = config.permission.roles;
 // mocha tests
 config.mocha.tests.push(path.join(__dirname, 'mocha'));
 
-// add protractor tests
-const protractor = config.protractor.config;
-protractor.suites['veres-one'] = path.join(
-  __dirname, 'protractor', 'tests', '**', '*.js');
-const prepare = path.join(__dirname, 'protractor', 'prepare.js');
-protractor.params.config.onPrepare.push(prepare);
-
-// set maxTimeout to 3 seconds
-protractor.params.config.maxTimeout = 30000;
-
 // common paths
 config.paths.cache = path.join(__dirname, '..', '.cache');
 config.paths.log = path.join(os.tmpdir(), 'test.veres.one.localhost');
