@@ -30,7 +30,7 @@ equihashSigs.install(jsigs);
 describe('DID creation', () => {
   it('a DID owner should be able to create its own DID document', async () => {
     const v1 = dids.methods.veres({
-      hostname: 'genesis.veres.one.localhost:18443',
+      hostname: 'genesis.veres.one.localhost:23443',
       mode: 'dev'
     });
     try {
