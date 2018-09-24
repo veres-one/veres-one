@@ -24,7 +24,7 @@
     "bedrock-ledger-consensus-continuity": "^2.0.0",
     "bedrock-ledger-consensus-continuity-storage": "^1.0.2",
     "bedrock-ledger-context": "^2.0.0",
-    "bedrock-ledger-node": "^2.0.0",
+    "bedrock-ledger-node": "^2.0.3",
     "bedrock-ledger-storage-mongodb": "^1.0.0",
     "bedrock-ledger-validator-equihash": "digitalbazaar/bedrock-ledger-validator-equihash#master",
     "bedrock-ledger-validator-signature": "^2.0.0",
@@ -48,7 +48,7 @@
     "request": "^2.79.0",
     "uuid": "^3.0.1",
     "veres-one-context": "^2.0.0",
-    "veres-one-validator": "^3.0.0"
+    "veres-one-validator": "veres-one/veres-one-validator#promises"
   },
   "engines": {
     "node": ">=6.0.0"
