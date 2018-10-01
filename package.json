@@ -37,6 +37,7 @@
     "bedrock-rest": "^2.0.1",
     "bedrock-server": "^2.2.1",
     "bedrock-validation": "^3.0.0",
+    "bedrock-veres-one-context": "^1.0.0",
     "bedrock-views": "^5.3.0",
     "bootstrap": "^3.3.7",
     "cors": "^2.8.1",
@@ -47,7 +48,6 @@
     "lodash": "^4.6.1",
     "request": "^2.79.0",
     "uuid": "^3.0.1",
-    "veres-one-context": "^2.0.0",
     "veres-one-validator": "veres-one/veres-one-validator#promises"
   },
   "engines": {
