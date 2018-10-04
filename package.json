@@ -48,7 +48,7 @@
     "lodash": "^4.6.1",
     "request": "^2.79.0",
     "uuid": "^3.0.1",
-    "veres-one-validator": "^5.0.0"
+    "veres-one-validator": "veres-one/veres-one-validator#electorPool"
   },
   "engines": {
     "node": ">=6.0.0"
