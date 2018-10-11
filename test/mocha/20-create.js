@@ -39,7 +39,7 @@ describe('DID creation', () => {
       console.log('Generated:', JSON.stringify(didDocument, null, 2));
       // Now register the newly generated DID Document
       // Use Equihash Proof of Work by default (see below)
-      const result = await v1.register({didDocument});
+      const {data: result} = await v1.register({didDocument});
       // Log the results
       // Log the result of registering the didDoc to the VeresOne Test ledger
       console.log('Registered!', JSON.stringify(result, null, 2));
