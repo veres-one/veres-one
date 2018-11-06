@@ -25,7 +25,7 @@ Technical details about the blockchain can be found in the
 # Requirements
 
 * Linux (Debian 9+, Ubuntu 16.04+)
-* Node 0.8.9+
+* Node 8.9
 * MongoDB (3.6+)
 * Redis (4.0+)
 
@@ -35,7 +35,7 @@ Setting up a Veres One development environment is fairly easy and consists of
 the following steps:
 
 1. Modify your `/etc/hosts` file.
-2. Install Git, Node 0.8.9+, MongoDB 3.6+, and Redis 4.0+.
+2. Install Git, Node 8.9, MongoDB 3.6+, and Redis 4.0+.
 3. Setup the Veres One development environment.
 
 Detailed instructions can be found below:

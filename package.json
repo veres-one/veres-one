@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "async": "^2.1.4",
-    "bedrock": "digitalbazaar/bedrock#cliParsed",
+    "bedrock": "digitalbazaar/bedrock#v1.13.0",
     "bedrock-agreement": "^1.0.2",
     "bedrock-angular": "^4.0.0",
     "bedrock-angular-footer": "^4.0.1",
@@ -24,7 +24,7 @@
     "bedrock-consumer": "^2.0.1",
     "bedrock-credentials-mongodb": "^3.2.0",
     "bedrock-credentials-rest": "^1.1.1",
-    "bedrock-did-client": "digitalbazaar/bedrock-did-client#jsonld-1.1",
+    "bedrock-did-client": "digitalbazaar/bedrock-did-client#v2.0.0-testnet",
     "bedrock-docs": "^2.1.0",
     "bedrock-event-log": "^2.0.0",
     "bedrock-express": "^2.0.6",
@@ -38,6 +38,7 @@
     "bedrock-key-http": "^2.1.2",
     "bedrock-ledger-agent": "digitalbazaar/bedrock-ledger-agent#master",
     "bedrock-ledger-consensus-continuity": "digitalbazaar/bedrock-ledger-consensus-continuity#master",
+    "bedrock-ledger-consensus-continuity-storage": "^2.0.0",
     "bedrock-ledger-context": "^1.0.0",
     "bedrock-ledger-node": "digitalbazaar/bedrock-ledger-node#master",
     "bedrock-ledger-storage-mongodb": "digitalbazaar/bedrock-ledger-storage-mongodb#master",
@@ -61,8 +62,7 @@
     "bootstrap": "^3.3.7",
     "cors": "^2.8.1",
     "credentials-polyfill": "^1.1.5",
-    "did-io": "digitalbazaar/did-io#jsonld-1.1",
-    "did-veres-one": "veres-one/did-veres-one#master",
+    "did-veres-one": "veres-one/did-veres-one#v1.0.0",
     "equihash-signature": "digitalbazaar/equihash-signature#master",
     "font-awesome": "^4.7.0",
     "jquery": "^3.2.1",
@@ -74,8 +74,8 @@
     "node-forge": "^0.7.2",
     "request": "^2.79.0",
     "uuid": "^3.0.1",
-    "veres-one-context": "digitalbazaar/veres-one-context#master",
-    "veres-one-validator": "digitalbazaar/veres-one-validator#master"
+    "veres-one-context": "digitalbazaar/veres-one-context#v1.0.0",
+    "veres-one-validator": "digitalbazaar/veres-one-validator#v1.0.0"
   },
   "bedrock": {
     "browserDependencies": [
