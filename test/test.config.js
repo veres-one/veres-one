@@ -32,9 +32,9 @@ roles['veres-one.test'] = {
   label: 'Test Role',
   comment: 'Role for Test User',
   sysPermission: [
-    permissions.LEDGER_ACCESS.id,
-    permissions.LEDGER_CREATE.id,
-    permissions.LEDGER_REMOVE.id,
+    permissions.LEDGER_NODE_ACCESS.id,
+    permissions.LEDGER_NODE_CREATE.id,
+    permissions.LEDGER_NODE_REMOVE.id,
     permissions.LEDGER_AGENT_ACCESS.id,
     permissions.LEDGER_AGENT_CREATE.id,
     permissions.LEDGER_AGENT_REMOVE.id
@@ -67,3 +67,5 @@ roles['veres-one.test'] = {
 // use quick equihash setting for tests
 config['veres-one-validator'].equihash.equihashParameterN = 64;
 config['veres-one-validator'].equihash.equihashParameterK = 3;
+// Set mode to 'test', so that DIDs are created as 'did:v1:test:...' in tests
+config['veres-one-validator'].environment = 'test';

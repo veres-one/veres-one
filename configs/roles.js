@@ -1,12 +1,14 @@
 /*!
- * Copyright (c) 2017 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2017-2018 Digital Bazaar, Inc. All rights reserved.
  */
-var config = require('bedrock').config;
+'use strict';
+
+const config = require('bedrock').config;
 
 require('./permissions');
 
-var permissions = config.permission.permissions;
-var roles = config.permission.roles;
+const permissions = config.permission.permissions;
+const roles = config.permission.roles;
 
 roles['identity.admin'] = {
   id: 'identity.administrator',
@@ -56,9 +58,9 @@ roles['veres.admin'] = {
   label: 'Veres Administrator',
   comment: 'Role for Veres administrators.',
   sysPermission: [
-    permissions.LEDGER_ACCESS.id,
-    permissions.LEDGER_CREATE.id,
-    permissions.LEDGER_REMOVE.id,
+    permissions.LEDGER_NODE_ACCESS.id,
+    permissions.LEDGER_NODE_CREATE.id,
+    permissions.LEDGER_NODE_REMOVE.id,
     permissions.LEDGER_AGENT_ACCESS.id,
     permissions.LEDGER_AGENT_CREATE.id,
     permissions.LEDGER_AGENT_REMOVE.id
