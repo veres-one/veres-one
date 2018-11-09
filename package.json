@@ -41,7 +41,7 @@
     "bedrock-views": "^5.3.0",
     "bootstrap": "^3.3.7",
     "cors": "^2.8.1",
-    "did-io": "digitalbazaar/did-io#multihash",
+    "did-io": "digitalbazaar/did-io#development",
     "did-veres-one": "^2.0.0",
     "equihash-signature": "digitalbazaar/equihash-signature#master",
     "jsonld-signatures": "^2.2.1",
