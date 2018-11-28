@@ -4,11 +4,12 @@
   "private": true,
   "main": "lib",
   "browser": "index.js",
-  "less": "main.less",
+  "less": "app.less",
   "scripts": {
     "start": "node genesis.veres.one.localhost.js"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free-webfonts": "^1.0.8",
     "async": "^2.1.4",
     "bedrock": "^1.13.0",
     "bedrock-did-client": "^2.0.0",
@@ -33,13 +34,17 @@
     "bedrock-mongodb": "^5.1.0",
     "bedrock-passport": "^3.4.2",
     "bedrock-permission": "^2.3.2",
+    "bedrock-quasar": "^1.0.0",
     "bedrock-redis": "^3.2.0",
     "bedrock-request-limiter": "^2.0.1",
     "bedrock-rest": "^2.0.1",
     "bedrock-server": "^2.2.1",
     "bedrock-validation": "digitalbazaar/bedrock-validation#4.x",
     "bedrock-veres-one-context": "^5.0.0",
-    "bedrock-views": "^5.3.0",
+    "bedrock-views": "^6.0.0",
+    "bedrock-vue": "^1.0.0",
+    "bedrock-web": "^1.0.0",
+    "bedrock-webpack": "^2.0.0",
     "bootstrap": "^3.3.7",
     "cors": "^2.8.1",
     "did-io": "digitalbazaar/did-io#development",
@@ -50,9 +55,29 @@
     "request": "^2.79.0",
     "uuid": "^3.0.1",
     "veres-one-consensus-continuity-elector-selection": "github:veres-one/veres-one-consensus-continuity-elector-selection#implementation",
-    "veres-one-validator": "veres-one/veres-one-validator#electorPool"
+    "veres-one-validator": "veres-one/veres-one-validator#electorPool",
+    "vue": "^2.5.16",
+    "vue-router": "^3.0.1"
+  },
+  "bedrock": {
+    "browserDependencies": [
+      "bedrock-quasar",
+      "bedrock-vue",
+      "vue",
+      "vue-router",
+      "@fortawesome/fontawesome-free-webfonts"
+    ],
+    "manifest": {
+      "@fortawesome/fontawesome-free-webfonts": {
+        "less": [
+          "less/fontawesome.less",
+          "less/fa-regular.less",
+          "less/fa-solid.less"
+        ]
+      }
+    }
   },
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=8.9.0"
   }
 }
