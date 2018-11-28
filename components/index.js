@@ -1,27 +1,56 @@
 /*!
- * Veres One components module.
- *
- * Copyright (c) 2017 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2018 Digital Bazaar, Inc. All rights reserved.
  */
-import angular from 'angular';
-import * as bedrock from 'bedrock-angular';
+/* global window */
+'use strict';
 
-var module = angular.module('veres-one.main', [
-  'bedrock.header', 'bedrock.footer', 'ngError', 'ngMaterial'
-]);
+import * as brVue from 'bedrock-vue';
+import Vue from 'vue';
+//import VueRouter from 'vue-router';
 
-bedrock.setRootModule(module);
+// install all plugins
+Vue.use(brVue);
 
-/* @ngInject */
-module.config(function($mdThemingProvider, $routeProvider) {
-  $routeProvider
-    .when('/', {
-      title: 'Home',
-      templateUrl: 'veres-one/index.html'
-    });
+brVue.setRootVue(async () => {
+  window.location = 'https://veres.one';
+  return null;
 
-  // themes that can be used with cards (e.g. for info alerts)
-  $mdThemingProvider.theme('dark-grey').backgroundPalette('grey').dark();
-  $mdThemingProvider.theme('dark-orange').backgroundPalette('orange').dark();
-  $mdThemingProvider.theme('dark-blue').backgroundPalette('blue').dark();
+/*
+  // FIXME: determine if this IE11 support code must be loaded serially
+  const brQuasar = await import('bedrock-quasar');
+  await brQuasar.supportIE11();
+
+  // load dynamic imports in parallel
+  const [
+    Quasar,
+    {default: iconSet}
+  ] = await Promise.all([
+    import('quasar-framework'),
+    import('quasar-framework/icons/fontawesome')
+  ]);
+
+  // replace default `br-root` with a custom one
+  Vue.component('br-root', () => import('./BrRoot.vue'));
+
+  const router = new VueRouter({
+    mode: 'history',
+    routes: [{
+      path: '/',
+      component: () => import('./Home.vue'),
+      meta: {
+        title: 'Veres One'
+      }
+    }]
+  });
+
+  Quasar.icons.set(iconSet);
+  brQuasar.theme({
+    Quasar,
+    brand: {}
+  });
+
+  const BrApp = Vue.component('br-app');
+  return new BrApp({
+    router
+  });*/
 });
