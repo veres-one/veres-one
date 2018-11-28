@@ -6,7 +6,7 @@
   "browser": "index.js",
   "less": "main.less",
   "scripts": {
-    "start": "node veres.one.localhost.js"
+    "start": "node genesis.veres.one.localhost.js"
   },
   "dependencies": {
     "async": "^2.1.4",
@@ -21,10 +21,10 @@
     "bedrock-jobs": "^2.0.3",
     "bedrock-key": "^4.1.0",
     "bedrock-ledger-agent": "^2.0.0",
-    "bedrock-ledger-consensus-continuity": "digitalbazaar/bedrock-ledger-consensus-continuity#recovery-mode-electors",
+    "bedrock-ledger-consensus-continuity": "digitalbazaar/bedrock-ledger-consensus-continuity#master",
     "bedrock-ledger-consensus-continuity-storage": "^1.0.2",
     "bedrock-ledger-context": "^5.0.0",
-    "bedrock-ledger-node": "digitalbazaar/bedrock-ledger-node#refactorValidation",
+    "bedrock-ledger-node": "digitalbazaar/bedrock-ledger-node#fix46",
     "bedrock-ledger-storage-mongodb": "^1.0.0",
     "bedrock-ledger-utils": "github:digitalbazaar/bedrock-ledger-utils#implementation",
     "bedrock-ledger-validator-equihash": "digitalbazaar/bedrock-ledger-validator-equihash#master",
@@ -37,7 +37,7 @@
     "bedrock-request-limiter": "^2.0.1",
     "bedrock-rest": "^2.0.1",
     "bedrock-server": "^2.2.1",
-    "bedrock-validation": "^3.0.0",
+    "bedrock-validation": "digitalbazaar/bedrock-validation#4.x",
     "bedrock-veres-one-context": "^5.0.0",
     "bedrock-views": "^5.3.0",
     "bootstrap": "^3.3.7",
