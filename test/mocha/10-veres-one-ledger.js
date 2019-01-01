@@ -15,13 +15,13 @@ describe('Veres One Ledger', () => {
 
   it('ledger agent should exist', done => {
     should.exist(vrOneLedger.agent);
-    should.exist(vrOneLedger.agent.node);
+    should.exist(vrOneLedger.agent.ledgerNode);
     done();
   });
 
   it('ledger agent should be for did:v1:ledger', done => {
     const options = {};
-    vrOneLedger.agent.node.blocks.getGenesis(options, (err, result) => {
+    vrOneLedger.agent.ledgerNode.blocks.getGenesis(options, (err, result) => {
       should.exist(result.genesisBlock);
       should.exist(result.genesisBlock.block);
       should.exist(result.genesisBlock.block.event);
