@@ -8,6 +8,7 @@ const bedrock = require('bedrock');
 const config = bedrock.config;
 const dids = require('did-io');
 const fs = require('fs');
+const helpers = require('./helpers');
 const jsigs = require('jsonld-signatures');
 const mockData = require('./mock.data');
 let request = require('request');
@@ -27,10 +28,12 @@ jsigs.use('jsonld', bedrock.jsonld);
 // FIXME: make this work when did-io is ready
 describe('DID creation', () => {
   it('a DID owner should be able to create its own DID document', async () => {
+    const hostname = 'genesis.veres.one.localhost:23443';
     const v1 = dids.methods.veres({
-      hostname: 'genesis.veres.one.localhost:23443',
+      hostname,
       mode: 'dev'
     });
+    let did;
     try {
       // Generate a new DID Document, store the private keys locally
       const didDocument = await v1.generate({});
@@ -38,15 +41,30 @@ describe('DID creation', () => {
       // Now register the newly generated DID Document
       // Use Equihash Proof of Work by default (see below)
       const result = await v1.register({didDocument});
+      ({id: did} = result);
       // Log the results
       // Log the result of registering the didDoc to the VeresOne Test ledger
       console.log('Registered!', JSON.stringify(result, null, 2));
     } catch(e) {
       console.log('ERROR', JSON.stringify(e.response.data, null, 2));
     }
-    console.log('Waiting for consensus...');
-    await new Promise(resolve => setTimeout(resolve, 10000));
-    // TODO: use did-io (or should it be `did-veres-one`) to retrieve DID
+    let found = false;
+    let didRecord;
+    while(!found) {
+      try {
+        didRecord = await helpers.getDid({did, hostname});
+        found = true;
+      } catch(e) {
+        if(e.response.status !== 404) {
+          throw e;
+        }
+        console.log('Waiting for consensus...');
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        continue;
+      }
+    }
+    didRecord.record.id.should.equal(did);
+    didRecord.meta.sequence.should.equal(0);
   });
   // REMOVE THIS IMPLEMENTATION
   it.skip('a DID owner should be able to create its own DID document', done => {

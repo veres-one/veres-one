@@ -66,3 +66,6 @@ roles['veres-one.test'] = {
 
 // Set mode to 'test', so that DIDs are created as 'did:v1:test:...' in tests
 config['veres-one-validator'].environment = 'test';
+
+// enable consensus workers
+config.ledger.jobs.scheduleConsensusWork.enabled = true;
