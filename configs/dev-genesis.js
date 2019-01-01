@@ -155,8 +155,4 @@ config['veres-one'].did = 'did:v1:uuid:00000000-0000-0000-0000-000000000000';
 // enable consensus workers
 config.ledger.jobs.scheduleConsensusWork.enabled = true;
 
-// use quick equihash setting for development
-config['veres-one-validator'].equihash.equihashParameterN = 64;
-config['veres-one-validator'].equihash.equihashParameterK = 3;
-
 require('./secrets/dev-genesis-secrets');
