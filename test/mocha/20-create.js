@@ -7,7 +7,6 @@ const async = require('async');
 const bedrock = require('bedrock');
 const config = bedrock.config;
 const dids = require('did-io');
-const equihashSigs = require('equihash-signature');
 const fs = require('fs');
 const jsigs = require('jsonld-signatures');
 const mockData = require('./mock.data');
@@ -24,7 +23,6 @@ const urlObj = {
 
 // use local JSON-LD processor for signatures
 jsigs.use('jsonld', bedrock.jsonld);
-equihashSigs.install(jsigs);
 
 // FIXME: make this work when did-io is ready
 describe('DID creation', () => {
@@ -190,12 +188,7 @@ describe('DID creation', () => {
         privateKeyPem: mockData.keys.epsilon.privateKeyPem,
         creator: validDidDescription.authenticationCredential[0].id
       }, callback),
-      pow: callback => equihashSigs.sign({
-        n: mockData.equihashParameterN,
-        k: mockData.equihashParameterK,
-        doc: registerEvent
-      }, callback),
-      register: ['pow', (results, callback) => {
+      register: ['sign', (results, callback) => {
         const registerUrl = bedrock.util.clone(urlObj);
         registerUrl.pathname =
           config['veres-one'].routes.dids + '/' + validDidDescription.id;
