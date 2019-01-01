@@ -64,8 +64,5 @@ roles['veres-one.test'] = {
 //  manifest: path.join(parentDir, 'bower.json')
 //});
 
-// use quick equihash setting for tests
-config['veres-one-validator'].equihash.equihashParameterN = 64;
-config['veres-one-validator'].equihash.equihashParameterK = 3;
 // Set mode to 'test', so that DIDs are created as 'did:v1:test:...' in tests
 config['veres-one-validator'].environment = 'test';
