@@ -6,7 +6,7 @@
 const async = require('async');
 const bedrock = require('bedrock');
 const config = bedrock.config;
-const dids = require('did-io');
+const didVeresOne = require('did-veres-one');
 const fs = require('fs');
 const helpers = require('./helpers');
 const jsigs = require('jsonld-signatures');
@@ -29,7 +29,7 @@ jsigs.use('jsonld', bedrock.jsonld);
 describe('DID creation', () => {
   it('a DID owner should be able to create its own DID document', async () => {
     const hostname = 'genesis.veres.one.localhost:23443';
-    const v1 = dids.methods.veres({
+    const v1 = didVeresOne.veres({
       hostname,
       mode: 'dev'
     });
@@ -46,6 +46,7 @@ describe('DID creation', () => {
       // Log the result of registering the didDoc to the VeresOne Test ledger
       console.log('Registered!', JSON.stringify(result, null, 2));
     } catch(e) {
+      console.log('EEEEEEEEE', e);
       console.log('ERROR', JSON.stringify(e.response.data, null, 2));
     }
     let found = false;
