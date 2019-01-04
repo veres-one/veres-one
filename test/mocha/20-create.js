@@ -46,8 +46,8 @@ describe('DID creation', () => {
       // Log the result of registering the didDoc to the VeresOne Test ledger
       console.log('Registered!', JSON.stringify(result, null, 2));
     } catch(e) {
-      console.log('EEEEEEEEE', e);
       console.log('ERROR', JSON.stringify(e.response.data, null, 2));
+      throw e;
     }
     let found = false;
     let didRecord;
