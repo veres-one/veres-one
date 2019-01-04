@@ -5,8 +5,8 @@
 
 const config = require('bedrock').config;
 const constants = config.constants;
-const didv1 = require('did-veres-one');
-const helpers = require('./helpers');
+const didv1 = new (require('did-veres-one')).VeresOne();
+// const helpers = require('./helpers');
 
 const mock = {};
 module.exports = mock;
@@ -26,7 +26,7 @@ mock.keys = {};
 //mock.keys.gamma = helpers.generateDidKeys();
 
 (async function() {
-mock.didDocuments.alpha = await didv1.generate({passphrase: null});
+  mock.didDocuments.alpha = await didv1.generate({passphrase: null});
 })();
 
 mock.operations.create = {
