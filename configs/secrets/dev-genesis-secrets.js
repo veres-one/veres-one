@@ -22,7 +22,7 @@ config['veres-one'].governorsPassphrase =
   'insecure_shee0iyeifah0Zeew1bufeech4vo8wah';
 
 // accelerator
-config['veres-one'].acceleratorEnabled = true;
+config['veres-one'].acceleratorEnabled = false;
 config['veres-one'].acceleratorConfigFile =
   path.join(config.paths.secrets, 'accelerator.jsonld');
 config['veres-one'].acceleratorPassphrase =
