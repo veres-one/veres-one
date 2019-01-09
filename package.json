@@ -25,7 +25,7 @@
     "bedrock-ledger-consensus-continuity": "^3.0.1",
     "bedrock-ledger-consensus-continuity-es-most-recent-participants": "^1.0.0",
     "bedrock-ledger-consensus-continuity-storage": "^2.2.0",
-    "bedrock-ledger-context": "^9.0.0",
+    "bedrock-ledger-context": "^10.0.0",
     "bedrock-ledger-node": "^5.0.0",
     "bedrock-ledger-storage-mongodb": "^2.0.0",
     "bedrock-ledger-utils": "github:digitalbazaar/bedrock-ledger-utils#implementation",

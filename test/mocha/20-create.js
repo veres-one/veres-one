@@ -33,6 +33,7 @@ describe('DID creation', () => {
       hostname,
       mode: 'dev'
     });
+    let error;
     let did;
     try {
       // Generate a new DID Document, store the private keys locally
@@ -46,9 +47,9 @@ describe('DID creation', () => {
       // Log the result of registering the didDoc to the VeresOne Test ledger
       console.log('Registered!', JSON.stringify(result, null, 2));
     } catch(e) {
-      console.log('ERROR', JSON.stringify(e.response.data, null, 2));
-      throw e;
+      error = e;
     }
+    should.not.exist(error);
     let found = false;
     let didRecord;
     while(!found) {
