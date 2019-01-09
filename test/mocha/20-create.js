@@ -22,10 +22,6 @@ const urlObj = {
   pathname: '/dids'
 };
 
-// use local JSON-LD processor for signatures
-jsigs.use('jsonld', bedrock.jsonld);
-
-// FIXME: make this work when did-io is ready
 describe('DID creation', () => {
   it('a DID owner should be able to create its own DID document', async () => {
     const hostname = 'genesis.veres.one.localhost:23443';
@@ -67,52 +63,6 @@ describe('DID creation', () => {
     }
     didRecord.record.id.should.equal(did);
     didRecord.meta.sequence.should.equal(0);
-  });
-  // REMOVE THIS IMPLEMENTATION
-  it.skip('a DID owner should be able to create its own DID document', done => {
-    // create all supporting DIDs
-    const didDocument = mockData.didDocuments.alpha.publicDidDocument;
-    const unsignedOp = mockData.operations.create;
-    unsignedOp.record = didDocument;
-
-    async.auto({
-      sign: callback => jsigs.sign(unsignedOp, {
-        algorithm: 'RsaSignature2018',
-        privateKeyPem: mockData.didDocuments.alpha.privateDidDocument
-          .invokeCapability[0].publicKey.privateKeyPem,
-        creator: didDocument.invokeCapability[0].publicKey.id,
-        proof: {
-          '@context': config.constants.WEB_LEDGER_CONTEXT_V1_URL,
-          // FIXME: ensure `invokeCapability` is in web ledger context
-          //   or switch to veres-one context here
-          proofPurpose: 'invokeCapability'
-        }
-      }, callback),
-      proof: ['sign', (results, callback) => jsigs.sign(
-        results.sign, {
-          algorithm: 'EquihashProof2018',
-          parameters: {
-            n: config['veres-one-validator'].equihash.equihashParameterN,
-            k: config['veres-one-validator'].equihash.equihashParameterK
-          }
-        }, callback)],
-      register: ['proof', (results, callback) => {
-        const registerUrl = bedrock.util.clone(urlObj);
-        registerUrl.pathname =
-          config['veres-one'].routes.dids + '/' + didDocument.id;
-        request.post({
-          url: url.format(registerUrl),
-          body: results.proof
-        }, (err, res) => {
-          assertNoError(err);
-          res.statusCode.should.equal(204);
-          callback();
-        });
-      }]
-    }, err => {
-      assertNoError(err);
-      done(err);
-    });
   });
 
   it.skip('a DID owner should be able to update its own DID document', done => {
