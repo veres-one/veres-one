@@ -65,49 +65,6 @@ describe('DID creation', () => {
     didRecord.meta.sequence.should.equal(0);
   });
 
-  it.skip('a DID owner should be able to update its own DID document', done => {
-    // create all supporting DIDs
-    const didDocument = mockData.didDocuments.alpha.publicDidDocument;
-    const unsignedOp = mockData.operations.update;
-    // FIXME: use patch not DidDocument
-    unsignedOp.record = didDocument;
-
-    // TODO: add a key to the didDocument
-
-    async.auto({
-      sign: callback => jsigs.sign(unsignedOp, {
-        algorithm: 'RsaSignature2018',
-        privateKeyPem: mockData.didDocuments.alpha.privateDidDocument
-          .invokeCapability[0].publicKey.privateKeyPem,
-        creator: didDocument.invokeCapability[0].publicKey.id
-      }, callback),
-      proof: ['sign', (results, callback) => jsigs.sign(
-        results.sign, {
-          algorithm: 'EquihashProof2018',
-          parameters: {
-            n: config['veres-one-validator'].equihash.equihashParameterN,
-            k: config['veres-one-validator'].equihash.equihashParameterK
-          }
-        }, callback)],
-      register: ['proof', (results, callback) => {
-        const registerUrl = bedrock.util.clone(urlObj);
-        registerUrl.pathname =
-          config['veres-one'].routes.dids + '/' + didDocument.id;
-        request.post({
-          url: url.format(registerUrl),
-          body: results.proof
-        }, (err, res) => {
-          assertNoError(err);
-          res.statusCode.should.equal(204);
-          callback();
-        });
-      }]
-    }, err => {
-      assertNoError(err);
-      done(err);
-    });
-  });
-
   it.skip('should be allowed by Accelerator', done => {
     const validDidDescription =
       bedrock.util.clone(mockData.didDocuments.alpha);
