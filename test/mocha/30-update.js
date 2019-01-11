@@ -6,7 +6,7 @@
 const didVeresOne = require('did-veres-one');
 const helpers = require('./helpers');
 
-describe.only('DID update', () => {
+describe('DID update', () => {
   it('a DID owner should be able to update its own DID document', async () => {
     const hostname = 'genesis.veres.one.localhost:23443';
     const v1 = didVeresOne.veres({
