@@ -28,6 +28,7 @@ describe.only('DID update', () => {
       // Log the result of registering the didDoc to the VeresOne Test ledger
       console.log('Registered!', JSON.stringify(result, null, 2));
     } catch(e) {
+      _logError(e);
       error = e;
     }
     should.not.exist(error);
@@ -60,12 +61,7 @@ describe.only('DID update', () => {
     try {
       updateResult = await v1.update({didDocument});
     } catch(e) {
-      // it's an axios error with a response
-      if(e.response && e.response.data) {
-        console.log('HTTP ERROR', JSON.stringify(e.response.data, null, 2));
-      } else {
-        console.log('ERROR', e);
-      }
+      _logError(e);
       error = e;
     }
     // FIXME v1.update should not be surfacing axios response
@@ -101,4 +97,13 @@ async function waitForUpdate({did, hostname, sequence}) {
     }
   }
   return didRecord;
+}
+
+function _logError(e) {
+  // it's an axios error with a response
+  if(e.response && e.response.data) {
+    console.log('HTTP ERROR', JSON.stringify(e.response.data, null, 2));
+  } else {
+    console.log('ERROR', e);
+  }
 }
