@@ -64,8 +64,10 @@ roles['veres-one.test'] = {
 //  manifest: path.join(parentDir, 'bower.json')
 //});
 
-// Set mode to 'test', so that DIDs are created as 'did:v1:test:...' in tests
-config['veres-one-validator'].environment = 'test';
+// determine what types of dids are produced
+// environment === dev produces did:v1:<did>
+// environment === test produces did:v1:test:<did>
+config['veres-one-validator'].environment = 'dev';
 
 // enable consensus workers
 config.ledger.jobs.scheduleConsensusWork.enabled = true;
