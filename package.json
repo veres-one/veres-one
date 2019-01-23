@@ -12,7 +12,7 @@
     "@fortawesome/fontawesome-free-webfonts": "^1.0.8",
     "async": "^2.1.4",
     "bedrock": "^1.13.0",
-    "bedrock-did-client": "^2.0.0",
+    "bedrock-did-client": "digitalbazaar/bedrock-did-client#testnet_v2",
     "bedrock-docs": "^2.1.0",
     "bedrock-express": "^2.0.6",
     "bedrock-i18n": "^2.0.1",
