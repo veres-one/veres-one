@@ -71,3 +71,6 @@ config['veres-one-validator'].environment = 'dev';
 
 // enable consensus workers
 config.ledger.jobs.scheduleConsensusWork.enabled = true;
+
+config['veres-one'].maintainerConfigFile =
+  path.join(process.cwd(), 'maintainer.jsonld');

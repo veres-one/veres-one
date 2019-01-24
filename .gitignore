@@ -11,6 +11,10 @@ configs/demo-secrets.js
 configs/secrets/accelerator.jsonld
 configs/secrets/governors.jsonld
 configs/secrets/maintainer.jsonld
+test/accelerator.jsonld
+test/governors.jsonld
+test/maintainer.jsonld
 coverage
 node_modules
 reports
+secret_dids

@@ -29,11 +29,9 @@ describe('Veres One Ledger', () => {
       should.exist(result.genesisBlock.block.event[0].ledgerConfiguration);
       should.exist(
         result.genesisBlock.block.event[0].ledgerConfiguration.ledger);
-
       const ledgerId =
         result.genesisBlock.block.event[0].ledgerConfiguration.ledger;
-      ledgerId.should.equal(config['veres-one'].did);
-
+      ledgerId.startsWith('did:v1:').should.be.true;
       done(err);
     });
   });
