@@ -58,6 +58,10 @@
     "vue": "^2.5.16",
     "vue-router": "^3.0.1"
   },
+  "devDependencies": {
+    "eslint": "^5.12.1",
+    "eslint-config-digitalbazaar": "^1.0.0"
+  },
   "bedrock": {
     "browserDependencies": [
       "bedrock-quasar",
