@@ -12,9 +12,12 @@
     "async": "^2.1.5",
     "axios": "^0.18.0",
     "bedrock-test": "^2.0.0",
+    "did-veres-one": "^4.0.0",
     "grunt": "^1.0.1",
     "grunt-cli": "^1.2.0",
     "grunt-contrib-watch": "^1.0.0",
-    "grunt-shell": "^2.1.0"
+    "grunt-shell": "^2.1.0",
+    "jsonld-signatures": "^3.3.0",
+    "web-ledger-client": "digitalbazaar/web-ledger-client#dev"
   }
 }

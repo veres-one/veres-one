@@ -3,17 +3,14 @@
  */
 'use strict';
 
-const config = require('bedrock').config;
-const constants = config.constants;
+const {config: {constants}} = require('bedrock');
 const didv1 = new (require('did-veres-one')).VeresOne();
 // const helpers = require('./helpers');
 
 const mock = {};
 module.exports = mock;
 
-mock.equihashParameterN = 64,
-mock.equihashParameterK = 3,
-
+mock.configurations = {};
 mock.didDocuments = {};
 mock.events = {};
 mock.operations = {};
@@ -28,6 +25,27 @@ mock.keys = {};
 (async function() {
   mock.didDocuments.alpha = await didv1.generate({passphrase: null});
 })();
+
+mock.configurations.alpha = {
+  '@context': constants.WEB_LEDGER_CONTEXT_V1_URL,
+  type: 'WebLedgerConfiguration',
+  ledger: null,
+  consensusMethod: 'Continuity2017',
+  electorSelectionMethod: {
+    type: 'MostRecentParticipants',
+  },
+  sequence: 0,
+  ledgerConfigurationValidator: [{
+    type: 'VeresOneValidator2017',
+  }],
+  operationValidator: [{
+    type: 'VeresOneValidator2017',
+    validatorFilter: [{
+      type: 'ValidatorFilterByType',
+      validatorFilterByType: ['CreateWebLedgerRecord', 'UpdateWebLedgerRecord']
+    }]
+  }]
+};
 
 mock.operations.create = {
   '@context': constants.WEB_LEDGER_CONTEXT_V1_URL,
