@@ -2,7 +2,6 @@
  * Copyright (c) 2017 Digital Bazaar, Inc. All rights reserved.
  */
 const config = require('bedrock').config;
-const fs = require('fs');
 const os = require('os');
 const path = require('path');
 

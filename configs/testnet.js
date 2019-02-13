@@ -1,10 +1,10 @@
 /*!
  * Copyright (c) 2017 Digital Bazaar, Inc. All rights reserved.
  */
-var bedrock = require('bedrock');
-var config = bedrock.config;
+const bedrock = require('bedrock');
+const config = bedrock.config;
 const fs = require('fs');
-var path = require('path');
+const path = require('path');
 
 // common paths
 config.paths.log = path.join('/var', 'log', 'testnet.veres.one');

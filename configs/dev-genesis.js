@@ -2,7 +2,6 @@
  * Copyright (c) 2017 Digital Bazaar, Inc. All rights reserved.
  */
 const config = require('bedrock').config;
-const fs = require('fs');
 const os = require('os');
 const path = require('path');
 
@@ -43,9 +42,6 @@ config.mongodb.local.collection = 'veres_one_localhost_genesis';
 config.mongodb.username = 'veres';
 config.mongodb.password = 'password';
 config.mongodb.adminPrompt = true;
-
-// reset peer ID file
-
 
 // this impacts did-io's acquisition of documements from authio
 config.jsonld.strictSSL = false;

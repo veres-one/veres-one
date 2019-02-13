@@ -1,9 +1,9 @@
 /*!
  * Copyright (c) 2017 Digital Bazaar, Inc. All rights reserved.
  */
-var bedrock = require('bedrock');
-var config = bedrock.config;
-var path = require('path');
+const bedrock = require('bedrock');
+const config = bedrock.config;
+const path = require('path');
 
 // common paths
 config.paths.cache = path.join('/var', 'cache', 'veres.one');
