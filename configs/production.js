@@ -79,5 +79,11 @@ config.views.vars.style.brand.alt = config.views.brand.name;
 config.docs.vars.brand = config.brand.name;
 config.docs.vars.baseUri = config.server.baseUri;
 
+// restrict elector candidates to peers on the veres.one domain
+// FIXME: this is for testnet_v2 only, used in leui of electorPool document
+config['ledger-consensus-continuity-es-most-recent-participants']
+  .electorCandidateFilterPattern =
+    /^https:\/\/[^\/.][^\/]*\.veres\.one\/consensus\/continuity2017\/voters\//;
+
 // load deployed secrets file
 require('./production-secrets.js');
