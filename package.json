@@ -47,7 +47,7 @@
     "bootstrap": "^3.3.7",
     "cors": "^2.8.1",
     "crypto-ld": "^3.0.0",
-    "did-veres-one": "^4.0.0",
+    "did-veres-one": "veres-one/did-veres-one#dev",
     "jsonld-signatures": "^3.3.0",
     "lodash": "^4.6.1",
     "request": "^2.79.0",
