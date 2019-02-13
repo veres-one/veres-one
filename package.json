@@ -48,7 +48,7 @@
     "cors": "^2.8.1",
     "crypto-ld": "^3.0.0",
     "did-veres-one": "veres-one/did-veres-one#dev",
-    "jsonld-signatures": "^3.3.0",
+    "jsonld-signatures": "^4.0.0",
     "lodash": "^4.6.1",
     "request": "^2.79.0",
     "uuid": "^3.0.1",
