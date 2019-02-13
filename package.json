@@ -53,7 +53,7 @@
     "request": "^2.79.0",
     "uuid": "^3.0.1",
     "veres-one-consensus-continuity-elector-selection": "github:veres-one/veres-one-consensus-continuity-elector-selection#implementation",
-    "veres-one-validator": "veres-one/veres-one-validator#electorPool",
+    "veres-one-validator": "veres-one/veres-one-validator#testnet_v2",
     "vue": "^2.5.16",
     "vue-router": "^3.0.1"
   },
