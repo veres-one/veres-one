@@ -7,7 +7,7 @@ const {config, jsonld: {documentLoader}, util: {clone}} = require('bedrock');
 const jsigs = require('jsonld-signatures');
 const mockData = require('./mock.data');
 const path = require('path');
-const WebLedgerClient = require('web-ledger-client');
+const {WebLedgerClient} = require('web-ledger-client');
 const wlClient = new WebLedgerClient({
   hostname: config.server.host,
   mode: 'dev'
@@ -42,7 +42,7 @@ describe('Ledger configuration changes.', () => {
       should.exist(error);
       should.not.exist(result);
       const {details} = error;
-      details.type.should.equal('ValidationError');
+      details.error.type.should.equal('ValidationError');
     });
     it('rejects a configuration based on sequence === 0', async () => {
       const mockDidDoc = await didv1.generate();
@@ -73,8 +73,8 @@ describe('Ledger configuration changes.', () => {
       should.exist(error);
       should.not.exist(result);
       const {details} = error;
-      details.type.should.equal('ValidationError');
-      details.details.errors[0].message.should.equal('should be >= 1');
+      details.error.type.should.equal('ValidationError');
+      details.error.details.errors[0].message.should.equal('should be >= 1');
     });
   });
 
@@ -113,8 +113,8 @@ describe('Ledger configuration changes.', () => {
       should.exist(error);
       should.not.exist(result);
       const {details} = error;
-      details.type.should.equal('ValidationError');
-      const [report] = details.details.validatorReports;
+      details.error.type.should.equal('ValidationError');
+      const [report] = details.error.details.validatorReports;
       const [e] = report.error.details.errors;
       e.message.should.equal('should be equal to one of the allowed values');
     });
