@@ -5,19 +5,15 @@
 
 const _ = require('lodash');
 const async = require('async');
-const axios = require('axios');
 const bedrock = require('bedrock');
 const brIdentity = require('bedrock-identity');
 const brKey = require('bedrock-key');
 const config = bedrock.config;
 const database = require('bedrock-mongodb');
-const https = require('https');
 const jsigs = require('jsonld-signatures');
 const scheduler = require('bedrock-jobs');
 const uuid = require('uuid/v4');
 const url = require('url');
-
-const strictSSL = false;
 
 const api = {};
 module.exports = api;
@@ -138,8 +134,8 @@ api.createKeyPair = function(options) {
     ownerId = userName;
   } else {
     fullKeyId = config.server.baseUri + config.key.basePath + '/' + keyId;
-    ownerId = config.server.baseUri + config['identity-http'].basePath + '/'
-      + userName;
+    ownerId = config.server.baseUri + config['identity-http'].basePath + '/' +
+      userName;
   }
   const newKeyPair = {
     publicKey: {
@@ -163,35 +159,6 @@ api.createKeyPair = function(options) {
     newKeyPair.isSigningKey = true;
   }
   return newKeyPair;
-};
-
-api.getAgentStatus = async ({hostname}) => {
-  const url = `https://${hostname}/ledger-agents`;
-  const result = await axios({
-    httpsAgent: new https.Agent({rejectUnauthorized: strictSSL}),
-    method: 'GET',
-    url,
-  });
-  const [ledgerAgent] = result.data.ledgerAgent;
-  const {service: {ledgerAgentStatusService}} = ledgerAgent;
-  const result2 = await axios({
-    httpsAgent: new https.Agent({rejectUnauthorized: strictSSL}),
-    method: 'GET',
-    url: ledgerAgentStatusService,
-  });
-  return result2.data;
-};
-
-api.getDid = async ({did, hostname}) => {
-  const {service: {ledgerQueryService}} = await api.getAgentStatus(
-    {hostname});
-  const result = await axios({
-    httpsAgent: new https.Agent({rejectUnauthorized: strictSSL}),
-    method: 'POST',
-    params: {id: did},
-    url: ledgerQueryService,
-  });
-  return result.data;
 };
 
 api.removeCollection = function(collection, callback) {

@@ -27,7 +27,7 @@ describe('DID update', () => {
       // Log the result of registering the didDoc to the VeresOne Test ledger
       console.log('Registered!', JSON.stringify(result, null, 2));
     } catch(e) {
-      _logError(e);
+      console.log(e);
       error = e;
     }
     should.not.exist(error);
@@ -60,7 +60,7 @@ describe('DID update', () => {
     try {
       updateResult = await v1.update({didDocument});
     } catch(e) {
-      _logError(e);
+      console.log(e);
       error = e;
     }
     should.not.exist(error);
@@ -92,13 +92,4 @@ async function waitForUpdate({did, sequence, v1}) {
     await new Promise(resolve => setTimeout(resolve, 500));
   }
   return didRecord;
-}
-
-function _logError(e) {
-  // it's an axios error with a response
-  if(e.response && e.response.data) {
-    console.log('HTTP ERROR', JSON.stringify(e.response.data, null, 2));
-  } else {
-    console.log('ERROR', e);
-  }
 }
