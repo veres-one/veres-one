@@ -8,7 +8,6 @@ const bedrock = require('bedrock');
 const config = bedrock.config;
 const didVeresOne = require('did-veres-one');
 const fs = require('fs');
-const helpers = require('./helpers');
 const jsigs = require('jsonld-signatures');
 const mockData = require('./mock.data');
 let request = require('request');
@@ -50,18 +49,18 @@ describe('DID creation', () => {
     let didRecord;
     while(!found) {
       try {
-        didRecord = await helpers.getDid({did, hostname});
+        didRecord = await v1.getRemote({did});
         found = true;
       } catch(e) {
-        if(e.response.status !== 404) {
+        if(e.name !== 'NotFoundError') {
           throw e;
         }
         console.log('Waiting for consensus...');
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        await new Promise(resolve => setTimeout(resolve, 500));
         continue;
       }
     }
-    didRecord.record.id.should.equal(did);
+    didRecord.doc.id.should.equal(did);
     didRecord.meta.sequence.should.equal(0);
   });
 

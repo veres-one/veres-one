@@ -4,7 +4,6 @@
 'use strict';
 
 const didVeresOne = require('did-veres-one');
-const helpers = require('./helpers');
 
 describe('DID update', () => {
   it('a DID owner should be able to update its own DID document', async () => {
@@ -36,14 +35,14 @@ describe('DID update', () => {
     let didRecord;
     while(!found) {
       try {
-        didRecord = await helpers.getDid({did, hostname});
+        didRecord = await v1.getRemote({did});
         found = true;
       } catch(e) {
-        if(e.response.status !== 404) {
+        if(e.name !== 'NotFoundError') {
           throw e;
         }
         console.log('Waiting for consensus...');
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        await new Promise(resolve => setTimeout(resolve, 500));
         continue;
       }
     }
@@ -53,8 +52,8 @@ describe('DID update', () => {
     didDocument.observe();
     const mockService = {
       id: 'urn:foo',
-      type: 'AgentService',
-      serviceEndpoint: 'https://agent.example.com/'
+      type: 'urn:AgentService',
+      endpoint: 'https://agent.example.com/'
     };
     didDocument.addService(mockService);
     let updateResult;
@@ -64,37 +63,33 @@ describe('DID update', () => {
       _logError(e);
       error = e;
     }
-    // FIXME v1.update should not be surfacing axios response
-    updateResult.status.should.equal(204);
     should.not.exist(error);
-    const updatedDid = await waitForUpdate({did, hostname, sequence: 1});
+    updateResult.meta.sequence.should.equal(1);
+    const updatedDid = await waitForUpdate({did, sequence: 1, v1});
     const {meta: {sequence}, record} = updatedDid;
     sequence.should.equal(1);
     should.exist(record.service);
     record.service.should.be.an('array');
     record.service.should.have.length(1);
-    record.service[0].should.eql(mockService);
+    record.service[0].should.eql({
+      id: mockService.id,
+      serviceEndpoint: mockService.endpoint,
+      type: mockService.type,
+    });
   });
 });
 
-async function waitForUpdate({did, hostname, sequence}) {
+async function waitForUpdate({did, sequence, v1}) {
   let found = false;
   let didRecord;
   while(!found) {
-    try {
-      didRecord = await helpers.getDid({did, hostname});
-      const {meta: {sequence: s}} = didRecord;
-      if(s === sequence) {
-        found = true;
-      }
-    } catch(e) {
-      if(e.response.status !== 404) {
-        throw e;
-      }
-      console.log('Waiting for consensus...');
-      await new Promise(resolve => setTimeout(resolve, 1000));
+    didRecord = await v1.getRemote({did});
+    const {meta: {sequence: s}} = didRecord;
+    if(s === sequence) {
+      found = true;
       continue;
     }
+    await new Promise(resolve => setTimeout(resolve, 500));
   }
   return didRecord;
 }
