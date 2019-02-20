@@ -18,6 +18,6 @@
     "grunt-contrib-watch": "^1.0.0",
     "grunt-shell": "^2.1.0",
     "jsonld-signatures": "^3.3.0",
-    "web-ledger-client": "digitalbazaar/web-ledger-client#dev"
+    "web-ledger-client": "^2.0.0"
   }
 }

@@ -10,9 +10,8 @@ const path = require('path');
 const {WebLedgerClient} = require('web-ledger-client');
 const wlClient = new WebLedgerClient({
   hostname: config.server.host,
-  mode: 'dev'
+  strictSSL: false
 });
-const {Ed25519KeyPair} = require('crypto-ld');
 const {Ed25519Signature2018} = jsigs.suites;
 const {AssertionProofPurpose} = jsigs.purposes;
 
@@ -48,8 +47,7 @@ describe('Ledger configuration changes.', () => {
       const mockDidDoc = await didv1.generate();
       const method = mockDidDoc.getVerificationMethod(
         {proofPurpose: 'capabilityInvocation'});
-      const keyData = mockDidDoc.keys[method.id];
-      const signingKey = new Ed25519KeyPair(keyData);
+      const signingKey = mockDidDoc.keys[method.id];
       const y = await wlClient.getStatus();
       const {latestConfigEvent: {ledgerConfiguration: {ledger}}} = y;
       const ledgerConfiguration = clone(mockData.configurations.alpha);
@@ -87,8 +85,7 @@ describe('Ledger configuration changes.', () => {
       const mockDidDoc = await didv1.generate();
       const method = mockDidDoc.getVerificationMethod(
         {proofPurpose: 'capabilityInvocation'});
-      const keyData = mockDidDoc.keys[method.id];
-      const signingKey = new Ed25519KeyPair(keyData);
+      const signingKey = mockDidDoc.keys[method.id];
       const y = await wlClient.getStatus();
       const {latestConfigEvent: {ledgerConfiguration: {ledger}}} = y;
       const ledgerConfiguration = clone(mockData.configurations.alpha);
