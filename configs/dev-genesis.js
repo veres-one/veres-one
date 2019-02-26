@@ -151,4 +151,6 @@ config['veres-one'].did = 'did:v1:uuid:00000000-0000-0000-0000-000000000000';
 // enable consensus workers
 config.ledger.jobs.scheduleConsensusWork.enabled = true;
 
+config.jobs.queueOptions.prefix = 'v1devgenesis';
+
 require('./secrets/dev-genesis-secrets');

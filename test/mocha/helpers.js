@@ -11,7 +11,6 @@ const brKey = require('bedrock-key');
 const config = bedrock.config;
 const database = require('bedrock-mongodb');
 const jsigs = require('jsonld-signatures');
-const scheduler = require('bedrock-jobs');
 const uuid = require('uuid/v4');
 const url = require('url');
 
@@ -120,7 +119,7 @@ api.createIdentity = function(options) {
 api.createJob = function() {
   const newJob = {};
   newJob.worker = {};
-  newJob.worker.id = scheduler.createWorkerId();
+  newJob.worker.id = uuid();
   return newJob;
 };
 

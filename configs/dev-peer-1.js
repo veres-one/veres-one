@@ -160,8 +160,6 @@ config['veres-one'].peers = [
 // enable consensus workers
 config.ledger.jobs.scheduleConsensusWork.enabled = true;
 
-// use quick equihash setting for development
-config['veres-one-validator'].equihash.equihashParameterN = 64;
-config['veres-one-validator'].equihash.equihashParameterK = 3;
+config.jobs.queueOptions.prefix = 'v1devpeer1';
 
 require('./secrets/dev-peer-secrets');
