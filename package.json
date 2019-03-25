@@ -6,7 +6,8 @@
   "browser": "index.js",
   "less": "app.less",
   "scripts": {
-    "start": "node genesis.veres.one.localhost.js"
+    "start": "node genesis.veres.one.localhost.js",
+    "lint": "eslint lib"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free-webfonts": "^1.0.8",
@@ -58,7 +59,7 @@
   },
   "devDependencies": {
     "eslint": "^5.12.1",
-    "eslint-config-digitalbazaar": "^1.0.0"
+    "eslint-config-digitalbazaar": "^2.0.0"
   },
   "bedrock": {
     "browserDependencies": [
