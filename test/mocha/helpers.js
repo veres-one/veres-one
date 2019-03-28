@@ -8,10 +8,9 @@ const async = require('async');
 const bedrock = require('bedrock');
 const brIdentity = require('bedrock-identity');
 const brKey = require('bedrock-key');
-const config = bedrock.config;
+const {config, util: {uuid}} = bedrock;
 const database = require('bedrock-mongodb');
 const jsigs = require('jsonld-signatures');
-const uuid = require('uuid/v4');
 const url = require('url');
 
 const api = {};

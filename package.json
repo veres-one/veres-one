@@ -12,7 +12,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free-webfonts": "^1.0.8",
     "async": "^2.1.4",
-    "bedrock": "^1.13.0",
+    "bedrock": "^1.15.0",
     "bedrock-did-client": "digitalbazaar/bedrock-did-client#testnet_v2",
     "bedrock-docs": "^3.1.0",
     "bedrock-express": "^2.0.6",
@@ -51,7 +51,6 @@
     "jsonld-signatures": "^4.0.0",
     "lodash": "^4.6.1",
     "request": "^2.79.0",
-    "uuid": "^3.0.1",
     "veres-one-consensus-continuity-elector-selection": "github:veres-one/veres-one-consensus-continuity-elector-selection#implementation",
     "veres-one-validator": "veres-one/veres-one-validator#testnet_v2",
     "vue": "^2.5.16",
