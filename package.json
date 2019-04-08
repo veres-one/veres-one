@@ -47,7 +47,7 @@
     "bedrock-webpack": "^2.0.0",
     "bootstrap": "^3.3.7",
     "cors": "^2.8.1",
-    "did-veres-one": "veres-one/did-veres-one#update-patch-context",
+    "did-veres-one": "veres-one/did-veres-one#dev",
     "jsonld-signatures": "^4.0.0",
     "lodash": "^4.6.1",
     "request": "^2.79.0",
