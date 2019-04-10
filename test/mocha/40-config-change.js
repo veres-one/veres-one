@@ -4,13 +4,14 @@
 'use strict';
 
 const {config, jsonld: {documentLoader}, util: {clone}} = require('bedrock');
+const https = require('https');
 const jsigs = require('jsonld-signatures');
 const mockData = require('./mock.data');
 const path = require('path');
 const {WebLedgerClient} = require('web-ledger-client');
 const wlClient = new WebLedgerClient({
   hostname: config.server.host,
-  strictSSL: false
+  httpsAgent: new https.Agent({rejectUnauthorized: false})
 });
 const {Ed25519Signature2018} = jsigs.suites;
 const {AssertionProofPurpose} = jsigs.purposes;

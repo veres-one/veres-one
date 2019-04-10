@@ -11,12 +11,12 @@
   "dependencies": {
     "async": "^2.1.5",
     "bedrock-test": "^2.0.0",
-    "did-veres-one": "veres-one/did-veres-one#update-patch-context",
+    "did-veres-one": "veres-one/did-veres-one#dev",
     "grunt": "^1.0.1",
     "grunt-cli": "^1.2.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-shell": "^2.1.0",
     "jsonld-signatures": "^4.0.0",
-    "web-ledger-client": "^2.0.0"
+    "web-ledger-client": "^3.0.0"
   }
 }
