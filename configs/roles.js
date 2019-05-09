@@ -7,8 +7,7 @@ const config = require('bedrock').config;
 
 require('./permissions');
 
-const permissions = config.permission.permissions;
-const roles = config.permission.roles;
+const {permissions, roles} = config.permission;
 
 roles['identity.admin'] = {
   id: 'identity.administrator',

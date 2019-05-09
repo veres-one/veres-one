@@ -75,18 +75,19 @@
   },
   "bedrock": {
     "browserDependencies": [
+      "@fortawesome/fontawesome-free",
       "bedrock-quasar",
       "bedrock-vue",
       "vue",
-      "vue-router",
-      "@fortawesome/fontawesome-free-webfonts"
+      "vue-router"
     ],
     "manifest": {
-      "@fortawesome/fontawesome-free-webfonts": {
+      "@fortawesome/fontawesome-free": {
+        "main": null,
         "less": [
           "less/fontawesome.less",
-          "less/fa-regular.less",
-          "less/fa-solid.less"
+          "less/regular.less",
+          "less/solid.less"
         ]
       }
     }
