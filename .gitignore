@@ -18,3 +18,5 @@ coverage
 node_modules
 reports
 secret_dids
+packaging/config.sh
+config.ini

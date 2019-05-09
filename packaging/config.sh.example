@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+export VPP_PRODUCT="Veres One"
+export VPP_USER=veres
+export VPP_REPOSITORY=git@github.com:veres-one/veres-one.git
+export VPP_BRANCH=testnet_v2
+
+export AWS_ACCESS_KEY_ID=
+export AWS_SECRET_ACCESS_KEY=
+export MINIO_ACCESS_KEY_ID=
+export MINIO_SECRET_ACCESS_KEY=
