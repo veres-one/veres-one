@@ -6,7 +6,7 @@
   "browser": "index.js",
   "less": "app.less",
   "scripts": {
-    "start": "node genesis.veres.one.localhost.js",
+    "start": "node dev.js",
     "lint": "eslint lib"
   },
   "dependencies": {
