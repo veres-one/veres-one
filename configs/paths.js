@@ -10,3 +10,5 @@ const path = require('path');
 // common paths
 config.paths.cache = path.join(__dirname, '..', '.cache');
 config.paths.log = path.join(os.tmpdir(), 'localhost-veres-one');
+
+config.paths.secrets = path.join(__dirname, 'secrets');
