@@ -1,9 +1,9 @@
 {
-  "product": "Veres Wallet",
+  "product": "Veres One",
   "flow": [{
     "title": "Welcome",
     "image": "/images/setup-logo.svg",
-    "subheading": "Welcome to the setup process for Veres Wallet. The following steps will help you configure the software. Click next to continue.",
+    "subheading": "Welcome to the setup process for Veres One. The following steps will help you configure the software. Click next to continue.",
     "name": "Introduction"
   },
   {
@@ -12,7 +12,7 @@
       "name": "far fa-list-alt",
       "size": "65px",
       "color": "primary"
-      },
+    },
     "subheading": "Please verify that the detected domain is appropriate.",
     "form": {
       "id": "domain",
@@ -37,50 +37,29 @@
     }
   },
   {
-    "name": "Configure the administrator account",
+    "name": "Specify the genesis node",
     "icon": {
-      "name": "fas fa-user-lock",
+      "name": "fas fa-network-wired",
       "size": "65px",
       "color": "primary"
     },
-    "subheading": "Please set the email address and password for the administrator account.",
+    "subheading": "Specify the host name for the genesis node. If this is the genesis node, leave blank.",
     "form": {
-      "id": "admin",
+      "id": "genesisNode",
       "model": {
-        "email": "",
-        "password": "",
-        "passwordConfirmation": ""
+        "genesisNode": ""
       },
+      "modelTemplate": "",
       "schema": {
-        "email": {
-          "placeholder": "Admin email address",
+        "genesisNode": {
+          "placeholder": "Genesis node",
+          "minLength": 4,
           "validation": {
-            "required": true,
-            "regex": "^[-a-zA-Z0-9~!$%^&*_=+}{\\'?]+(\\.[-a-zA-Z0-9~!$%^&*_=+}{\\'?]+)*@(((([a-zA-Z0-9]{1}[a-zA-Z0-9\\-]{0,62}[a-zA-Z0-9]{1})|[a-zA-Z])\\.)+[a-zA-Z]{2,6})$",
+            "minLength": 4,
+            "required": false,
+            "regex": "^(((?!-))(xn--|_{1,1})?[a-z0-9-]{0,61}[a-z0-9]{1,1}.)*(xn--)?([a-z0-9-]{1,61}|[a-z0-9-]{1,30}.[a-z]{2,})$",
             "errors": {
-              "invalid": "The email you entered is not a valid email address."
-            }
-          }
-        },
-        "password": {
-          "validation": {
-            "regex": "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{16,})",
-            "required": true,
-            "errors": {
-              "invalid": "Password is required.",
-              "regex": "Your password must be at least 16 characters long, contain at least one number and have a mixture of uppercase and lowercase letters."
-            }
-          }
-        },
-        "passwordConfirmation": {
-          "validation": {
-            "regex": "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{16,})",
-            "required": true,
-            "match": "password",
-            "errors": {
-              "invalid": "Password confirmation is required.",
-              "required": "Password confirmation is required.",
-              "match": "Passwords do not match."
+              "invalid": "The domain you entered is invalid."
             }
           }
         }
@@ -108,6 +87,11 @@
       "inputType": "email",
       "autocomplete": "username"
     },
+    "genesisNode": {
+      "range": "string",
+      "label": "Genesis Node",
+      "component":{"name": "br-q-input", "params": {"type": "url"}}
+    },
     "password": {
       "range": "string",
       "label": "Password",
@@ -121,6 +105,6 @@
       "autocomplete": "current-password"
     }
   },
-  "configTemplate": "{\n\"domain\": domain.domain, \"admin_email\":admin.email, \"admin_password\": admin.password}",
-  "reviewTemplate": "[{\n\"title\": \"Domain\", \"fields\": [{\"name\": \"Domain\", \"value\": domain.domain}]}, {\"title\": \"Administrator\", \"fields\": [{\"name\": \"Administrator Email\", \"value\": admin.email}]}]"
+  "configTemplate": "{\n\"domain\": domain.domain, \"admin_email\":admin.email, \"admin_password\": admin.password, \"genesis_node\": genesisNode.genesisNode}",
+  "reviewTemplate": "[{\n\"title\": \"Domain\", \"fields\": [{\"name\": \"Domain\", \"value\": domain.domain}]}, {\"title\": \"Genesis Node\", \"fields\": [{\"name\": \"Genesis Node\", \"value\": genesisNode.genesisNode}]}]"
 }
