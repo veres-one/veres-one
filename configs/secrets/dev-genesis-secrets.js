@@ -5,8 +5,7 @@ const config = require('bedrock').config;
 const path = require('path');
 
 // temporary development passwords, replace in testnet / production
-config['veres-one'].adminPassphrase =
-  'password';
+config['veres-one'].adminPassphrase = 'password';
 config['veres-one'].peers = [];
 
 // maintainer
