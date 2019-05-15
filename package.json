@@ -43,7 +43,7 @@
     "bedrock-rest": "^2.0.1",
     "bedrock-server": "^2.2.1",
     "bedrock-session-http": "^3.1.0",
-    "bedrock-setup": "github:digitalbazaar/bedrock-setup",
+    "bedrock-setup": "^1.0.1",
     "bedrock-validation": "^4.0.0",
     "bedrock-veres-one-context": "^6.0.0",
     "bedrock-views": "^6.0.0",
