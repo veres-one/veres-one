@@ -45,7 +45,7 @@
     "bedrock-session-http": "^3.1.0",
     "bedrock-setup": "^1.0.1",
     "bedrock-validation": "^4.0.0",
-    "bedrock-veres-one-context": "^6.0.0",
+    "bedrock-veres-one-context": "digitalbazaar/bedrock-veres-one-context#upgrade-context",
     "bedrock-views": "^6.0.0",
     "bedrock-vue": "^1.0.0",
     "bedrock-vue-wizard": "^3.0.0",
