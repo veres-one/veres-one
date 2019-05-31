@@ -10,6 +10,7 @@ else
   genesis_node_value="['$genesis_node']"
 fi
 
+# NOTE: DO NOT USE BACKTICKS IN JS CODE HERE, BASH INTERPRETS AS CMD EXECUTION
 cat >/home/$vpp_user/src/$vpp_product_id/configs/product-config.js <<EOFPRODUCT
 'use strict';
 
@@ -17,8 +18,8 @@ const {config} = require('bedrock');
 const path = require('path');
 
 // set validator environment which determines what DID pattern is acceptable:
-// `test` = did:v1:test:<foo>
-// `dev` or `live` = did:v1:<foo>
+// 'test' = did:v1:test:<foo>
+// 'dev' or 'live' = did:v1:<foo>
 config['veres-one-validator'].environment = 'test';
 
 // temporary development passwords, replace in testnet / production
