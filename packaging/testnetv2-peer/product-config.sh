@@ -18,7 +18,7 @@ config['veres-one-validator'].environment = 'test';
 
 // temporary development passwords, replace in testnet / production
 config['veres-one'].adminPassphrase = 'password';
-config['veres-one'].peers = ['genesis.testnet.veres.one'];
+config['veres-one'].peers = ['genesis.testnetv2.veres.one'];
 
 // restrict electors to nodes operating on veres.one domain
 config['ledger-consensus-continuity-es-most-recent-participants']
