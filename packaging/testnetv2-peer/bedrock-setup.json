@@ -1,5 +1,5 @@
 {
-  "product": "Veres One",
+  "product": "Veres One Peer Node",
   "flow": [{
     "title": "Welcome",
     "image": "/images/setup-logo.svg",
@@ -126,6 +126,6 @@
       "autocomplete": "current-password"
     }
   },
-  "configTemplate": "{\n\"domain\": domain.domain, \"admin_email\":admin.email, \"admin_password\": admin.password, \"genesis_node\": genesisNode.genesisNode}",
-  "reviewTemplate": "[{\n\"title\": \"Domain\", \"fields\": [{\"name\": \"Domain\", \"value\": domain.domain}]}, {\"title\": \"Administrator\", \"fields\": [{\"name\": \"Administrator Email\", \"value\": admin.email}]}, {\"title\": \"Genesis Node\", \"fields\": [{\"name\": \"Genesis Node\", \"value\": genesisNode.genesisNode}]}]"
+  "configTemplate": "{\n\"domain\": domain.domain, \"admin_email\":admin.email, \"admin_password\": admin.password}",
+  "reviewTemplate": "[{\n\"title\": \"Domain\", \"fields\": [{\"name\": \"Domain\", \"value\": domain.domain}]}, {\"title\": \"Administrator\", \"fields\": [{\"name\": \"Administrator Email\", \"value\": admin.email}]}]"
 }
