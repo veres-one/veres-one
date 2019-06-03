@@ -17,6 +17,9 @@ cat >/home/$vpp_user/src/$vpp_product_id/configs/product-config.js <<EOFPRODUCT
 const {config} = require('bedrock');
 const path = require('path');
 
+// core configuration
+config.core.workers = 2;
+
 // set validator environment which determines what DID pattern is acceptable:
 // 'test' = did:v1:test:<foo>
 // 'dev' or 'live' = did:v1:<foo>

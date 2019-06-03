@@ -12,7 +12,7 @@ const {config} = require('bedrock');
 const path = require('path');
 
 // core configuration
-config.core.workers = 1;
+config.core.workers = 2;
 
 // set validator environment which determines what DID pattern is acceptable:
 // 'test' = did:v1:test:<foo>
