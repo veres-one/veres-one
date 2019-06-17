@@ -26,7 +26,7 @@ config['veres-one'].peers = [];
 // restrict electors to nodes operating on veres.one domain
 config['ledger-consensus-continuity-es-most-recent-participants']
   .electorCandidateFilterPattern =
-    /^https:\/\/[^\/.][^\/]*\.veres\.one\/consensus\/continuity2017\/voters\//;
+    /^https:\/\/[^\/.][^\/]*\.bee\.veres\.one\/consensus\/continuity2017\/voters\//;
 
 // maintainer
 config['veres-one'].maintainerConfigFile =

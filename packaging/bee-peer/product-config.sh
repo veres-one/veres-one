@@ -21,12 +21,12 @@ config['veres-one-validator'].environment = 'test';
 
 // temporary development passwords, replace in testnet / production
 config['veres-one'].adminPassphrase = 'password';
-config['veres-one'].peers = ['one.testnetv2.veres.one'];
+config['veres-one'].peers = ['genesis.bee.veres.one'];
 
 // restrict electors to nodes operating on veres.one domain
 config['ledger-consensus-continuity-es-most-recent-participants']
   .electorCandidateFilterPattern =
-    /^https:\/\/[^\/.][^\/]*\.veres\.one\/consensus\/continuity2017\/voters\//;
+    /^https:\/\/[^\/.][^\/]*\.bee\.veres\.one\/consensus\/continuity2017\/voters\//;
 
 // maintainer
 config['veres-one'].maintainerConfigFile =
