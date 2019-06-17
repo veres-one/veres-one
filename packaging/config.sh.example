@@ -9,3 +9,9 @@ export AWS_ACCESS_KEY_ID=
 export AWS_SECRET_ACCESS_KEY=
 export MINIO_ACCESS_KEY_ID=
 export MINIO_SECRET_ACCESS_KEY=
+
+# These are credentials associated with Azure Service Principal
+# Azure appId
+export AZURE_CLIENT_ID=
+# Azure password
+export AZURE_CLIENT_SECRET=
