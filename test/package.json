@@ -11,7 +11,7 @@
   "dependencies": {
     "async": "^2.1.5",
     "bedrock-test": "^2.0.0",
-    "did-veres-one": "veres-one/did-veres-one#dev",
+    "did-veres-one": "^6.0.0",
     "grunt": "^1.0.1",
     "grunt-cli": "^1.2.0",
     "grunt-contrib-watch": "^1.0.0",
