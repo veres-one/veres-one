@@ -16,7 +16,7 @@
     "axios": "^0.18.0",
     "bedrock": "^1.15.0",
     "bedrock-did-client": "digitalbazaar/bedrock-did-client#testnet_v2",
-    "bedrock-docs": "^3.1.0",
+    "bedrock-docs": "digitalbazaar/bedrock-docs#update-deps",
     "bedrock-express": "^2.0.6",
     "bedrock-i18n": "^2.0.1",
     "bedrock-identity": "^4.6.0",
