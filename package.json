@@ -34,7 +34,7 @@
     "bedrock-ledger-utils": "github:digitalbazaar/bedrock-ledger-utils#implementation",
     "bedrock-mail": "^2.0.3",
     "bedrock-mongodb": "^5.5.0",
-    "bedrock-passport": "^3.4.2",
+    "bedrock-passport": "^5.0.0",
     "bedrock-permission": "^2.3.2",
     "bedrock-quasar": "^3.0.0",
     "bedrock-quasar-form-generator": "^2.0.0",
