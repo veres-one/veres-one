@@ -7,7 +7,6 @@ const _ = require('lodash');
 const async = require('async');
 const bedrock = require('bedrock');
 const brIdentity = require('bedrock-identity');
-const brKey = require('bedrock-key');
 const {config, util: {uuid}} = bedrock;
 const database = require('bedrock-mongodb');
 const jsigs = require('jsonld-signatures');
@@ -202,15 +201,15 @@ function insertTestData(mockData, callback) {
     async.parallel([
       callback => brIdentity.insert(null, identity.identity, callback),
       callback => {
-        if(identity.keys) {
-          return async.each([].concat(identity.keys), (k, callback) => {
-            if(k.isSigningKey) {
-              return brKey.addPublicKey(
-                null, k.publicKey, k.privateKey, callback);
-            }
-            brKey.addPublicKey(null, k.publicKey, callback);
-          }, callback);
-        }
+        // if(identity.keys) {
+        //   return async.each([].concat(identity.keys), (k, callback) => {
+        //     if(k.isSigningKey) {
+        //       return brKey.addPublicKey(
+        //         null, k.publicKey, k.privateKey, callback);
+        //     }
+        //     brKey.addPublicKey(null, k.publicKey, callback);
+        //   }, callback);
+        // }
         callback();
       }
     ], callback),

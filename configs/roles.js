@@ -14,15 +14,10 @@ roles['identity.admin'] = {
   label: 'Identity Administrator',
   comment: 'Role for identity administrators.',
   sysPermission: [
-    permissions.IDENTITY_ADMIN.id,
     permissions.IDENTITY_ACCESS.id,
     permissions.IDENTITY_INSERT.id,
-    permissions.IDENTITY_EDIT.id,
+    permissions.IDENTITY_UPDATE.id,
     permissions.IDENTITY_REMOVE.id,
-    permissions.PUBLIC_KEY_CREATE.id,
-    permissions.PUBLIC_KEY_ACCESS.id,
-    permissions.PUBLIC_KEY_EDIT.id,
-    permissions.PUBLIC_KEY_REMOVE.id
   ]
 };
 roles['identity.manager'] = {
@@ -30,16 +25,11 @@ roles['identity.manager'] = {
   label: 'Identity Manager',
   comment: 'Role for identity managers.',
   sysPermission: [
-    permissions.IDENTITY_ADMIN.id,
     permissions.IDENTITY_ACCESS.id,
     permissions.IDENTITY_INSERT.id,
-    permissions.IDENTITY_EDIT.id,
+    permissions.IDENTITY_UPDATE.id,
     permissions.IDENTITY_UPDATE_MEMBERSHIP.id,
     permissions.IDENTITY_CAPABILITY_DELEGATE.id,
-    permissions.PUBLIC_KEY_CREATE.id,
-    permissions.PUBLIC_KEY_ACCESS.id,
-    permissions.PUBLIC_KEY_EDIT.id,
-    permissions.PUBLIC_KEY_REMOVE.id
   ]
 };
 
