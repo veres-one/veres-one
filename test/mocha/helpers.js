@@ -19,9 +19,6 @@ api.vrOneLedgerReady = new Promise(resolve => {
   bedrock.events.on('veres-one.ready', () => resolve());
 });
 
-api.IDENTITY_BASE_PATH = config.server.baseUri +
-  config['identity-http'].basePath + '/';
-
 api.createCrytographicIdentity = function(sourceIdentity, callback) {
   const publicKey = {
     '@context': 'https://w3id.org/identity/v1',
