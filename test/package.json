@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "async": "^2.1.5",
-    "bedrock-test": "^2.0.0",
+    "bedrock-test": "digitalbazaar/bedrock-test#3.x",
     "did-veres-one": "^6.0.0",
     "grunt": "^1.0.1",
     "grunt-cli": "^1.2.0",
