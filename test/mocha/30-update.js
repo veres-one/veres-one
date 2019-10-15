@@ -3,13 +3,16 @@
  */
 'use strict';
 
+const {util: {delay}} = require('bedrock');
 const didVeresOne = require('did-veres-one');
+const httpsAgent = new require('https').Agent({rejectUnauthorized: false});
 
 describe('DID update', () => {
   it('a DID owner should be able to update its own DID document', async () => {
     const hostname = 'genesis.veres.one.localhost:23443';
-    const v1 = didVeresOne.veres({
+    const v1 = didVeresOne.driver({
       hostname,
+      httpsAgent,
       mode: 'dev'
     });
     let error;
@@ -35,14 +38,15 @@ describe('DID update', () => {
     let didRecord;
     while(!found) {
       try {
-        didRecord = await v1.getRemote({did});
+        // the client.get API is used to get meta data
+        didRecord = await v1.client.get({did});
         found = true;
       } catch(e) {
         if(e.name !== 'NotFoundError') {
           throw e;
         }
         console.log('Waiting for consensus...');
-        await new Promise(resolve => setTimeout(resolve, 500));
+        await delay(500);
         continue;
       }
     }
@@ -83,13 +87,14 @@ async function waitForUpdate({did, sequence, v1}) {
   let found = false;
   let didRecord;
   while(!found) {
-    didRecord = await v1.getRemote({did});
+    // the client.get API is used to get meta data
+    didRecord = await v1.client.get({did});
     const {meta: {sequence: s}} = didRecord;
     if(s === sequence) {
       found = true;
       continue;
     }
-    await new Promise(resolve => setTimeout(resolve, 500));
+    await delay(500);
   }
   return didRecord;
 }

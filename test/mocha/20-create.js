@@ -4,10 +4,10 @@
 'use strict';
 
 const async = require('async');
-const bedrock = require('bedrock');
-const config = bedrock.config;
+const {config, util: {clone, delay}} = require('bedrock');
 const didVeresOne = require('did-veres-one');
 const fs = require('fs');
+const httpsAgent = new require('https').Agent({rejectUnauthorized: false});
 const jsigs = require('jsonld-signatures');
 const mockData = require('./mock.data');
 let request = require('request');
@@ -24,8 +24,9 @@ const urlObj = {
 describe('DID creation', () => {
   it('a DID owner should be able to create its own DID document', async () => {
     const hostname = 'genesis.veres.one.localhost:23443';
-    const v1 = didVeresOne.veres({
+    const v1 = didVeresOne.driver({
       hostname,
+      httpsAgent,
       mode: 'dev'
     });
     let error;
@@ -49,14 +50,14 @@ describe('DID creation', () => {
     let didRecord;
     while(!found) {
       try {
-        didRecord = await v1.getRemote({did});
+        didRecord = await v1.get({did});
         found = true;
       } catch(e) {
         if(e.name !== 'NotFoundError') {
           throw e;
         }
         console.log('Waiting for consensus...');
-        await new Promise(resolve => setTimeout(resolve, 500));
+        await delay(500);
         continue;
       }
     }
@@ -65,9 +66,8 @@ describe('DID creation', () => {
   });
 
   it.skip('should be allowed by Accelerator', done => {
-    const validDidDescription =
-      bedrock.util.clone(mockData.didDocuments.alpha);
-    const registerEvent = bedrock.util.clone(mockData.events.create);
+    const validDidDescription = clone(mockData.didDocuments.alpha);
+    const registerEvent = clone(mockData.events.create);
     registerEvent.input = [validDidDescription];
 
     async.auto({
@@ -79,7 +79,7 @@ describe('DID creation', () => {
         creator: config['veres-one'].ddoPublicKey.id
       }, callback)],
       register: ['sign', (results, callback) => {
-        const registerUrl = bedrock.util.clone(urlObj);
+        const registerUrl = clone(urlObj);
         registerUrl.pathname =
           config['veres-one'].routes.dids + '/' + validDidDescription.id;
         request.post({
@@ -103,9 +103,8 @@ describe('DID creation', () => {
     }, err => done(err));
   });
   it.skip('should be allowed with signature and Proof of Work', done => {
-    const validDidDescription =
-      bedrock.util.clone(mockData.didDocuments.epsilon);
-    const registerEvent = bedrock.util.clone(mockData.events.create);
+    const validDidDescription = clone(mockData.didDocuments.epsilon);
+    const registerEvent = clone(mockData.events.create);
     registerEvent.input = [validDidDescription];
 
     async.auto({
@@ -115,7 +114,7 @@ describe('DID creation', () => {
         creator: validDidDescription.authenticationCredential[0].id
       }, callback),
       register: ['sign', (results, callback) => {
-        const registerUrl = bedrock.util.clone(urlObj);
+        const registerUrl = clone(urlObj);
         registerUrl.pathname =
           config['veres-one'].routes.dids + '/' + validDidDescription.id;
         request.post({
