@@ -1,0 +1,7 @@
+reset-database.sh
+node_modules
+Dockerfile*
+docker-compose*
+configs/secrets/*
+!configs/secrets/dev-genesis-secrets.js
+!configs/secrets/dev-peer-secrets.js
