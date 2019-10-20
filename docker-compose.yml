@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  veres-one:
+    build:
+      dockerfile: Dockerfile.dev
+    restart: unless-stopped
+    depends_on:
+      - mongo
+      - redis
+    ports:
+      - "127.0.0.1:18443:18443"
+    networks:
+      - app-network
+  mongo:
+    image: mongo:latest
+    restart: unless-stopped
+    volumes:
+      - /tmp/veres-one-dev/mongo:/data/db
+    networks:
+      - app-network
+  redis:
+    image: redis:latest
+    command: ["redis-server", "--appendonly", "yes"]
+    restart: unless-stopped
+    volumes:
+      - /tmp/veres-one-dev/redis:/data/db
+    networks:
+      - app-network
+networks:
+  app-network:
+    driver: bridge
