@@ -10,7 +10,7 @@ services:
       - mongo
       - redis
     ports:
-      - "127.0.0.1:18443:18443"
+      - "127.0.0.1:42443:42443"
     networks:
       - app-network
   mongo:
