@@ -3,6 +3,7 @@ version: '3'
 services:
   veres-one:
     build:
+      context: .
       dockerfile: Dockerfile.dev
     restart: unless-stopped
     depends_on:
