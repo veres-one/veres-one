@@ -3,7 +3,8 @@
  */
 'use strict';
 
-const {config, jsonld: {documentLoader}, util: {clone}} = require('bedrock');
+const {config, util: {clone}} = require('bedrock');
+const {documentLoader} = require('bedrock-jsonld-document-loader');
 const https = require('https');
 const jsigs = require('jsonld-signatures');
 const mockData = require('./mock.data');

@@ -54,8 +54,7 @@ config.mongodb.password = null;
 // FIXME: this should be false
 config.mongodb.adminPrompt = true;
 
-// this impacts did-io's acquisition of documements from authio
-config.jsonld.strictSSL = true;
+config['https-agent'].rejectUnauthorized = false;
 
 // Configures `authorization.io` URL for DID lookup
 config['did-client']['authorization-io'].baseUrl =

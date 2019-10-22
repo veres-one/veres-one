@@ -43,8 +43,7 @@ config.mongodb.username = 'veres';
 config.mongodb.password = 'password';
 config.mongodb.adminPrompt = true;
 
-// this impacts did-io's acquisition of documements from authio
-config.jsonld.strictSSL = false;
+config['https-agent'].rejectUnauthorized = false;
 
 // mail config
 config.mail.connection = {
