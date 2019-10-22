@@ -9,5 +9,6 @@ require('./lib/index');
 // use docker specific database hosts
 config.redis.host = 'redis';
 config.mongodb.host = 'mongo';
+config.jobs.queueOptions.redis.host = config.redis.host;
 
 bedrock.start();
