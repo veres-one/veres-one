@@ -11,7 +11,7 @@ else
 fi
 
 # NOTE: DO NOT USE BACKTICKS IN JS CODE HERE, BASH INTERPRETS AS CMD EXECUTION
-cat >/home/$vpp_user/src/$vpp_product_id/configs/product-config.js <<EOFPRODUCT
+cat >/etc/$vpp_product_id/configs/product-config.js <<EOFPRODUCT
 'use strict';
 
 const {config} = require('bedrock');
