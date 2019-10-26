@@ -5,7 +5,7 @@
 # for testnetv2 peer, peers below is hardcoded to the genesis node.
 
 # NOTE: DO NOT USE BACKTICKS IN JS CODE HERE, BASH INTERPRETS AS CMD EXECUTION
-cat >/home/$vpp_user/src/$vpp_product_id/configs/product-config.js <<EOFPRODUCT
+cat >/etc/$vpp_product_id/configs/product-config.js <<EOFPRODUCT
 'use strict';
 
 const {config} = require('bedrock');
@@ -21,12 +21,12 @@ config['veres-one-validator'].environment = 'test';
 
 // temporary development passwords, replace in testnet / production
 config['veres-one'].adminPassphrase = 'password';
-config['veres-one'].peers = ['genesis.bee.veres.one'];
+config['veres-one'].peers = ['genesis.chipmunk.veres.one'];
 
 // restrict electors to nodes operating on veres.one domain
 config['ledger-consensus-continuity-es-most-recent-participants']
   .electorCandidateFilterPattern =
-    /^https:\/\/[^\/.][^\/]*\.bee\.veres\.one\/consensus\/continuity2017\/voters\//;
+    /^https:\/\/[^\/.][^\/]*\.chipmunk\.veres\.one\/consensus\/continuity2017\/voters\//;
 
 // maintainer
 config['veres-one'].maintainerConfigFile =
