@@ -1,0 +1,53 @@
+version: '3'
+
+services:
+  veres-one:
+    image: veresone/veres-one:1.0.0
+    restart: unless-stopped
+    depends_on:
+      - nginx
+      - certbot
+      - mongo
+      - redis
+    networks:
+      - app-network
+services:
+  nginx:
+    image: nginx:1-alpine
+    restart: unless-stopped
+    volumes:
+      - /etc/veres-one/nginx:/etc/nginx/conf.d
+      - /etc/veres-one/certbot/conf:/etc/letsencrypt
+      - /etc/veres-one/certbot/www:/var/www/certbot
+    ports:
+      - "80:80"
+      - "443:443"
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+  certbot:
+    image: certbot/certbot
+    restart: unless-stopped
+    volumes:
+      - /etc/veres-one/certbot/conf:/etc/letsencrypt
+      - /etc/veres-one/certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+  mongo:
+    image: mongo:4
+    command: ["mongo", "--config", "/etc/mongo/mongod.conf"]
+    restart: unless-stopped
+    volumes:
+      - /etc/veres-one/mongo:/etc/mongo
+      - /var/lib/mongodb:/data/db
+    networks:
+      - app-network
+  redis:
+    image: redis:5
+    command: ["redis-server", "--appendonly", "yes"]
+    restart: unless-stopped
+    volumes:
+      - /etc/veres-one/redis:/usr/local/etc/redis
+      - /var/lib/redis:/data/db
+    networks:
+      - app-network
+networks:
+  app-network:
+    driver: bridge
