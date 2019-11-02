@@ -8,10 +8,9 @@ RUN apk add --no-cache git bash autoconf automake libtool binutils gcc g++ make 
 USER node
 WORKDIR /home/node/app
 RUN npm install --no-optional --production
-RUN sed -ie "s/authorization\.localhost\:33443/beta.authn.io/g" components/config.js
 
 FROM base AS release
 COPY --chown=node:node . .
 COPY --from=build /home/node/app/node_modules ./node_modules
-EXPOSE 18443
+EXPOSE 10443
 CMD [ "node", "docker" ]
