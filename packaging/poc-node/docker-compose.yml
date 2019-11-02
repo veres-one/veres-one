@@ -2,13 +2,15 @@ version: '3'
 
 services:
   veres-one:
-    image: veresone/veres-one:1.0.0
+    image: veresone/veres-one-poc-node:0.9.0
     restart: unless-stopped
     depends_on:
       - nginx
       - certbot
       - mongo
       - redis
+    volumes:
+      - /etc/veres-one-poc-node/configs:/etc/veres-one
     networks:
       app-network:
         aliases:
