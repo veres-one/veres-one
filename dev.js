@@ -3,6 +3,7 @@
  */
 const bedrock = require('bedrock');
 
+config.paths.config = path.join(__dirname, 'configs');
 require('./lib/index');
 
 bedrock.start();
