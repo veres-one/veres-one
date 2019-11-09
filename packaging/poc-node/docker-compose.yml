@@ -1,6 +1,32 @@
 version: '3'
 
+networks:
+  dmz-network:
+    driver: bridge
+  app-network:
+    driver: bridge
+
 services:
+  certbot:
+    image: certbot/certbot
+    restart: unless-stopped
+    volumes:
+      - /etc/veres-one-poc/certbot/conf:/etc/letsencrypt
+      - /etc/veres-one-poc/certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+  nginx:
+    image: nginx:1-alpine
+    restart: unless-stopped
+    volumes:
+      - /etc/veres-one-poc/nginx:/etc/nginx
+      - /etc/veres-one-poc/certbot/conf:/etc/letsencrypt
+      - /etc/veres-one-poc/certbot/www:/var/www/certbot
+    ports:
+      - "80:80"
+      - "443:443"
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+    networks:
+      - dmz-network
   veres-one:
     image: veresone/veres-one-poc:0.9.0
     restart: unless-stopped
@@ -15,24 +41,9 @@ services:
       app-network:
         aliases:
           - bedrock-app
-  nginx:
-    image: nginx:1-alpine
-    restart: unless-stopped
-    volumes:
-      - /etc/veres-one-poc/nginx:/etc/nginx
-      - /etc/veres-one-poc/certbot/conf:/etc/letsencrypt
-      - /etc/veres-one-poc/certbot/www:/var/www/certbot
-    ports:
-      - "80:80"
-      - "443:443"
-    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
-  certbot:
-    image: certbot/certbot
-    restart: unless-stopped
-    volumes:
-      - /etc/veres-one-poc/certbot/conf:/etc/letsencrypt
-      - /etc/veres-one-poc/certbot/www:/var/www/certbot
-    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+      dmz-network:
+        aliases:
+          - bedrock-app
   mongo:
     image: mongo:4
     command: ["mongod", "--config", "/etc/mongo/mongod.conf"]
@@ -51,6 +62,3 @@ services:
       - /var/lib/redis:/data/db
     networks:
       - app-network
-networks:
-  app-network:
-    driver: bridge
