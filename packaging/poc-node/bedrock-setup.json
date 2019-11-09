@@ -1,9 +1,9 @@
 {
-  "product": "Veres One POC Node",
+  "product": "Veres One Proof of Concept Node",
   "flow": [{
     "title": "Welcome",
     "image": "/images/setup-logo.svg",
-    "subheading": "Welcome to the setup process for Veres One. The following steps will help you configure the software. Click next to continue.",
+    "subheading": "Welcome to the setup process for your Veres One Proof of Concept Node. The following steps will help you configure the software. Click next to continue.",
     "name": "Introduction"
   },
   {
