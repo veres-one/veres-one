@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-export VPP_PRODUCT="Veres One PoC Node"
+export VPP_PRODUCT="Veres One PoC"
 export VPP_USER=veres
 
 export AWS_ACCESS_KEY_ID=

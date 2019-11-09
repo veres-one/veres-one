@@ -2,7 +2,7 @@ version: '3'
 
 services:
   veres-one:
-    image: veresone/veres-one-poc-node:0.9.0
+    image: veresone/veres-one-poc:0.9.0
     restart: unless-stopped
     depends_on:
       - nginx
@@ -10,7 +10,7 @@ services:
       - mongo
       - redis
     volumes:
-      - /etc/veres-one-poc-node/configs:/etc/veres-one
+      - /etc/veres-one-poc/configs:/etc/veres-one
     networks:
       app-network:
         aliases:
@@ -19,9 +19,9 @@ services:
     image: nginx:1-alpine
     restart: unless-stopped
     volumes:
-      - /etc/veres-one-poc-node/nginx:/etc/nginx
-      - /etc/veres-one-poc-node/certbot/conf:/etc/letsencrypt
-      - /etc/veres-one-poc-node/certbot/www:/var/www/certbot
+      - /etc/veres-one-poc/nginx:/etc/nginx
+      - /etc/veres-one-poc/certbot/conf:/etc/letsencrypt
+      - /etc/veres-one-poc/certbot/www:/var/www/certbot
     ports:
       - "80:80"
       - "443:443"
@@ -30,15 +30,15 @@ services:
     image: certbot/certbot
     restart: unless-stopped
     volumes:
-      - /etc/veres-one-poc-node/certbot/conf:/etc/letsencrypt
-      - /etc/veres-one-poc-node/certbot/www:/var/www/certbot
+      - /etc/veres-one-poc/certbot/conf:/etc/letsencrypt
+      - /etc/veres-one-poc/certbot/www:/var/www/certbot
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
   mongo:
     image: mongo:4
-    command: ["mongo", "--config", "/etc/mongo/mongod.conf"]
+    command: ["mongod", "--config", "/etc/mongo/mongod.conf"]
     restart: unless-stopped
     volumes:
-      - /etc/veres-one-poc-node/mongo:/etc/mongo
+      - /etc/veres-one-poc/mongo:/etc/mongo
       - /var/lib/mongodb:/data/db
     networks:
       - app-network
@@ -47,7 +47,7 @@ services:
     command: ["redis-server", "--appendonly", "yes"]
     restart: unless-stopped
     volumes:
-      - /etc/veres-one-poc-node/redis:/usr/local/etc/redis
+      - /etc/veres-one-poc/redis:/usr/local/etc/redis
       - /var/lib/redis:/data/db
     networks:
       - app-network
