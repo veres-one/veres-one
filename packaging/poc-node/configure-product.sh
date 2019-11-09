@@ -15,6 +15,8 @@ governorsPassphrase=`pwgen -s 32 -1`
 acceleratorPassphrase=`pwgen -s 32 -1`
 
 # NOTE: DO NOT USE BACKTICKS IN JS CODE HERE, BASH INTERPRETS AS CMD EXECUTION
+mkdir -p /etc/$vpp_product_id/configs/secrets
+
 cat >/etc/$vpp_product_id/configs/product-config.js <<EOFPRODUCT
 'use strict';
 
