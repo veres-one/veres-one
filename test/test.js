@@ -5,6 +5,11 @@
 
 process.env['NODE_PATH'] = '../node_modules';
 const bedrock = require('bedrock');
+const path = require('path');
+
+const {config} = bedrock;
+config.paths.config = path.join(__dirname, '..', 'configs');
+
 // NOTE: it is critical that bedrock-protractor be required first so that
 // it can register a bedrock.cli event listener
 require('../lib');
