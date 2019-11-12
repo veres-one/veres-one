@@ -7,7 +7,7 @@ FROM base AS build
 RUN apk add --no-cache git bash autoconf automake libtool binutils gcc g++ make python
 USER node
 WORKDIR /home/node/app
-RUN npm install --no-optional --production
+RUN npm ci --no-optional --production
 
 FROM base AS release
 COPY --chown=node:node . .
