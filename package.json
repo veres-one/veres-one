@@ -44,7 +44,6 @@
     "bedrock-security-context": "^2.0.0",
     "bedrock-server": "^2.2.1",
     "bedrock-session-http": "^3.1.0",
-    "bedrock-setup": "^2.0.0",
     "bedrock-validation": "^4.0.0",
     "bedrock-veres-one-context": "^9.0.1",
     "bedrock-views": "^6.0.0",
