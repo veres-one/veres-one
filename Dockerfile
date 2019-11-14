@@ -13,6 +13,5 @@ RUN npm ci --no-optional --production
 FROM base AS release
 COPY --chown=node:node . .
 COPY --from=build /home/node/app/node_modules ./node_modules
-WORKDIR /home/node/app
 EXPOSE 10443
 CMD [ "node", "docker" ]
