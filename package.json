@@ -41,7 +41,7 @@
     "bedrock-redis": "^3.2.0",
     "bedrock-request-limiter": "^2.0.1",
     "bedrock-rest": "^2.0.1",
-    "bedrock-security-context": "^2.0.0",
+    "bedrock-security-context": "^3.0.0",
     "bedrock-server": "^2.2.1",
     "bedrock-session-http": "^3.1.0",
     "bedrock-validation": "^4.0.0",
