@@ -55,7 +55,7 @@
     "bedrock-webpack": "^2.0.0",
     "bootstrap": "^3.3.7",
     "cors": "^2.8.1",
-    "did-veres-one": "^8.0.0",
+    "did-veres-one": "veres-one/did-veres-one#update-context",
     "flex-docstore": "0.0.1",
     "jsonata": "^1.6.4",
     "jsonld": "^1.8.0",
