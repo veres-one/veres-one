@@ -8,6 +8,9 @@ import * as brVue from 'bedrock-vue';
 import Vue from 'vue';
 //import VueRouter from 'vue-router';
 
+import './app.less';
+import 'bedrock-fontawesome';
+
 // install all plugins
 Vue.use(brVue);
 
