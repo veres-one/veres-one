@@ -73,7 +73,7 @@
     "web-ledger-client": "^3.2.0"
   },
   "devDependencies": {
-    "eslint": "^5.12.1",
+    "eslint": "^6.0.0",
     "eslint-config-digitalbazaar": "^2.0.0"
   },
   "engines": {
