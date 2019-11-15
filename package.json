@@ -3,8 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "main": "lib",
-  "browser": "index.js",
-  "less": "app.less",
+  "browser": "./components/index.js",
   "scripts": {
     "start": "node dev.js",
     "lint": "eslint lib"
@@ -14,10 +13,10 @@
     "animate.css": "^3.6.1",
     "async": "^2.1.4",
     "axios": "^0.18.0",
-    "bedrock": "^2.0.0",
+    "bedrock": "^3.0.0",
     "bedrock-account": "^2.1.2",
     "bedrock-docs": "^3.2.0",
-    "bedrock-express": "^2.0.6",
+    "bedrock-express": "^3.0.0",
     "bedrock-https-agent": "^1.0.0",
     "bedrock-i18n": "^2.0.1",
     "bedrock-identity": "^7.0.0",
@@ -40,19 +39,19 @@
     "bedrock-quasar-form-generator": "^2.0.0",
     "bedrock-redis": "^3.2.0",
     "bedrock-request-limiter": "^2.0.1",
-    "bedrock-rest": "^2.0.1",
+    "bedrock-rest": "^3.0.0",
     "bedrock-security-context": "^3.0.0",
     "bedrock-server": "^2.2.1",
     "bedrock-session-http": "^3.1.0",
     "bedrock-validation": "^4.0.0",
     "bedrock-veres-one-context": "^10.0.0",
-    "bedrock-views": "^6.0.0",
-    "bedrock-vue": "^1.0.0",
+    "bedrock-views": "^7.0.0",
+    "bedrock-vue": "^2.0.0",
     "bedrock-vue-wizard": "^3.0.0",
     "bedrock-web": "^1.0.0",
     "bedrock-web-session": "^1.1.0",
     "bedrock-web-store": "^1.1.1",
-    "bedrock-webpack": "^2.0.0",
+    "bedrock-webpack": "^3.0.0",
     "bootstrap": "^3.3.7",
     "cors": "^2.8.1",
     "did-veres-one": "veres-one/did-veres-one#update-context",
@@ -76,26 +75,7 @@
     "eslint": "^5.12.1",
     "eslint-config-digitalbazaar": "^2.0.0"
   },
-  "bedrock": {
-    "browserDependencies": [
-      "@fortawesome/fontawesome-free",
-      "bedrock-quasar",
-      "bedrock-vue",
-      "vue",
-      "vue-router"
-    ],
-    "manifest": {
-      "@fortawesome/fontawesome-free": {
-        "main": null,
-        "less": [
-          "less/fontawesome.less",
-          "less/regular.less",
-          "less/solid.less"
-        ]
-      }
-    }
-  },
   "engines": {
-    "node": ">=8.9.0"
+    "node": ">=10.12.0"
   }
 }

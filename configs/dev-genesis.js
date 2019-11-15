@@ -52,7 +52,8 @@ config.mail.connection = {
 };
 config.mail.send = false;
 config.mail.vars = {
-  productionMode: config.views.vars.productionMode,
+  // FIXME: what is this?
+  productionMode: '',
   baseUri: config.server.baseUri,
   subject: {
     prefix: '[DEV VERES ONE] ',
@@ -103,46 +104,6 @@ config.mail.events.push({
   // user email
   template: 'veres.Credential.created-identity'
 });
-
-// views
-// branding
-config.views.brand.name = 'Development Veres One';
-// update view vars
-config.views.vars.baseUri = config.server.baseUri;
-config.views.vars.title = config.views.brand.name;
-config.views.vars.siteTitle = config.views.brand.name;
-config.views.vars.supportDomain = config.server.domain;
-config.views.vars.debug = false;
-config.views.vars.minify = false;
-
-config.views.vars.demoWarningUrl = null;
-// br-form vocabularies
-config.views.vars.forms = {vocabs: []};
-// contact info
-config.views.vars.contact.address = {
-  label: 'Veres One',
-  address:
-    '123 FIXME\n' +
-    'FIXME, XX 12345\n' +
-    'United States of America',
-  htmlAddress:
-    '123 FIXME<br/>' +
-    'FIXME, XX 12345<br/>' +
-    'United States of America'
-};
-// config.views.vars.contact.blog = {
-//   label: 'Veres Blog',
-//   url: 'http://blog.' + config.server.domain + '/'
-// };
-config.views.vars.contact.email = {
-  label: 'Customer Support',
-  url: 'mailto:support@' + config.server.domain,
-  email: 'support@' + config.server.domain
-};
-
-// REST API documentation
-config.docs.vars.brand = config.brand.name;
-config.docs.vars.baseUri = config.server.baseUri;
 
 // Veres One development config
 config['veres-one'].did = 'did:v1:uuid:00000000-0000-0000-0000-000000000000';
