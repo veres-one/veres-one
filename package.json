@@ -62,6 +62,7 @@
     "jsonld-signatures": "^4.0.0",
     "lodash": "^4.6.1",
     "p-debounce": "^1.0.0",
+    "p-retry": "^4.2.0",
     "request": "^2.79.0",
     "veres-one-consensus-continuity-elector-selection": "github:veres-one/veres-one-consensus-continuity-elector-selection#implementation",
     "veres-one-validator": "veres-one/veres-one-validator#freeze-pre-chipmunk",
