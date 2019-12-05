@@ -61,6 +61,7 @@
     "jsonld": "^1.8.0",
     "jsonld-signatures": "^4.0.0",
     "lodash": "^4.6.1",
+    "ocapld": "^1.4.0",
     "p-debounce": "^1.0.0",
     "p-retry": "^4.2.0",
     "request": "^2.79.0",
