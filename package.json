@@ -25,7 +25,7 @@
     "bedrock-jobs": "^3.0.0",
     "bedrock-jsonld-document-loader": "^1.0.0",
     "bedrock-ledger-agent": "^2.1.0",
-    "bedrock-ledger-consensus-continuity": "^4.0.0",
+    "bedrock-ledger-consensus-continuity": "digitalbazaar/bedrock-ledger-consensus-continuity#schema-ledger-config",
     "bedrock-ledger-consensus-continuity-es-most-recent-participants": "^2.0.0",
     "bedrock-ledger-consensus-continuity-storage": "^2.2.0",
     "bedrock-ledger-context": "^14.0.0",
