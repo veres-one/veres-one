@@ -14,6 +14,13 @@ maintainerPassphrase=`pwgen -s 32 -1`
 governorsPassphrase=`pwgen -s 32 -1`
 acceleratorPassphrase=`pwgen -s 32 -1`
 
+# Disable memory-backed sessions as they cause memory leaks in express
+cat >>/etc/$VPP_PRODUCT_ID/configs/express.js <<EOFEXPRESS
+
+// disable sessions server wide
+config.express.useSession = false;
+EOFEXPRESS
+
 # NOTE: DO NOT USE BACKTICKS IN JS CODE HERE, BASH INTERPRETS AS CMD EXECUTION
 mkdir -p /etc/$vpp_product_id/configs/secrets
 
