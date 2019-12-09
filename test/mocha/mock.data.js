@@ -32,7 +32,7 @@ mock.configurations.alpha = {
   ledger: null,
   consensusMethod: 'Continuity2017',
   electorSelectionMethod: {
-    type: 'MostRecentParticipants',
+    type: 'ElectorPoolElectorSelection',
     electorPool: 'did:v1:uuid:1ab9d607-c2cf-47d3-a3e2-bfecfdd0fce6',
   },
   sequence: 0,
