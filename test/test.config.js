@@ -74,3 +74,5 @@ config.ledger.jobs.scheduleConsensusWork.enabled = true;
 
 config['veres-one'].maintainerConfigFile =
   path.join(process.cwd(), 'maintainer.jsonld');
+
+config['veres-one'].electorHosts = [config.server.host];
