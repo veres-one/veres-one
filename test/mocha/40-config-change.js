@@ -18,8 +18,8 @@ const {Ed25519Signature2018} = jsigs.suites;
 const {AssertionProofPurpose} = jsigs.purposes;
 
 // setup did-veres-one to store test dids in alternate location
-const Store = require('flex-docstore');
-const didStore = Store.using('files', {
+const {FlexDocStore} = require('flex-docstore');
+const didStore = FlexDocStore.using('files', {
   dir: path.join(process.cwd(), 'secret_dids'),
   extension: '.json',
 });
