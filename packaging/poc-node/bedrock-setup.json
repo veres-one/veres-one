@@ -126,13 +126,13 @@
     },
     "subheading": "If this is the genesis node, specify a comma-separated list of validator nodes.",
     "form": {
-      "id": "validatorNodes",
+      "id": "electorHosts",
       "model": {
-        "validatorNodes": ""
+        "electorHosts": ""
       },
       "modelTemplate": "",
       "schema": {
-        "validatorNodes": {
+        "electorHosts": {
           "placeholder": "node1.example.com,node2.example.com,node3.example.com,node4.example.com",
           "minLength": 4,
           "validation": {
@@ -169,7 +169,7 @@
       "label": "Genesis Node",
       "component":{"name": "br-q-input", "params": {"type": "url"}}
     },
-    "validatorNodes": {
+    "electorHosts": {
       "range": "string",
       "label": "Validators",
       "component":{"name": "br-q-input", "params": {"type": "text"}}
@@ -187,6 +187,6 @@
       "autocomplete": "current-password"
     }
   },
-  "configTemplate": "{\n\"domain\": domain.domain, \"admin_email\":admin.email, \"admin_password\": admin.password, \"genesis_node\": genesisNode.genesisNode, \"validator_nodes\": validatorNodes.validatorNodes}",
-  "reviewTemplate": "[{\n\"title\": \"Domain\", \"fields\": [{\"name\": \"Domain\", \"value\": domain.domain}]}, {\"title\": \"Administrator\", \"fields\": [{\"name\": \"Administrator Email\", \"value\": admin.email}]}, {\"title\": \"Network\", \"fields\": [{\"name\": \"Genesis Node\", \"value\": genesisNode.genesisNode}, {\"name\": \"Validators\", \"value\": validatorNodes.validatorNodes}]}]"
+  "configTemplate": "{\n\"domain\": domain.domain, \"admin_email\":admin.email, \"admin_password\": admin.password, \"genesis_node\": genesisNode.genesisNode, \"elector_hosts\": electorHosts.electorHosts}",
+  "reviewTemplate": "[{\n\"title\": \"Domain\", \"fields\": [{\"name\": \"Domain\", \"value\": domain.domain}]}, {\"title\": \"Administrator\", \"fields\": [{\"name\": \"Administrator Email\", \"value\": admin.email}]}, {\"title\": \"Network\", \"fields\": [{\"name\": \"Genesis Node\", \"value\": genesisNode.genesisNode}, {\"name\": \"Validators\", \"value\": electorHosts.electorHosts}]}]"
 }
