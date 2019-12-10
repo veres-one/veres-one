@@ -13,6 +13,11 @@ services:
     volumes:
       - /etc/veres-one-poc/certbot/conf:/etc/letsencrypt
       - /etc/veres-one-poc/certbot/www:/var/www/certbot
+    logging:
+      driver: json-file
+      options:
+        max-file: "10"
+        max-size: "10m"
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
   nginx:
     image: nginx:1-alpine
@@ -21,6 +26,11 @@ services:
       - /etc/veres-one-poc/nginx:/etc/nginx
       - /etc/veres-one-poc/certbot/conf:/etc/letsencrypt
       - /etc/veres-one-poc/certbot/www:/var/www/certbot
+    logging:
+      driver: json-file
+      options:
+        max-file: "10"
+        max-size: "10m"
     ports:
       - "80:80"
       - "443:443"
@@ -37,6 +47,11 @@ services:
       - redis
     volumes:
       - /etc/veres-one-poc/configs:/etc/veres-one
+    logging:
+      driver: json-file
+      options:
+        max-file: "10"
+        max-size: "10m"
     networks:
       app-network:
         aliases:
@@ -51,6 +66,11 @@ services:
     volumes:
       - /etc/veres-one-poc/mongo:/etc/mongo
       - /var/lib/mongodb:/data/db
+    logging:
+      driver: json-file
+      options:
+        max-file: "10"
+        max-size: "10m"
     networks:
       - app-network
   redis:
@@ -60,6 +80,11 @@ services:
     volumes:
       - /etc/veres-one-poc/redis:/usr/local/etc/redis
       - /var/lib/redis:/data/db
+    logging:
+      driver: json-file
+      options:
+        max-file: "10"
+        max-size: "10m"
     networks:
       - app-network
   nodeexporter:
@@ -69,6 +94,11 @@ services:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
       - /:/rootfs:ro
+    logging:
+      driver: json-file
+      options:
+        max-file: "10"
+        max-size: "10m"
     command:
       - '--path.procfs=/host/proc'
       - '--path.rootfs=/rootfs'
