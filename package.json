@@ -29,7 +29,7 @@
     "bedrock-ledger-consensus-continuity-es-elector-pool": "digitalbazaar/bedrock-ledger-consensus-continuity-es-elector-pool#994ecca36e7bd4dfa1cca581832f406369beecf7",
     "bedrock-ledger-consensus-continuity-storage": "^2.2.0",
     "bedrock-ledger-context": "^15.0.0",
-    "bedrock-ledger-node": "^9.0.0",
+    "bedrock-ledger-node": "^10.0.0",
     "bedrock-ledger-storage-mongodb": "^3.0.0",
     "bedrock-ledger-utils": "github:digitalbazaar/bedrock-ledger-utils#implementation",
     "bedrock-mail": "^2.0.3",
