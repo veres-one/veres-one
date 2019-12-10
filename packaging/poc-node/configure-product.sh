@@ -3,6 +3,7 @@
 # $config_file will be defined here
 
 genesis_node=`cat $config_file | grep genesis_node | cut -f2 -d=`
+elector_hosts=`cat $config_file | grep elector_hosts | cut -f2 -d=` | sed "s/\s//g" | sed "s/,/', '/g"
 
 if [ -z "$genesis_node" ]; then
   genesis_node_value="[]"
@@ -10,6 +11,13 @@ else
   genesis_node_value="['$genesis_node']"
 fi
 
+if [ -z "$elector_hosts" ]; then
+  elector_hosts_value="[]"
+else
+  elector_hosts_value="['$elector_hosts']"
+fi
+
+adminPassphrase=`pwgen -s 32 -1`
 maintainerPassphrase=`pwgen -s 32 -1`
 governorsPassphrase=`pwgen -s 32 -1`
 acceleratorPassphrase=`pwgen -s 32 -1`
@@ -33,14 +41,18 @@ const path = require('path');
 // core configuration
 config.core.workers = 2;
 
+// ensure TLS is used for all https-agent connections
+config['https-agent'].rejectUnauthorized = true;
+
 // set validator environment which determines what DID pattern is acceptable:
 // 'test' = did:v1:test:<foo>
 // 'dev' or 'live' = did:v1:<foo>
 config['veres-one-validator'].environment = 'test';
 
 // temporary development passwords, replace in testnet / production
-config['veres-one'].adminPassphrase = 'password';
+config['veres-one'].adminPassphrase = '$adminPassphrase';
 config['veres-one'].peers = $genesis_node_value;
+config[‘veres-one’].electorHosts = $elector_hosts_value;
 
 // maintainer
 config['veres-one'].maintainerConfigFile =
