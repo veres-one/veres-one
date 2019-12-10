@@ -10,7 +10,7 @@
   "dependencies": {
     "async": "^2.1.5",
     "bedrock-test": "^4.0.0",
-    "did-veres-one": "veres-one/did-veres-one#update-contexts",
+    "did-veres-one": "^10.0.0",
     "flex-docstore": "~0.1.2",
     "grunt": "^1.0.1",
     "grunt-cli": "^1.2.0",
