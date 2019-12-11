@@ -3,7 +3,7 @@
 # $config_file will be defined here
 
 genesis_node=`cat $config_file | grep genesis_node | cut -f2 -d=`
-elector_hosts=`cat $config_file | grep elector_hosts | cut -f2 -d=` | sed "s/\s//g" | sed "s/,/', '/g"
+elector_hosts=`cat $config_file | grep elector_hosts | cut -f2 -d= | sed "s/\s//g" | sed "s/,/', '/g"`
 
 if [ -z "$genesis_node" ]; then
   genesis_node_value="[]"
@@ -52,7 +52,7 @@ config['veres-one-validator'].environment = 'test';
 // temporary development passwords, replace in testnet / production
 config['veres-one'].adminPassphrase = '$adminPassphrase';
 config['veres-one'].peers = $genesis_node_value;
-config[‘veres-one’].electorHosts = $elector_hosts_value;
+config['veres-one'].electorHosts = $elector_hosts_value;
 
 // maintainer
 config['veres-one'].maintainerConfigFile =
