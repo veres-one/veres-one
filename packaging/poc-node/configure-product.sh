@@ -39,7 +39,7 @@ const {config} = require('bedrock');
 const path = require('path');
 
 // core configuration
-config.core.workers = 2;
+config.core.workers = 0;
 
 // ensure TLS is used for all https-agent connections
 config['https-agent'].rejectUnauthorized = true;
