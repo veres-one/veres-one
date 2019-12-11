@@ -10,7 +10,7 @@ RUN apk add --no-cache git bash autoconf automake libtool binutils gcc g++ make 
 USER node
 WORKDIR /home/node/app
 RUN npm ci --no-optional --production
-RUN node docker.js bundle --webpack-mode production --bundle-mode production
+RUN node dev.js bundle --webpack-mode production --bundle-mode production
 
 FROM base AS release
 COPY --from=build /home/node/app/node_modules ./node_modules
