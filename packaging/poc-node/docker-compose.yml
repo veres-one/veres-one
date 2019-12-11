@@ -38,7 +38,7 @@ services:
     networks:
       - dmz-network
   veres-one:
-    image: veresone/veres-one-poc:0.9.0
+    image: veresone/veres-one-poc:0.10.0
     restart: unless-stopped
     depends_on:
       - nginx
