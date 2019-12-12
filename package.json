@@ -31,7 +31,7 @@
     "bedrock-ledger-context": "^15.0.0",
     "bedrock-ledger-node": "^10.1.0",
     "bedrock-ledger-storage-mongodb": "^3.0.0",
-    "bedrock-ledger-utils": "github:digitalbazaar/bedrock-ledger-utils#implementation",
+    "bedrock-ledger-utils": "github:digitalbazaar/bedrock-ledger-utils#bee98d9a1dfa017ebf1baebc4647cd135a32d157",
     "bedrock-mail": "^2.0.3",
     "bedrock-mongodb": "^6.0.0",
     "bedrock-passport": "^5.0.0",
