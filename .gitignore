@@ -5,6 +5,7 @@
 .cache
 .project
 .settings
+.vscode
 TAGS
 build
 configs/demo-secrets.js
