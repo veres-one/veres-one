@@ -79,7 +79,7 @@ services:
     restart: unless-stopped
     volumes:
       - /etc/veres-one-poc/redis:/usr/local/etc/redis
-      - /var/lib/redis:/data/db
+      - /var/lib/redis:/data
     logging:
       driver: json-file
       options:
