@@ -9,4 +9,4 @@ require('bedrock-server');
 // server info
 config.server.port = 42443;
 config.server.httpPort = 42080;
-config.server.domain = 'localhost';
+config.server.domain = 'node-1.veres.one.local';
