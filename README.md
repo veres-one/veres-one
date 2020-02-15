@@ -29,6 +29,17 @@ Technical details about the blockchain can be found in the
 * MongoDB (3.6+)
 * Redis (4+)
 
+# Evaluation Quickstart
+
+You can create DIDs to the Veres One Testnet by using the [did-client][]:
+
+```
+git clone https://github.com/digitalbazaar/did-cli.git
+cd did-cli
+npm install
+./did generate --register
+```
+
 # Developer Quickstart
 
 Setting up a Veres One development environment is fairly easy and consists of
