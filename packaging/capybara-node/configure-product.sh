@@ -2,9 +2,36 @@
 
 # $config_file will be defined here
 
-# For the genesis node, peers below is hard coded to []
+genesis_node=`cat $config_file | grep genesis_node | cut -f2 -d=`
+elector_hosts=`cat $config_file | grep elector_hosts | cut -f2 -d= | sed "s/\s//g" | sed "s/,/', '/g"`
+
+if [ -z "$genesis_node" ]; then
+  genesis_node_value="[]"
+else
+  genesis_node_value="['$genesis_node']"
+fi
+
+if [ -z "$elector_hosts" ]; then
+  elector_hosts_value="[]"
+else
+  elector_hosts_value="['$elector_hosts']"
+fi
+
+adminPassphrase=`pwgen -s 32 -1`
+maintainerPassphrase=`pwgen -s 32 -1`
+governorsPassphrase=`pwgen -s 32 -1`
+acceleratorPassphrase=`pwgen -s 32 -1`
+
+# Disable memory-backed sessions as they cause memory leaks in express
+cat >>/etc/$vpp_product_id/configs/express.js <<EOFEXPRESS
+
+// disable sessions server wide
+config.express.useSession = false;
+EOFEXPRESS
 
 # NOTE: DO NOT USE BACKTICKS IN JS CODE HERE, BASH INTERPRETS AS CMD EXECUTION
+mkdir -p /etc/$vpp_product_id/configs/secrets
+
 cat >/etc/$vpp_product_id/configs/product-config.js <<EOFPRODUCT
 'use strict';
 
@@ -12,7 +39,10 @@ const {config} = require('bedrock');
 const path = require('path');
 
 // core configuration
-config.core.workers = 2;
+config.core.workers = 0;
+
+// ensure TLS is used for all https-agent connections
+config['https-agent'].rejectUnauthorized = true;
 
 // set validator environment which determines what DID pattern is acceptable:
 // 'test' = did:v1:test:<foo>
@@ -20,32 +50,28 @@ config.core.workers = 2;
 config['veres-one-validator'].environment = 'test';
 
 // temporary development passwords, replace in testnet / production
-config['veres-one'].adminPassphrase = 'password';
-config['veres-one'].peers = [];
-
-// restrict electors to nodes operating on veres.one domain
-config['ledger-consensus-continuity-es-most-recent-participants']
-  .electorCandidateFilterPattern =
-    /^https:\/\/[^\/.][^\/]*\.chipmunk\.veres\.one\/consensus\/continuity2017\/voters\//;
+config['veres-one'].adminPassphrase = '$adminPassphrase';
+config['veres-one'].peers = $genesis_node_value;
+config['veres-one'].electorHosts = $elector_hosts_value;
 
 // maintainer
 config['veres-one'].maintainerConfigFile =
   path.join(config.paths.secrets, 'maintainer.jsonld');
 config['veres-one'].maintainerPassphrase =
-  'insecure_eyium0phookoh9geeshewomaekuoTeib';
+  '$maintainerPassphrase';
 
 // governors
 config['veres-one'].governorsConfigFile =
   path.join(config.paths.secrets, 'governors.jsonld');
 config['veres-one'].governorsPassphrase =
-  'insecure_shee0iyeifah0Zeew1bufeech4vo8wah';
+  '$governorsPassphrase';
 
 // accelerator
 config['veres-one'].acceleratorEnabled = false;
 config['veres-one'].acceleratorConfigFile =
   path.join(config.paths.secrets, 'accelerator.jsonld');
 config['veres-one'].acceleratorPassphrase =
-  'insecure_Gx77CpVMq6Lmyq8452Z3o0TmtrcDnUWH';
+  '$acceleratorPassphrase';
 config['veres-one'].acceleratorCapability =
   'did:v1:test:uuid:aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee';
 

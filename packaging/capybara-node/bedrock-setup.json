@@ -1,9 +1,9 @@
 {
-  "product": "Veres One Peer Node",
+  "product": "Veres One Testnet Node",
   "flow": [{
     "title": "Welcome",
     "image": "/images/setup-logo.svg",
-    "subheading": "Welcome to the setup process for Veres One. The following steps will help you configure the software. Click next to continue.",
+    "subheading": "Welcome to the setup process for your Veres One (Capybara) Testnet Node. The following steps will help you configure the software. Click next to continue.",
     "name": "Introduction"
   },
   {
@@ -88,6 +88,62 @@
     }
   },
   {
+    "name": "Specify the genesis node",
+    "icon": {
+      "name": "fas fa-network-wired",
+      "size": "65px",
+      "color": "primary"
+    },
+    "subheading": "Specify the host name for the genesis node. If this is the genesis node, leave blank.",
+    "form": {
+      "id": "genesisNode",
+      "model": {
+        "genesisNode": ""
+      },
+      "modelTemplate": "",
+      "schema": {
+        "genesisNode": {
+          "placeholder": "Genesis node",
+          "minLength": 4,
+          "validation": {
+            "minLength": 4,
+            "required": false,
+            "regex": "^(((?!-))(xn--|_{1,1})?[a-z0-9-]{0,61}[a-z0-9]{1,1}.)*(xn--)?([a-z0-9-]{1,61}|[a-z0-9-]{1,30}.[a-z]{2,})$",
+            "errors": {
+              "invalid": "The domain you entered is invalid."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "Specify the validator nodes",
+    "icon": {
+      "name": "fas fa-network-wired",
+      "size": "65px",
+      "color": "primary"
+    },
+    "subheading": "If this is the genesis node, specify a comma-separated list of validator nodes.",
+    "form": {
+      "id": "electorHosts",
+      "model": {
+        "electorHosts": ""
+      },
+      "modelTemplate": "",
+      "schema": {
+        "electorHosts": {
+          "placeholder": "node1.example.com,node2.example.com,node3.example.com,node4.example.com",
+          "minLength": 4,
+          "validation": {
+            "minLength": 4,
+            "required": false
+          }
+        }
+      }
+    }
+  },
+  {
     "name": "Review and finish",
     "icon": {
       "name": "fas fa-check-circle",
@@ -113,6 +169,11 @@
       "label": "Genesis Node",
       "component":{"name": "br-q-input", "params": {"type": "url"}}
     },
+    "electorHosts": {
+      "range": "string",
+      "label": "Validators",
+      "component":{"name": "br-q-input", "params": {"type": "text"}}
+    },
     "password": {
       "range": "string",
       "label": "Password",
@@ -126,6 +187,6 @@
       "autocomplete": "current-password"
     }
   },
-  "configTemplate": "{\n\"domain\": domain.domain, \"admin_email\":admin.email, \"admin_password\": admin.password}",
-  "reviewTemplate": "[{\n\"title\": \"Domain\", \"fields\": [{\"name\": \"Domain\", \"value\": domain.domain}]}, {\"title\": \"Administrator\", \"fields\": [{\"name\": \"Administrator Email\", \"value\": admin.email}]}]"
+  "configTemplate": "{\n\"domain\": domain.domain, \"admin_email\":admin.email, \"admin_password\": admin.password, \"genesis_node\": genesisNode.genesisNode, \"elector_hosts\": electorHosts.electorHosts}",
+  "reviewTemplate": "[{\n\"title\": \"Domain\", \"fields\": [{\"name\": \"Domain\", \"value\": domain.domain}]}, {\"title\": \"Administrator\", \"fields\": [{\"name\": \"Administrator Email\", \"value\": admin.email}]}, {\"title\": \"Network\", \"fields\": [{\"name\": \"Genesis Node\", \"value\": genesisNode.genesisNode}, {\"name\": \"Validators\", \"value\": electorHosts.electorHosts}]}]"
 }
