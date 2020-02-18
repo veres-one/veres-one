@@ -10,7 +10,7 @@ RUN apk add --no-cache git bash autoconf automake libtool binutils gcc g++ make 
 USER node
 WORKDIR /home/node/app
 RUN npm ci --no-optional --production
-RUN sed 1d /home/node/app/node_modules/raml2obj/index.js > /home/node/app/node_modules/raml2obj/index.js
+RUN sed -i 1d /home/node/app/node_modules/raml2obj/index.js
 RUN node dev.js bundle --webpack-mode production --bundle-mode production
 
 FROM base AS release
