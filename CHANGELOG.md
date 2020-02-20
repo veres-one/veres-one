@@ -1,5 +1,9 @@
 # veres-one ChangeLog
 
-## 0.1.0 - 2017-xx-xx
+## 2.0.0 - 2019-06-17
 
-- Initial release
+- Blueberry Bee release
+
+## 1.0.0 - 2018-06-17
+
+- Allegheny Ant release
