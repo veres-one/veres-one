@@ -1,9 +1,11 @@
 /*
  * Copyright (c) 2012-2017 Digital Bazaar, Inc. All rights reserved.
  */
-var schemas = require('bedrock-validation').schemas;
+'use strict';
 
-var postEmailIdentifier = {
+const schemas = require('bedrock-validation').schemas;
+
+const postEmailIdentifier = {
   type: 'object',
   properties: {
     email: schemas.email({}, {lowerCaseOnly: true})
@@ -11,7 +13,7 @@ var postEmailIdentifier = {
   additionalProperties: false
 };
 
-var postIdentityIdentifier = {
+const postIdentityIdentifier = {
   type: 'object',
   properties: {
     sysSlug: schemas.slug()

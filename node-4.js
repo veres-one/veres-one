@@ -29,7 +29,12 @@ config['veres-one-validator'].environment = 'test';
 
 // temporary development passwords, replace in testnet / production
 config['veres-one'].peers = ['node-1.veres.one.local:46443'];
-config['veres-one'].electorHosts = ['node-1.veres.one.local:46443', 'node-2.veres.one.local:47443', 'node-3.veres.one.local:48443', 'node-4.veres.one.local:49443'];
+config['veres-one'].electorHosts = [
+  'node-1.veres.one.local:46443',
+  'node-2.veres.one.local:47443',
+  'node-3.veres.one.local:48443',
+  'node-4.veres.one.local:49443'
+];
 
 // maintainer
 config['veres-one'].maintainerConfigFile =

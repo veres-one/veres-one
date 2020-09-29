@@ -1,11 +1,8 @@
 /*!
  * Copyright (c) 2017-2018 Digital Bazaar, Inc. All rights reserved.
  */
-/* global should */
 'use strict';
 
-const bedrock = require('bedrock');
-const config = bedrock.config;
 const helpers = require('./helpers');
 const vrOneLedger = require('../../lib/ledger');
 
