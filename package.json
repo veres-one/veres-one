@@ -23,7 +23,7 @@
     "bedrock-injector": "^1.0.0",
     "bedrock-jobs": "^3.0.0",
     "bedrock-jsonld-document-loader": "^1.0.0",
-    "bedrock-ledger-agent": "^2.1.0",
+    "bedrock-ledger-agent": "^3.1.0",
     "bedrock-ledger-consensus-continuity": "^5.0.3",
     "bedrock-ledger-consensus-continuity-es-elector-pool": "^1.0.0",
     "bedrock-ledger-consensus-continuity-storage": "^2.2.0",
