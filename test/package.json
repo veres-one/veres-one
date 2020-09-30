@@ -16,7 +16,7 @@
     "grunt-cli": "^1.2.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-shell": "^2.1.0",
-    "jsonld-signatures": "^4.0.0",
+    "jsonld-signatures": "^5.1.0",
     "web-ledger-client": "^3.0.0"
   }
 }
