@@ -11,7 +11,7 @@ USER node
 COPY --chown=node:node . .
 RUN mv dev.js index.js
 RUN npm i --package-lock-only && npm ci --no-optional --production && cd test && npm i
-RUN node index.js bundle --webpack-mode production --bundle-mode production
+# RUN node index.js bundle --webpack-mode production --bundle-mode production
 
 FROM base AS release
 COPY --from=build --chown=node:node /home/node/app ./
