@@ -60,7 +60,6 @@
     "jsonld-signatures": "^6.0.0",
     "lodash": "^4.6.1",
     "ocapld": "^2.0.0",
-    "p-debounce": "^1.0.0",
     "p-retry": "^4.2.0",
     "request": "^2.79.0",
     "veres-one-consensus-continuity-elector-selection": "^1.0.0",
