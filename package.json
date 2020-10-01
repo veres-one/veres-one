@@ -16,7 +16,7 @@
     "bedrock-account": "^2.1.2",
     "bedrock-express": "^3.0.0",
     "bedrock-fontawesome": "^1.0.0",
-    "bedrock-https-agent": "^1.0.0",
+    "bedrock-https-agent": "^2.0.0",
     "bedrock-i18n": "^2.0.1",
     "bedrock-identity": "^7.0.0",
     "bedrock-injector": "^1.0.0",
