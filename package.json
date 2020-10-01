@@ -12,7 +12,6 @@
     "@fortawesome/fontawesome-free": "^5.7.2",
     "animate.css": "^3.6.1",
     "async": "^2.1.4",
-    "axios": "^0.18.0",
     "bedrock": "^3.0.0",
     "bedrock-account": "^2.1.2",
     "bedrock-express": "^3.0.0",
