@@ -24,10 +24,9 @@ jobs:
     - name: Publish Docker image
       uses: docker/build-push-action@v1
       with:
-        registry: docker.pkg.github.com
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
-        repository: veres-one/veres-one/veres-one
+        username: ${{ secrets.VERES_ONE_DOCKER_HUB_USER }}
+        password: ${{ secrets.VERES_ONE_DOCKER_HUB_TOKEN }}
+        repository: digitalbazaar/veres-one
         tags: ${{ steps.version.outputs.current-version }}-rc${{ steps.rc.outputs.version_build_number }}
     - name: Save published docker image tag
       shell: bash
