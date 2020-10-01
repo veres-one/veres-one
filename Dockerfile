@@ -12,12 +12,8 @@ COPY --chown=node:node . .
 RUN mv dev.js index.js
 RUN npm i --package-lock-only && npm ci --no-optional --production && cd test && npm i
 
-# FROM build AS test
-# RUN cd test && npm t
-# RUN rm -rf test && rm .npmrc
-
 FROM base AS release
-COPY --from=test --chown=node:node /home/node/app ./
+COPY --from=build --chown=node:node /home/node/app ./
 EXPOSE 10443
 ENV NODE_ENV=production
 CMD [ "node", "index"]

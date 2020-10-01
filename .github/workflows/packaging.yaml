@@ -1,0 +1,40 @@
+name: Packaging
+
+on:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v2
+    - name: Get npm package version
+      id: version
+      uses: martinbeentjes/npm-get-version-action@v1.0.0
+    - name: Generate next release candidate number
+      id: rc
+      uses: zyborg/gh-action-buildnum@v1.1.0
+      with:
+        gist_token: ${{ secrets.VERES_ONE_BUILDER_CI_TOKEN }}
+        version_key: ${{ steps.version.outputs.current-version }}
+    - name: Publish Docker image
+      uses: docker/build-push-action@v1
+      with:
+        registry: docker.pkg.github.com
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+        repository: veres-one/veres-one/veres-one
+        tags: ${{ steps.version.outputs.current-version }}-rc${{ steps.rc.outputs.version_build_number }}
+    - name: Save published docker image tag
+      shell: bash
+      run: |
+        echo "${{ steps.version.outputs.current-version }}-rc${{ steps.rc.outputs.version_build_number }}" > version.txt
+    - name: Upload published docker image tag
+      uses: actions/upload-artifact@v1
+      with:
+        name: versions
+        path: version.txt
