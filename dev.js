@@ -18,7 +18,6 @@ config['veres-one-validator'].environment = 'dev';
 
 // temporary development passwords, replace in testnet / production
 config['veres-one'].peers = [];
-console.log('HHHHHHHHHHHHHHH', config.server.host);
 config['veres-one'].electorHosts = [config.server.host];
 
 // maintainer
