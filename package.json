@@ -54,6 +54,7 @@
     "bootstrap": "^3.3.7",
     "cors": "^2.8.1",
     "did-veres-one": "^12.1.1",
+    "dotenv": "^8.2.0",
     "flex-docstore": "~0.1.2",
     "jsonata": "^1.6.4",
     "jsonld": "^3.1.1",

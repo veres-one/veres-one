@@ -7,6 +7,7 @@ const {config} = require('bedrock');
 require('bedrock-server');
 
 // server info
-config.server.port = 42443;
-config.server.httpPort = 42080;
-config.server.domain = 'node-1.veres.one.local';
+config.server.port = process.env.BEDROCK_HTTPS_PORT;
+config.server.httpPort = process.env.BEDROCK_HTTP_PORT;
+config.server.domain = process.env.NODE_HOST;
+config.server.host = process.env.BEDROCK_SERVER_HOST;

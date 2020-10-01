@@ -3,6 +3,7 @@
 *.sw[nop]
 *~
 .cache
+.env
 .project
 .settings
 .vscode
