@@ -21,14 +21,17 @@ jobs:
       with:
         gist_token: ${{ secrets.VERES_ONE_BUILDER_CI_TOKEN }}
         version_key: ${{ steps.version.outputs.current-version }}
-    - name: Publish Docker image
-      uses: docker/build-push-action@v1
+    - name: Login to Github Container Registry
+      uses: docker/login-action@v1
       with:
         registry: ghcr.io
         username: ${{ github.actor }}
         password: ${{ secrets.VERES_ONE_BUILDER_CI_TOKEN }}
-        repository: veres-one/veres-one
-        tags: ${{ steps.version.outputs.current-version }}-rc${{ steps.rc.outputs.version_build_number }}
+    - name: Publish Docker image
+      uses: docker/build-push-action@v2
+      with:
+        push: true
+        tags: veres-one/${{ steps.version.outputs.current-version }}-rc${{ steps.rc.outputs.version_build_number }}
     - name: Save published docker image tag
       shell: bash
       run: |
