@@ -26,8 +26,8 @@ jobs:
       with:
         registry: ghcr.io
         username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
-        repository: veres-one/veres-one/veres-one
+        password: ${{ secrets.VERES_ONE_BUILDER_CI_TOKEN }}
+        repository: veres-one/veres-one
         tags: ${{ steps.version.outputs.current-version }}-rc${{ steps.rc.outputs.version_build_number }}
     - name: Save published docker image tag
       shell: bash
