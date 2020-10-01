@@ -24,7 +24,7 @@ jobs:
     - name: Publish Docker image
       uses: docker/build-push-action@v1
       with:
-        registry: docker.pkg.github.com
+        registry: ghcr.io
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
         repository: veres-one/veres-one/veres-one
