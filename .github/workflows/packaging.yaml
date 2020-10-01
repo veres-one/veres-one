@@ -36,7 +36,7 @@ jobs:
       with:
         push: true
         # tags: ghcr.io/veres-one/veres-one-${{ steps.version.outputs.current-version }}-rc${{ steps.rc.outputs.version_build_number }}
-        tags: veres-one/veres-one-${{ steps.version.outputs.current-version }}-rc${{ steps.rc.outputs.version_build_number }}
+        tags: digitalbazaar/veres-one/veres-one-${{ steps.version.outputs.current-version }}-rc${{ steps.rc.outputs.version_build_number }}
     - name: Save published docker image tag
       shell: bash
       run: |
