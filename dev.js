@@ -17,8 +17,9 @@ require('./lib/index');
 config['veres-one-validator'].environment = 'dev';
 
 // temporary development passwords, replace in testnet / production
-config['veres-one'].peers = [];
-config['veres-one'].electorHosts = [config.server.host];
+config['veres-one'].peers = [process.env.VERES_ONE_GENESIS_NODE];
+const electorHosts = process.env.VERES_ONE_ELECTOR_HOSTS.split(',');
+config['veres-one'].electorHosts = electorHosts;
 
 // maintainer
 config['veres-one'].maintainerConfigFile =
