@@ -16,10 +16,10 @@ config.paths.cache = path.join(__dirname, '..', '.cache');
 config.paths.log = path.join(os.tmpdir(), 'test.veres.one.localhost');
 
 // server info
-config.server.port = 45443;
+config.server.port = 23443;
 config.server.httpPort = 22080;
 config.server.domain = 'genesis.veres.one.localhost';
-config.server.host = 'genesis.veres.one.localhost:45443';
+config.server.host = 'genesis.veres.one.localhost:23443';
 
 // mongodb config
 config.mongodb.name = 'veres_one_test';
