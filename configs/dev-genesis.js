@@ -25,7 +25,7 @@ config.loggers.email.from = 'cluster@veres.one.localhost';
 // server info
 config.server.port = 42443;
 config.server.httpPort = 42080;
-config.server.domain = 'genesis.veres.one.localhost';
+config.server.domain = 'localhost:45443';
 // config.server.key = path.join(_cfgdir, 'pki', 'veres.dev.key');
 // config.server.cert = path.join(_cfgdir, 'pki', 'veres.dev.crt');
 
