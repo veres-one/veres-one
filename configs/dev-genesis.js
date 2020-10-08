@@ -38,7 +38,6 @@ config.express.session.prefix = 'veres-one.';
 config.mongodb.name = 'veres_one_localhost_genesis';
 config.mongodb.host = 'localhost';
 config.mongodb.port = 27017;
-config.mongodb.local.collection = 'veres_one_localhost_genesis';
 config.mongodb.username = 'veres';
 config.mongodb.password = 'password';
 config.mongodb.adminPrompt = true;
@@ -84,15 +83,23 @@ config.mail.vars = {
 };
 // email templates
 // TODO: determine if Ledger will do credential notifications at all
+/*
 const ids = [
   'veres.Credential.created-identity',
   'veres.Credential.created'
 ];
+
 ids.forEach(function(id) {
-  config.mail.templates.config[id] = {
+  config.mail.templates[id] = {
     filename: path.join(__dirname, '../email-templates', id + '.tpl')
   };
 });
+*/
+
+const rootPath = path.join(__dirname, '../email-templates');
+config.mail.templates.paths.push(rootPath);
+
+/*
 // mail events
 config.mail.events.push({
   type: 'veres.Credential.created',
@@ -104,7 +111,7 @@ config.mail.events.push({
   // user email
   template: 'veres.Credential.created-identity'
 });
-
+*/
 // Veres One development config
 config['veres-one'].did = 'did:v1:uuid:00000000-0000-0000-0000-000000000000';
 
