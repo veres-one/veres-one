@@ -25,7 +25,7 @@
     "bedrock-ledger-agent": "^3.1.0",
     "bedrock-ledger-consensus-continuity": "^7.0.0",
     "bedrock-ledger-consensus-continuity-es-elector-pool": "^1.0.0",
-    "bedrock-ledger-consensus-continuity-stats-monitor": "digitalbazaar/bedrock-ledger-consensus-continuity-stats-monitor#master",
+    "bedrock-ledger-consensus-continuity-stats-monitor": "^1.2.0",
     "bedrock-ledger-consensus-continuity-storage": "^2.2.0",
     "bedrock-ledger-context": "^15.0.0",
     "bedrock-ledger-node": "^10.1.1",
