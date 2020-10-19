@@ -5,7 +5,27 @@
 
 const {config} = require('bedrock');
 
+const cfg = config.loggers;
+
 // logging
-config.loggers.email.silent = true;
-config.loggers.email.to = ['cluster@veres.io'];
-config.loggers.email.from = 'cluster@veres.io';
+cfg.email.silent = true;
+cfg.email.to = ['cluster@veres.io'];
+cfg.email.from = 'cluster@veres.io';
+
+const {
+  env: {
+    BEDROCK_LOG_LEVEL
+  }
+} = process;
+
+// transport for console logging
+cfg.console.level = BEDROCK_LOG_LEVEL || cfg.console.level;
+
+// file transport for app logging
+cfg.app.level = BEDROCK_LOG_LEVEL || cfg.app.level;
+
+// file transport for access logging
+cfg.access.level = BEDROCK_LOG_LEVEL || cfg.access.level;
+
+// file transport for error logging
+cfg.error.level = BEDROCK_LOG_LEVEL || cfg.error.level;
