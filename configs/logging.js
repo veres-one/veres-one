@@ -23,9 +23,3 @@ cfg.console.level = BEDROCK_LOG_LEVEL || cfg.console.level;
 
 // file transport for app logging
 cfg.app.level = BEDROCK_LOG_LEVEL || cfg.app.level;
-
-// file transport for access logging
-cfg.access.level = BEDROCK_LOG_LEVEL || cfg.access.level;
-
-// file transport for error logging
-cfg.error.level = BEDROCK_LOG_LEVEL || cfg.error.level;
