@@ -15,5 +15,5 @@ const {
 } = process;
 
 cfg.consensus.workerpool.enabled = ENABLE_CONSENUS_WORKERPOOL !== 'false';
-cfg.gossip.maxEvents = parseInt(GOSSIP_MAX_EVENTS, 10) || 100;
+cfg.gossip.maxEvents = parseInt(GOSSIP_MAX_EVENTS, 10) || cfg.gossip.maxEvents;
 cfg.writer.maxEvents = parseInt(WRITER_MAX_EVENTS, 10) || cfg.writer.maxEvents;
