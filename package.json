@@ -12,7 +12,7 @@
     "@fortawesome/fontawesome-free": "^5.7.2",
     "animate.css": "^3.6.1",
     "async": "^2.1.4",
-    "bedrock": "^3.0.0",
+    "bedrock": "digitalbazaar/bedrock#exit",
     "bedrock-account": "^2.1.2",
     "bedrock-cooldown": "digitalbazaar/bedrock-cooldown#initial",
     "bedrock-express": "^3.0.0",
