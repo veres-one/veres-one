@@ -47,7 +47,7 @@
     "bedrock-security-context": "^3.0.0",
     "bedrock-server": "^2.2.1",
     "bedrock-session-http": "^3.1.0",
-    "bedrock-stats": "^1.0.2",
+    "bedrock-stats": "digitalbazaar/bedrock-stats#worker-config",
     "bedrock-stats-prometheus": "digitalbazaar/bedrock-stats-prometheus#cooldown",
     "bedrock-stats-storage-redis": "^1.0.2",
     "bedrock-validation": "^4.0.0",
