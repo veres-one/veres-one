@@ -3,7 +3,7 @@ name: Packaging
 on:
   push:
     branches:
-      - 'nitro-2-disabled'
+      - 'nitro-2'
 
 jobs:
   package:
