@@ -29,7 +29,7 @@
     "bedrock-ledger-consensus-continuity-stats-monitor": "digitalbazaar/bedrock-ledger-consensus-continuity-stats-monitor#cooldown",
     "bedrock-ledger-consensus-continuity-storage": "^2.2.0",
     "bedrock-ledger-context": "^15.0.0",
-    "bedrock-ledger-node": "digitalbazaar/bedrock-ledger-node#ledger-node-cache",
+    "bedrock-ledger-node": "digitalbazaar/bedrock-ledger-node#debug-cache",
     "bedrock-ledger-node-cooldown-monitor": "digitalbazaar/bedrock-ledger-node-cooldown-monitor#initial",
     "bedrock-ledger-node-stats-monitor": "^1.0.1",
     "bedrock-ledger-storage-mongodb": "^3.0.0",
