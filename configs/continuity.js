@@ -10,8 +10,7 @@ const {
   env: {
     ENABLE_CONSENUS_WORKERPOOL,
     GOSSIP_MAX_EVENTS,
-    VERES_ONE_ENABLE_GOSSIP_EVENTS_WORKER,
-    VERES_ONE_MAX_CONCURRENT_EVENTS_PER_WORKER,
+    VERES_ONE_ENABLE_LOCAL_EVENTS_VALIDATION,
     WRITER_MAX_EVENTS,
   }
 } = process;
@@ -20,9 +19,19 @@ cfg.consensus.workerpool.enabled = ENABLE_CONSENUS_WORKERPOOL === 'true';
 cfg.gossip.maxEvents = parseInt(GOSSIP_MAX_EVENTS, 10) || cfg.gossip.maxEvents;
 cfg.writer.maxEvents = parseInt(WRITER_MAX_EVENTS, 10) || cfg.writer.maxEvents;
 
-cfg.gossip.batchProcess.enable =
-  VERES_ONE_ENABLE_GOSSIP_EVENTS_WORKER == 'true';
-if(VERES_ONE_MAX_CONCURRENT_EVENTS_PER_WORKER) {
-  cfg.gossip.batchProcess.concurrentEventsPerWorker =
-    parseInt(VERES_ONE_MAX_CONCURRENT_EVENTS_PER_WORKER, 10);
+if(VERES_ONE_ENABLE_LOCAL_EVENTS_VALIDATION === 'true') {
+  const host = process.env.VERES_ONE_GOSSIP_EVENTS_WORKER_SERVICE_HOST;
+  const port = process.env.VERES_ONE_GOSSIP_EVENTS_WORKER_SERVICE_PORT_HTTPS;
+  const baseUrl = port === '443' ?
+    `https://${host}` : `https://${host}:${port}`;
+
+  const httpsAgentOpts = {
+    rejectUnauthorized: false,
+    keepAlive: true,
+  };
+
+  cfg.gossip.eventsValidation = {
+    baseUrl,
+    httpsAgentOpts
+  };
 }

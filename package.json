@@ -23,7 +23,7 @@
     "bedrock-jobs": "^3.1.0",
     "bedrock-jsonld-document-loader": "^1.0.0",
     "bedrock-ledger-agent": "github:digitalbazaar/bedrock-ledger-agent#mongdb-7-ledger-node-11",
-    "bedrock-ledger-consensus-continuity": "digitalbazaar/bedrock-ledger-consensus-continuity#update-merge-strategy",
+    "bedrock-ledger-consensus-continuity": "digitalbazaar/bedrock-ledger-consensus-continuity#events-validation-service",
     "bedrock-ledger-consensus-continuity-es-elector-pool": "^1.0.0",
     "bedrock-ledger-consensus-continuity-stats-monitor": "digitalbazaar/bedrock-ledger-consensus-continuity-stats-monitor#cooldown",
     "bedrock-ledger-consensus-continuity-storage": "github:digitalbazaar/bedrock-ledger-consensus-continuity-storage#merge-event-updates",
