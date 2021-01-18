@@ -30,8 +30,6 @@ if(VERES_ONE_ENABLE_LOCAL_EVENTS_VALIDATION === 'true') {
     keepAlive: true,
   };
 
-  cfg.gossip.eventsValidation = {
-    baseUrl,
-    httpsAgentOpts
-  };
+  cfg.gossip.eventsValidation.baseUrl = baseUrl;
+  cfg.gossip.eventsValidation.httpsAgentOpts = httpsAgentOpts;
 }
