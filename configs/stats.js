@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2017-2020 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2017-2021 Digital Bazaar, Inc. All rights reserved.
  */
 'use strict';
 
@@ -13,14 +13,7 @@ require('bedrock-ledger-node-stats-monitor');
 require('bedrock-ledger-consensus-continuity-stats-monitor');
 require('bedrock-stats-prometheus');
 
-const {
-  env: {
-    MAX_LOCAL_OPERATIONS_LIST_LENGTH,
-    VERES_ONE_STATS_WORKER_ENABLE,
-  }
-} = process;
-
-config.stats.worker.enable = !!VERES_ONE_STATS_WORKER_ENABLE;
+config.stats.worker.enable = false;
 
 // generate stats reports at this interval in ms
 config.stats.report.interval = 10 * 1000;
@@ -34,9 +27,3 @@ config.stats.storage.push({name: 'redis'});
 
 // the TTL of history to maintain in redis in ms
 config['stats-storage-redis'].history.ttl = 5 * 60 * 1000;
-
-// setup max local operations list length
-config['ledger-consensus-continuity-stats-monitor'].operations.local
-  .maxListLength = parseInt(MAX_LOCAL_OPERATIONS_LIST_LENGTH, 10) ||
-  config['ledger-consensus-continuity-stats-monitor'].operations.local
-    .maxListLength;
