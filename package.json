@@ -28,7 +28,7 @@
     "bedrock-ledger-consensus-continuity-es-elector-pool": "^1.0.0",
     "bedrock-ledger-consensus-continuity-stats-monitor": "digitalbazaar/bedrock-ledger-consensus-continuity-stats-monitor#cooldown-update",
     "bedrock-ledger-consensus-continuity-storage": "github:digitalbazaar/bedrock-ledger-consensus-continuity-storage#merge-event-updates",
-    "bedrock-ledger-context": "^17.0.0",
+    "bedrock-ledger-context": "^18.0.0",
     "bedrock-ledger-node": "github:digitalbazaar/bedrock-ledger-node#update-peers",
     "bedrock-ledger-node-cooldown-monitor": "digitalbazaar/bedrock-ledger-node-cooldown-monitor#initial",
     "bedrock-ledger-node-stats-monitor": "^1.0.1",
