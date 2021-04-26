@@ -3,7 +3,7 @@ name: Packaging
 on:
   push:
     branches:
-      - "engine-mk3"
+      - "engine-mk4"
 
 jobs:
   package:
@@ -39,12 +39,12 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ghcr.io/${{ env.CONTAINER_OWNER }}/${{ env.CONTAINER_IMAGE_NAME }}:${{ steps.version.outputs.current-version }}-rc${{ steps.rc.outputs.version_build_number }}-engine-mk3
+          tags: ghcr.io/${{ env.CONTAINER_OWNER }}/${{ env.CONTAINER_IMAGE_NAME }}:${{ steps.version.outputs.current-version }}-rc${{ steps.rc.outputs.version_build_number }}-engine-mk4
 
       - name: Save published docker image tag
         shell: bash
         run: |
-          echo "${{ steps.version.outputs.current-version }}-rc${{ steps.rc.outputs.version_build_number }}-engine-mk3" > version.txt
+          echo "${{ steps.version.outputs.current-version }}-rc${{ steps.rc.outputs.version_build_number }}-engine-mk4" > version.txt
       - name: Upload published docker image tag
         uses: actions/upload-artifact@v1
         with:
