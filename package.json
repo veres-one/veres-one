@@ -9,8 +9,8 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@digitalbazaar/ed25519-signature-2018": "^1.0.0",
-    "@digitalbazaar/ed25519-verification-key-2018": "^3.0.0",
+    "@digitalbazaar/ed25519-signature-2018": "digitalbazaar/ed25519-signature-2018#v1",
+    "@digitalbazaar/ed25519-verification-key-2018": "^3.1.1",
     "@digitalbazaar/zcapld": "^3.0.0",
     "@fortawesome/fontawesome-free": "^5.7.2",
     "animate.css": "^3.6.1",
