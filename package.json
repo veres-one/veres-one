@@ -33,7 +33,7 @@
     "bedrock-ledger-context": "^18.0.0",
     "bedrock-ledger-node": "digitalbazaar/bedrock-ledger-node#get-ledger-node-record",
     "bedrock-ledger-node-stats-monitor": "^1.0.1",
-    "bedrock-ledger-storage-mongodb": "^5.0.0",
+    "bedrock-ledger-storage-mongodb": "digitalbazaar/bedrock-ledger-storage-mongodb#update-idx",
     "bedrock-ledger-utils": "^1.1.0",
     "bedrock-mail": "^3.0.0",
     "bedrock-mongodb": "^8.1.1",
