@@ -54,7 +54,7 @@
     "bedrock-vue": "^2.0.0",
     "bedrock-vue-wizard": "^3.0.0",
     "bedrock-web": "^1.0.0",
-    "bedrock-web-session": "^1.1.0",
+    "bedrock-web-session": "^2.0.0",
     "bedrock-web-store": "^1.1.1",
     "bedrock-webpack": "^3.0.0",
     "bootstrap": "^3.3.7",
