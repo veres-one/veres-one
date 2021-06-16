@@ -9,6 +9,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@digitalbazaar/zcapld": "^4.0.0",
     "@fortawesome/fontawesome-free": "^5.7.2",
     "animate.css": "^3.6.1",
     "async": "^2.1.4",
