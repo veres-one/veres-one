@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "test": "redis-cli flushall && rm -f ./maintainer.jsonld &&  node --preserve-symlinks test.js test --framework mocha",
+    "debug": "redis-cli flushall && rm -f ./maintainer.jsonld &&  node --preserve-symlinks test.js test --framework mocha --log-level debug",
     "watch": "grunt watch"
   },
   "dependencies": {
