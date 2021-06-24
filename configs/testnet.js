@@ -48,10 +48,10 @@ config.server.host = config.server.domain;
 config.mongodb.name = 'testnet_veres_one';
 config.mongodb.host = 'localhost';
 config.mongodb.port = 27017;
-config.mongodb.username = 'veres';
-config.mongodb.password = null;
+//config.mongodb.username = 'veres';
+//config.mongodb.password = null;
 // FIXME: this should be false
-config.mongodb.adminPrompt = true;
+//config.mongodb.adminPrompt = true;
 
 config['https-agent'].rejectUnauthorized = false;
 

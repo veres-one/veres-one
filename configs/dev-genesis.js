@@ -38,9 +38,9 @@ config.express.session.prefix = 'veres-one.';
 config.mongodb.name = 'veres_one_localhost_genesis';
 config.mongodb.host = 'localhost';
 config.mongodb.port = 27017;
-config.mongodb.username = 'veres';
-config.mongodb.password = 'password';
-config.mongodb.adminPrompt = true;
+//config.mongodb.username = 'veres';
+//config.mongodb.password = 'password';
+//config.mongodb.adminPrompt = true;
 
 config['https-agent'].rejectUnauthorized = false;
 
