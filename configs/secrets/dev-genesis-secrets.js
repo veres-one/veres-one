@@ -12,7 +12,7 @@ config['veres-one'].peers = [];
 config['veres-one'].maintainerConfigFile =
   path.join(config.paths.secrets, 'maintainer.jsonld');
 config['veres-one'].maintainerPassphrase =
-  'insecure_eyium0phookoh9geeshewomaekuoTeib';
+  'insecure_eyium0phookoh9geeshewom';
 
 // governors
 config['veres-one'].governorsConfigFile =
