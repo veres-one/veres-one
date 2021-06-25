@@ -14,7 +14,8 @@ const wlClient = new WebLedgerClient({
   hostname: config.server.host,
   httpsAgent: new https.Agent({rejectUnauthorized: false})
 });
-const {Ed25519Signature2018} = jsigs.suites;
+const {Ed25519Signature2020} =
+  require('@digitalbazaar/ed25519-signature-2020');
 const {AssertionProofPurpose} = jsigs.purposes;
 
 // setup did-veres-one to store test dids in alternate location
@@ -59,7 +60,7 @@ describe('Ledger configuration changes.', () => {
       const signedConfiguration = await jsigs.sign(ledgerConfiguration, {
         compactProof: false,
         documentLoader,
-        suite: new Ed25519Signature2018({key: signingKey}),
+        suite: new Ed25519Signature2020({key: signingKey}),
         purpose: new AssertionProofPurpose()
       });
       let result;
@@ -98,7 +99,7 @@ describe('Ledger configuration changes.', () => {
       const signedConfiguration = await jsigs.sign(ledgerConfiguration, {
         compactProof: false,
         documentLoader,
-        suite: new Ed25519Signature2018({key: signingKey}),
+        suite: new Ed25519Signature2020({key: signingKey}),
         purpose: new AssertionProofPurpose()
       });
       let result;
