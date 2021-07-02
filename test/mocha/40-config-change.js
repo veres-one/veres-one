@@ -41,9 +41,8 @@ describe('Ledger configuration changes.', () => {
     });
     it('rejects a configuration based on sequence === 0', async () => {
       const mockDidDoc = await didv1.generate();
-      const method = mockDidDoc.getVerificationMethod(
-        {proofPurpose: 'capabilityInvocation'});
-      const signingKey = mockDidDoc.keys[method.id];
+      const method = mockDidDoc.methodFor({purpose: 'capabilityInvocation'});
+      const signingKey = mockDidDoc.keyPairs.get(method.id);
       const y = await wlClient.getStatus();
       const {latestConfigEvent: {ledgerConfiguration: {ledger}}} = y;
       const ledgerConfiguration = clone(mockData.configurations.alpha);
@@ -79,9 +78,8 @@ describe('Ledger configuration changes.', () => {
   describe('should not allow config change for testnet v2', () => {
     it('rejects a configuration based on sequence !== 0', async () => {
       const mockDidDoc = await didv1.generate();
-      const method = mockDidDoc.getVerificationMethod(
-        {proofPurpose: 'capabilityInvocation'});
-      const signingKey = mockDidDoc.keys[method.id];
+      const method = mockDidDoc.methodFor({purpose: 'capabilityInvocation'});
+      const signingKey = mockDidDoc.keyPairs.get(method.id);
       const y = await wlClient.getStatus();
       const {latestConfigEvent: {ledgerConfiguration: {ledger}}} = y;
       const ledgerConfiguration = clone(mockData.configurations.alpha);

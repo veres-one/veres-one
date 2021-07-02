@@ -28,7 +28,7 @@ mock.keys = {};
 })();
 
 mock.configurations.alpha = {
-  '@context': constants.WEB_LEDGER_CONTEXT_V1_URL,
+  '@context': [constants.WEB_LEDGER_CONTEXT_V1_URL],
   type: 'WebLedgerConfiguration',
   ledger: null,
   consensusMethod: 'Continuity2017',
