@@ -3,7 +3,7 @@ name: Packaging
 on:
   push:
     branches:
-      - 'master'
+      - "engine-mk5"
 
 jobs:
   package:
@@ -13,40 +13,40 @@ jobs:
       CONTAINER_IMAGE_NAME: veres-one
     timeout-minutes: 10
     steps:
-    - name: Check out repository
-      uses: actions/checkout@v2
-    - name: Get npm package version
-      id: version
-      uses: martinbeentjes/npm-get-version-action@v1.0.0
-    - name: Generate next release candidate number
-      id: rc
-      uses: zyborg/gh-action-buildnum@v1.1.0
-      with:
-        gist_token: ${{ secrets.VERES_ONE_BUILDER_CI_TOKEN }}
-        version_key: ${{ steps.version.outputs.current-version }}
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - name: Get npm package version
+        id: version
+        uses: martinbeentjes/npm-get-version-action@v1.0.0
+      - name: Generate next release candidate number
+        id: rc
+        uses: zyborg/gh-action-buildnum@v1.1.0
+        with:
+          gist_token: ${{ secrets.VERES_ONE_BUILDER_CI_TOKEN }}
+          version_key: ${{ steps.version.outputs.current-version }}
 
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
 
-    - name: Login to GitHub Container Registry
-      uses: docker/login-action@v1
-      with:
-        registry: ghcr.io
-        username: ${{ secrets.VERES_ONE_BUILDER_CI_USER }}
-        password: ${{ secrets.VERES_ONE_BUILDER_CI_TOKEN }}
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ secrets.VERES_ONE_BUILDER_CI_USER }}
+          password: ${{ secrets.VERES_ONE_BUILDER_CI_TOKEN }}
 
-    - name: Publish Docker image
-      uses: docker/build-push-action@v2
-      with:
-        push: true
-        tags: ghcr.io/${{ env.CONTAINER_OWNER }}/${{ env.CONTAINER_IMAGE_NAME }}:${{ steps.version.outputs.current-version }}-rc${{ steps.rc.outputs.version_build_number }}
+      - name: Publish Docker image
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: ghcr.io/${{ env.CONTAINER_OWNER }}/${{ env.CONTAINER_IMAGE_NAME }}:${{ steps.version.outputs.current-version }}-rc${{ steps.rc.outputs.version_build_number }}-engine-mk5
 
-    - name: Save published docker image tag
-      shell: bash
-      run: |
-        echo "${{ steps.version.outputs.current-version }}-rc${{ steps.rc.outputs.version_build_number }}" > version.txt
-    - name: Upload published docker image tag
-      uses: actions/upload-artifact@v1
-      with:
-        name: versions
-        path: version.txt
+      - name: Save published docker image tag
+        shell: bash
+        run: |
+          echo "${{ steps.version.outputs.current-version }}-rc${{ steps.rc.outputs.version_build_number }}-engine-mk5" > version.txt
+      - name: Upload published docker image tag
+        uses: actions/upload-artifact@v1
+        with:
+          name: versions
+          path: version.txt

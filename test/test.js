@@ -3,6 +3,7 @@
  */
 'use strict';
 
+// eslint-disable-next-line dot-notation
 process.env['NODE_PATH'] = '../node_modules';
 const bedrock = require('bedrock');
 const path = require('path');

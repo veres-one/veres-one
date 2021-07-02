@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2017-2020 Digital Bazaar, Inc. All rights reserved.
+ * Copyright (c) 2017-2021 Digital Bazaar, Inc. All rights reserved.
  */
 'use strict';
 
@@ -11,6 +11,8 @@ require('bedrock-stats-storage-redis');
 require('bedrock-ledger-node-stats-monitor');
 require('bedrock-ledger-consensus-continuity-stats-monitor');
 require('bedrock-stats-prometheus');
+
+config.stats.worker.enable = false;
 
 // generate stats reports at this interval in ms
 config.stats.report.interval = 10 * 1000;
