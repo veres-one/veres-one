@@ -8,7 +8,6 @@ const {documentLoader} = require('bedrock-jsonld-document-loader');
 const https = require('https');
 const jsigs = require('jsonld-signatures');
 const mockData = require('./mock.data');
-const path = require('path');
 const {WebLedgerClient} = require('web-ledger-client');
 const wlClient = new WebLedgerClient({
   hostname: config.server.host,
@@ -18,13 +17,7 @@ const {Ed25519Signature2020} =
   require('@digitalbazaar/ed25519-signature-2020');
 const {AssertionProofPurpose} = jsigs.purposes;
 
-// setup did-veres-one to store test dids in alternate location
-const {FlexDocStore} = require('flex-docstore');
-const didStore = FlexDocStore.using('files', {
-  dir: path.join(process.cwd(), 'secret_dids'),
-  extension: '.json',
-});
-const didv1 = new (require('did-veres-one')).VeresOne({didStore});
+const didv1 = require('did-veres-one').driver();
 
 describe('Ledger configuration changes.', () => {
   describe('validation errors', () => {
