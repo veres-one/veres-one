@@ -194,7 +194,6 @@ api.prepareDatabase = function(mockData, callback) {
 
 // Insert identities and public keys used for testing into database
 function insertTestData(mockData, callback) {
-console.log('mock data identities', JSON.stringify(mockData.identities, null, 2));
   async.forEachOf(mockData.identities, (identity, key, callback) =>
     async.parallel([
       callback => brAccount.updateRoles(null, identity.identity, callback),
