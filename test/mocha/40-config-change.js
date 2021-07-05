@@ -19,7 +19,9 @@ const {AssertionProofPurpose} = jsigs.purposes;
 
 const didv1 = require('did-veres-one').driver();
 
-describe('Ledger configuration changes.', () => {
+// FIXME: changing configs is not currently possible.
+// worker queues might make it possible in the future
+describe.skip('Ledger configuration changes.', () => {
   describe('validation errors', () => {
     it('rejects a configuration without a proof', async () => {
       const y = await wlClient.getStatus();
