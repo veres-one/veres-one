@@ -33,13 +33,13 @@ describe('DID creation', () => {
     let did;
     try {
       // Generate a new DID Document, store the private keys locally
-      const didDocument = await v1.generate();
-      console.log('Generated:', JSON.stringify(didDocument, null, 2));
+      const newDoc = await v1.generate();
+      console.log('Generated:', JSON.stringify(newDoc, null, 2));
       // Now register the newly generated DID Document
       // Use Equihash Proof of Work by default (see below)
       const result = await v1.register({
-        didDocument,
-        keyPairs: didDocument.keyPairs
+        didDocument: newDoc.didDocument,
+        keyPairs: newDoc.keyPairs
       });
       ({id: did} = result);
       // Log the results
@@ -64,8 +64,8 @@ describe('DID creation', () => {
         continue;
       }
     }
-    didRecord.doc.id.should.equal(did);
-    didRecord.meta.sequence.should.equal(0);
+    should.exist(didRecord, 'Expected didRecord to exist');
+    didRecord.id.should.equal(did);
   });
 
   it.skip('should be allowed by Accelerator', done => {
