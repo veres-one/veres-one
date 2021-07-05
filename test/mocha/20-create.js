@@ -33,11 +33,14 @@ describe('DID creation', () => {
     let did;
     try {
       // Generate a new DID Document, store the private keys locally
-      const didDocument = await v1.generate({});
+      const didDocument = await v1.generate();
       console.log('Generated:', JSON.stringify(didDocument, null, 2));
       // Now register the newly generated DID Document
       // Use Equihash Proof of Work by default (see below)
-      const result = await v1.register({didDocument});
+      const result = await v1.register({
+        didDocument,
+        keyPairs: didDocument.keyPairs
+      });
       ({id: did} = result);
       // Log the results
       // Log the result of registering the didDoc to the VeresOne Test ledger
