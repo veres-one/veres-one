@@ -50,7 +50,6 @@ describe('Ledger configuration changes.', () => {
       ledgerConfiguration.ledger = ledger;
       ledgerConfiguration.creator = 'https://example.com/apeer';
       const signedConfiguration = await jsigs.sign(ledgerConfiguration, {
-        compactProof: false,
         documentLoader,
         suite: new Ed25519Signature2020({key: signingKey}),
         purpose: new AssertionProofPurpose()
@@ -88,7 +87,6 @@ describe('Ledger configuration changes.', () => {
       ledgerConfiguration.creator = 'https://example.com/apeer';
       ledgerConfiguration.sequence = 1;
       const signedConfiguration = await jsigs.sign(ledgerConfiguration, {
-        compactProof: false,
         documentLoader,
         suite: new Ed25519Signature2020({key: signingKey}),
         purpose: new AssertionProofPurpose()
