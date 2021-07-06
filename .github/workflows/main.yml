@@ -18,3 +18,28 @@ jobs:
     - run: npm install
     - name: Run eslint
       run: npm run lint
+  test-node:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: [lint]
+    services:
+      mongodb:
+        image: mongo:4.2
+        ports:
+          - 27017:27017
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: |
+        cd test
+        npm install
+    - name: Run test with Node.js ${{ matrix.node-version }}
+      run: |
+        cd test
+        npm test
