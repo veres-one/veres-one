@@ -19,27 +19,36 @@ jobs:
     - name: Run eslint
       run: npm run lint
   test-node:
+    timeout-minutes: 15
     runs-on: ubuntu-latest
-    timeout-minutes: 10
-    needs: [lint]
     services:
       mongodb:
         image: mongo:4.2
         ports:
           - 27017:27017
+      redis:
+        image: redis:6.0
+        ports:
+          - 6379:6379
     strategy:
       matrix:
         node-version: [14.x]
     steps:
+    - name: Install redis-tools
+      run: sudo apt-get install redis-tools
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
     - run: |
+        # install at the root to install workerpool module
+        npm install
         cd test
         npm install
     - name: Run test with Node.js ${{ matrix.node-version }}
       run: |
         cd test
         npm test
+      env:
+        CI: true
