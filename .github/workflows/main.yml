@@ -1,4 +1,4 @@
-name: Lint CI
+name: Veres One Node.js CI
 
 on: [push]
 
