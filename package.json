@@ -11,7 +11,7 @@
   "dependencies": {
     "@digitalbazaar/ed25519-signature-2020": "^3.0.0",
     "@digitalbazaar/ed25519-verification-key-2020": "^3.1.0",
-    "@digitalbazaar/zcapld": "^3.0.0",
+    "@digitalbazaar/zcapld": "^5.1.0",
     "@fortawesome/fontawesome-free": "^5.7.2",
     "animate.css": "^3.6.1",
     "async": "^2.1.4",
