@@ -20,7 +20,7 @@ const {AssertionProofPurpose} = jsigs.purposes;
 const didv1 = require('did-veres-one').driver();
 
 // FIXME: changing configs is not currently possible.
-// worker queues might make it possible in the future
+// a config queue (like an operation queue) might make it possible in the future
 describe.skip('Ledger configuration changes.', () => {
   describe('validation errors', () => {
     it('rejects a configuration without a proof', async () => {
