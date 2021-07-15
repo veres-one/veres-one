@@ -38,8 +38,11 @@ config.express.session.prefix = 'veres-one.';
 config.mongodb.name = 'veres_one_localhost_genesis';
 config.mongodb.host = 'localhost';
 config.mongodb.port = 27017;
+// mongodb auth options are commented out, because if a username
+// and password are set it tries to login.
 //config.mongodb.username = 'veres';
 //config.mongodb.password = 'password';
+//config.mongodb.connectOptions.authSource = 'admin';
 //config.mongodb.adminPrompt = true;
 
 config['https-agent'].rejectUnauthorized = false;
