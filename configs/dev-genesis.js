@@ -40,7 +40,8 @@ config.mongodb.host = 'localhost';
 config.mongodb.port = 27017;
 // mongodb auth options are commented out, because if a username
 // and password are set it tries to login.
-// uncomment them to use auth
+// they are left commented here for convenience; you can uncomment them
+// if you want to try a dev build with auth enabled
 //config.mongodb.username = 'veres';
 //config.mongodb.password = 'password';
 //config.mongodb.connectOptions.authSource = 'admin';
