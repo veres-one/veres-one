@@ -11,6 +11,7 @@ config['veres-one'].peers = [];
 // maintainer
 config['veres-one'].maintainerConfigFile =
   path.join(config.paths.secrets, 'maintainer.jsonld');
+// FIXME remove this password entirely
 config['veres-one'].maintainerPassphrase =
   'insecure_eyium0phookoh9geeshewom';
 
