@@ -50,6 +50,7 @@ config.mongodb.host = 'localhost';
 config.mongodb.port = 27017;
 // mongodb auth options are commented out, because if a username
 // and password are set it tries to login.
+// uncomment them to use auth
 //config.mongodb.username = 'veres';
 //config.mongodb.password = null;
 //config.mongodb.connectOptions.authSource = 'kubernetes-auth-collection';
