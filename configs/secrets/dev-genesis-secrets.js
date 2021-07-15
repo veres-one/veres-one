@@ -11,7 +11,10 @@ config['veres-one'].peers = [];
 // maintainer
 config['veres-one'].maintainerConfigFile =
   path.join(config.paths.secrets, 'maintainer.jsonld');
-// FIXME remove this password entirely
+// FIXME remove this password entirely and replace it with a temporary key
+// pair that MUST be replaced in production but is only used in dev mode
+// consider using `ensureOverride` feature,
+// see: https://github.com/digitalbazaar/bedrock/blob/main/lib/config.js#L61
 config['veres-one'].maintainerPassphrase =
   'insecure_eyium0phookoh9geeshewom';
 
