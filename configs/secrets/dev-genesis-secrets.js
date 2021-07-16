@@ -15,8 +15,9 @@ config['veres-one'].maintainerConfigFile =
 // pair that MUST be replaced in production but is only used in dev mode
 // consider using `ensureOverride` feature,
 // see: https://github.com/digitalbazaar/bedrock/blob/main/lib/config.js#L61
-config['veres-one'].maintainerPassphrase =
-  'insecure_eyium0phookoh9geeshewom';
+config['veres-one'].maintainerPassphrase = 'vlSkAkQQOpSrBf9H1L7KVOU6wuHM0+t' +
+  'ack9x9kq2ECpew5uOaaqWxIj7MDUX9jEc03YuG6uAakgcriMDCrOKBTLvS6IDgLKpF1OLdJ0' +
+  'k8HBruVOAhiHuHlhyrAfmUIP3fo3B69NtZ6lVJ6V17yQElbhcIWrdoO4jgf5qMEKEyhQ=';
 
 // governors
 config['veres-one'].governorsConfigFile =
