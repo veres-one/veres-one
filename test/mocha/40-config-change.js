@@ -8,24 +8,20 @@ const {documentLoader} = require('bedrock-jsonld-document-loader');
 const https = require('https');
 const jsigs = require('jsonld-signatures');
 const mockData = require('./mock.data');
-const path = require('path');
 const {WebLedgerClient} = require('web-ledger-client');
 const wlClient = new WebLedgerClient({
   hostname: config.server.host,
   httpsAgent: new https.Agent({rejectUnauthorized: false})
 });
-const {Ed25519Signature2018} = jsigs.suites;
+const {Ed25519Signature2020} =
+  require('@digitalbazaar/ed25519-signature-2020');
 const {AssertionProofPurpose} = jsigs.purposes;
 
-// setup did-veres-one to store test dids in alternate location
-const {FlexDocStore} = require('flex-docstore');
-const didStore = FlexDocStore.using('files', {
-  dir: path.join(process.cwd(), 'secret_dids'),
-  extension: '.json',
-});
-const didv1 = new (require('did-veres-one')).VeresOne({didStore});
+const didv1 = require('did-veres-one').driver();
 
-describe('Ledger configuration changes.', () => {
+// FIXME: changing configs is not currently possible.
+// a config queue (like an operation queue) might make it possible in the future
+describe.skip('Ledger configuration changes.', () => {
   describe('validation errors', () => {
     it('rejects a configuration without a proof', async () => {
       const y = await wlClient.getStatus();
@@ -47,9 +43,8 @@ describe('Ledger configuration changes.', () => {
     });
     it('rejects a configuration based on sequence === 0', async () => {
       const mockDidDoc = await didv1.generate();
-      const method = mockDidDoc.getVerificationMethod(
-        {proofPurpose: 'capabilityInvocation'});
-      const signingKey = mockDidDoc.keys[method.id];
+      const method = mockDidDoc.methodFor({purpose: 'capabilityInvocation'});
+      const signingKey = mockDidDoc.keyPairs.get(method.id);
       const y = await wlClient.getStatus();
       const {latestConfigEvent: {ledgerConfiguration: {ledger}}} = y;
       const ledgerConfiguration = clone(mockData.configurations.alpha);
@@ -57,9 +52,8 @@ describe('Ledger configuration changes.', () => {
       ledgerConfiguration.ledger = ledger;
       ledgerConfiguration.creator = 'https://example.com/apeer';
       const signedConfiguration = await jsigs.sign(ledgerConfiguration, {
-        compactProof: false,
         documentLoader,
-        suite: new Ed25519Signature2018({key: signingKey}),
+        suite: new Ed25519Signature2020({key: signingKey}),
         purpose: new AssertionProofPurpose()
       });
       let result;
@@ -85,9 +79,8 @@ describe('Ledger configuration changes.', () => {
   describe('should not allow config change for testnet v2', () => {
     it('rejects a configuration based on sequence !== 0', async () => {
       const mockDidDoc = await didv1.generate();
-      const method = mockDidDoc.getVerificationMethod(
-        {proofPurpose: 'capabilityInvocation'});
-      const signingKey = mockDidDoc.keys[method.id];
+      const method = mockDidDoc.methodFor({purpose: 'capabilityInvocation'});
+      const signingKey = mockDidDoc.keyPairs.get(method.id);
       const y = await wlClient.getStatus();
       const {latestConfigEvent: {ledgerConfiguration: {ledger}}} = y;
       const ledgerConfiguration = clone(mockData.configurations.alpha);
@@ -96,9 +89,8 @@ describe('Ledger configuration changes.', () => {
       ledgerConfiguration.creator = 'https://example.com/apeer';
       ledgerConfiguration.sequence = 1;
       const signedConfiguration = await jsigs.sign(ledgerConfiguration, {
-        compactProof: false,
         documentLoader,
-        suite: new Ed25519Signature2018({key: signingKey}),
+        suite: new Ed25519Signature2020({key: signingKey}),
         purpose: new AssertionProofPurpose()
       });
       let result;

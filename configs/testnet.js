@@ -48,11 +48,14 @@ config.server.host = config.server.domain;
 config.mongodb.name = 'testnet_veres_one';
 config.mongodb.host = 'localhost';
 config.mongodb.port = 27017;
-config.mongodb.local.collection = 'testnet_veres_one';
-config.mongodb.username = 'veres';
-config.mongodb.password = null;
+// mongodb auth options are commented out, because if a username
+// and password are set it tries to login.
+// uncomment them to use auth
+//config.mongodb.username = 'veres';
+//config.mongodb.password = null;
+//config.mongodb.connectOptions.authSource = 'kubernetes-auth-collection';
 // FIXME: this should be false
-config.mongodb.adminPrompt = true;
+//config.mongodb.adminPrompt = true;
 
 config['https-agent'].rejectUnauthorized = false;
 

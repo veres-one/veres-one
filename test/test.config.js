@@ -19,10 +19,11 @@ config.paths.log = path.join(os.tmpdir(), 'test.veres.one.localhost');
 config.server.port = 23443;
 config.server.httpPort = 22080;
 config.server.domain = 'genesis.veres.one.localhost';
+config.server.host = 'genesis.veres.one.localhost:23443';
 
 // mongodb config
 config.mongodb.name = 'veres_one_test';
-config.mongodb.local.collection = 'veres_one_test';
+config.mongodb.collection = 'veres_one_test';
 config.mongodb.dropCollections = {};
 config.mongodb.dropCollections.onInit = true;
 config.mongodb.dropCollections.collections = [];

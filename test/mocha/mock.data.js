@@ -4,7 +4,7 @@
 'use strict';
 
 const {config: {constants}} = require('bedrock');
-const didv1 = new (require('did-veres-one')).VeresOne();
+const v1 = require('did-veres-one');
 // const helpers = require('./helpers');
 
 const mock = {};
@@ -23,11 +23,15 @@ mock.keys = {};
 //mock.keys.gamma = helpers.generateDidKeys();
 
 (async function() {
+  const didv1 = v1.driver();
   mock.didDocuments.alpha = await didv1.generate({passphrase: null});
 })();
 
 mock.configurations.alpha = {
-  '@context': constants.WEB_LEDGER_CONTEXT_V1_URL,
+  '@context': [
+    constants.WEB_LEDGER_CONTEXT_V1_URL,
+    constants.ED25519_2020_CONTEXT_V1_URL
+  ],
   type: 'WebLedgerConfiguration',
   ledger: null,
   consensusMethod: 'Continuity2017',

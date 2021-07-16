@@ -47,9 +47,12 @@ config.server.host = config.server.domain;
 config.mongodb.name = 'veres_one';
 config.mongodb.host = 'localhost';
 config.mongodb.port = 27017;
-config.mongodb.local.collection = 'veres_one';
-config.mongodb.username = 'veres';
-config.mongodb.password = null;
+// mongodb auth options are commented out, because if a username
+// and password are set it tries to login.
+// uncomment them to use auth
+//config.mongodb.username = 'veres';
+//config.mongodb.password = null;
+//config.mongodb.connectOptions.authSource = 'foo';
 // FIXME: this should be false
 config.mongodb.adminPrompt = true;
 

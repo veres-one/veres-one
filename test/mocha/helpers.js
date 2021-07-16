@@ -6,7 +6,7 @@
 const _ = require('lodash');
 const async = require('async');
 const bedrock = require('bedrock');
-const brIdentity = require('bedrock-identity');
+const brAccount = require('bedrock-account');
 const {config, util: {uuid}} = bedrock;
 const database = require('bedrock-mongodb');
 const jsigs = require('jsonld-signatures');
@@ -196,7 +196,7 @@ api.prepareDatabase = function(mockData, callback) {
 function insertTestData(mockData, callback) {
   async.forEachOf(mockData.identities, (identity, key, callback) =>
     async.parallel([
-      callback => brIdentity.insert(null, identity.identity, callback),
+      callback => brAccount.updateRoles(null, identity.identity, callback),
       callback => {
         // if(identity.keys) {
         //   return async.each([].concat(identity.keys), (k, callback) => {
