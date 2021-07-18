@@ -35,7 +35,7 @@ mock.configurations.alpha = {
   type: 'WebLedgerConfiguration',
   ledger: null,
   consensusMethod: 'Continuity2017',
-  electorSelectionMethod: {
+  witnessSelectionMethod: {
     type: 'ElectorPoolElectorSelection',
     electorPool: 'did:v1:uuid:1ab9d607-c2cf-47d3-a3e2-bfecfdd0fce6',
   },

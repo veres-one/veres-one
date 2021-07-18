@@ -68,7 +68,7 @@ roles['veres-one.test'] = {
 // determine what types of dids are produced
 // environment === dev produces did:v1:<did>
 // environment === test produces did:v1:test:<did>
-config['veres-one-validator'].environment = 'dev';
+config['veres-one-validator'].environment = 'test';
 
 // enable consensus workers
 config.ledger.jobs.scheduleConsensusWork.enabled = true;
