@@ -3,7 +3,7 @@ name: Packaging
 on:
   push:
     branches:
-      - "engine-mk5"
+      - "dingo-rc1"
 
 jobs:
   package:
@@ -39,12 +39,25 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ghcr.io/${{ env.CONTAINER_OWNER }}/${{ env.CONTAINER_IMAGE_NAME }}:${{ steps.version.outputs.current-version }}-rc${{ steps.rc.outputs.version_build_number }}-engine-mk5
+          tags: ghcr.io/${{ env.CONTAINER_OWNER }}/${{ env.CONTAINER_IMAGE_NAME }}:${{ steps.version.outputs.current-version }}-rc${{ steps.rc.outputs.version_build_number }}-dingo-rc1
+
+      - name: Login to Google Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: us.gcr.io
+          username: _json_key
+          password: ${{ secrets.GCP_CREDENTIALS }}
+
+      - name: Publish Docker image
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: us.gcr.io/${{ env.CONTAINER_OWNER }}/${{ env.CONTAINER_IMAGE_NAME }}:${{ steps.version.outputs.current-version }}-rc${{ steps.rc.outputs.version_build_number }}-dingo-rc1
 
       - name: Save published docker image tag
         shell: bash
         run: |
-          echo "${{ steps.version.outputs.current-version }}-rc${{ steps.rc.outputs.version_build_number }}-engine-mk5" > version.txt
+          echo "${{ steps.version.outputs.current-version }}-rc${{ steps.rc.outputs.version_build_number }}-dingo-rc1" > version.txt
       - name: Upload published docker image tag
         uses: actions/upload-artifact@v1
         with:
