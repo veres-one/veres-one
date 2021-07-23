@@ -3,7 +3,7 @@
  */
 'use strict';
 
-const {util: {delay}} = require('bedrock');
+const {config, util: {delay}} = require('bedrock');
 const didVeresOne = require('did-veres-one');
 const httpsAgent = new require('https').Agent({rejectUnauthorized: false});
 
@@ -11,7 +11,7 @@ const httpsAgent = new require('https').Agent({rejectUnauthorized: false});
 // an allowed service proxy URL
 describe.skip('DID update', () => {
   it('a DID owner should be able to update its own DID document', async () => {
-    const hostname = 'genesis.veres.one.localhost:23443';
+    const hostname = config.server.host;
     const v1 = didVeresOne.driver({
       hostname,
       httpsAgent,

@@ -23,7 +23,7 @@ const urlObj = {
 
 describe('DID creation', () => {
   it('a DID owner should be able to create its own DID document', async () => {
-    const hostname = 'genesis.veres.one.localhost:23443';
+    const hostname = config.server.host;
     const v1 = didVeresOne.driver({
       hostname,
       httpsAgent,
