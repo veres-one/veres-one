@@ -9,3 +9,4 @@ const {config} = require('bedrock');
 config.loggers.email.silent = true;
 config.loggers.email.to = ['cluster@veres.io'];
 config.loggers.email.from = 'cluster@veres.io';
+config.loggers.enableFileTransport = false;

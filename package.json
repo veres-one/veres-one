@@ -15,7 +15,7 @@
     "@fortawesome/fontawesome-free": "^5.7.2",
     "animate.css": "^3.6.1",
     "async": "^2.1.4",
-    "bedrock": "digitalbazaar/bedrock#510e5a185517cc502a3d8f8288401c6c382565df",
+    "bedrock": "^4.4.0",
     "bedrock-account": "^4.0.0",
     "bedrock-config-yaml": "^2.1.0",
     "bedrock-express": "^4.0.0",
