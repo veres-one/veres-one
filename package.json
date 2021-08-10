@@ -17,7 +17,7 @@
     "async": "^2.1.4",
     "bedrock": "^4.4.0",
     "bedrock-account": "^4.0.0",
-    "bedrock-config-yaml": "^2.1.0",
+    "bedrock-config-yaml": "github:digitalbazaar/bedrock-config-yaml#gcp-secret",
     "bedrock-express": "^4.0.0",
     "bedrock-fontawesome": "^1.0.0",
     "bedrock-https-agent": "^2.0.0",
