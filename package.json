@@ -42,7 +42,7 @@
     "bedrock-permission": "^3.1.0",
     "bedrock-quasar": "^3.0.0",
     "bedrock-quasar-form-generator": "^2.0.0",
-    "bedrock-redis": "^3.2.0",
+    "bedrock-redis": "github:digitalbazaar/bedrock-redis#redis-3",
     "bedrock-request-limiter": "^2.0.1",
     "bedrock-rest": "^3.0.0",
     "bedrock-security-context": "^3.0.0",
