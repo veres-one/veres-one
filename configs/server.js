@@ -10,4 +10,3 @@ require('bedrock-server');
 config.server.port = 45443;
 config.server.httpPort = 45080;
 config.server.domain = 'localhost';
-config.server.host = 'localhost:45443';
