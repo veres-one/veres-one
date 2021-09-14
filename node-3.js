@@ -18,7 +18,7 @@ config.server.port = 48443;
 config.server.httpPort = 48080;
 config.server.domain = 'node-3.veres.one.local';
 config.mongodb.name = 'veres_one_node_3';
-config.jobs.prefix = 'veres_one_jobs_node_3';
+config.jobs.queueOptions.prefix = 'veres_one_jobs_node_3';
 
 // ensure TLS is used for all https-agent connections
 config['https-agent'].rejectUnauthorized = false;
