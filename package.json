@@ -63,7 +63,7 @@
     "bedrock-webpack": "^3.0.0",
     "bootstrap": "^3.3.7",
     "cors": "^2.8.1",
-    "did-veres-one": "github:veres-one/did-veres-one#v14.x",
+    "did-veres-one": "github:veres-one/did-veres-one#dynamic-root-zcap-generate",
     "ed25519-signature-2020-context": "^1.1.0",
     "flex-docstore": "~0.1.2",
     "jsonata": "^1.6.4",

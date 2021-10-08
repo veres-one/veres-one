@@ -13,7 +13,9 @@ config.paths.config = path.join(__dirname, '..', 'configs');
 
 // NOTE: it is critical that bedrock-protractor be required first so that
 // it can register a bedrock.cli event listener
-require('../lib');
+require('../lib/index');
+
+config.paths.config = path.join(__dirname, '..', 'configs');
 
 require('../configs/dev-genesis');
 
